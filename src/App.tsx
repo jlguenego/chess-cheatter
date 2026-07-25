@@ -9,6 +9,8 @@ import {
 } from "./components/EngineControls";
 import { SuggestionsPanel } from "./components/SuggestionsPanel";
 import { useStockfish } from "./hooks/useStockfish";
+import { useTheme } from "./hooks/useTheme";
+import { rankColor } from "./theme/rankColors";
 import {
   DEFAULT_META,
   START_BOARD,
@@ -20,9 +22,8 @@ import {
   type PositionMeta,
 } from "./chess/fen";
 
-const ARROW_COLORS = ["#2e9e5b", "#c9a227", "#c96a27"];
-
 export default function App() {
+  const { theme, toggleTheme } = useTheme();
   const [board, setBoard] = useState<BoardPosition>({ ...START_BOARD });
   const [orientation, setOrientation] = useState<"white" | "black">("white");
   const [meta, setMeta] = useState<PositionMeta>({ ...DEFAULT_META });
@@ -44,7 +45,7 @@ export default function App() {
       return {
         startSquare: from,
         endSquare: to,
-        color: ARROW_COLORS[i] ?? "#888",
+        color: rankColor(i),
       };
     });
   }, [analyzedFen, lines]);
@@ -63,10 +64,22 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>♟ Chess Cheater</h1>
-        <p className="subtitle">
-          Reproduisez la position, lancez Stockfish, jouez le meilleur coup.
-        </p>
+        <div>
+          <h1>♟ Chess Cheater</h1>
+          <p className="subtitle">
+            Reproduisez la position, lancez Stockfish, jouez le meilleur coup.
+          </p>
+        </div>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={toggleTheme}
+          aria-label={
+            theme === "dark" ? "Passer au thème clair" : "Passer au thème sombre"
+          }
+        >
+          {theme === "dark" ? "☀️ Clair" : "🌙 Sombre"}
+        </button>
       </header>
 
       <main className="layout">

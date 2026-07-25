@@ -1,5 +1,6 @@
 import type { LineEval } from "../engine/engine";
 import { formatScore, uciToMove } from "../chess/fen";
+import { rankColor } from "../theme/rankColors";
 
 interface SuggestionsPanelProps {
   fen: string | null;
@@ -7,8 +8,6 @@ interface SuggestionsPanelProps {
   analyzing: boolean;
   error?: string;
 }
-
-const RANK_COLORS = ["#2e9e5b", "#c9a227", "#c96a27"];
 
 export function SuggestionsPanel({
   fen,
@@ -37,7 +36,7 @@ export function SuggestionsPanel({
             <li key={line.multipv} className="move-row">
               <span
                 className="rank-dot"
-                style={{ background: RANK_COLORS[i] ?? "#888" }}
+                style={{ background: rankColor(i) }}
               />
               <span className="move-san">{decoded?.san ?? line.pvUci[0]}</span>
               <span className="move-score">{formatScore(line)}</span>
