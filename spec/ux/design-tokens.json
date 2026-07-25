@@ -1,0 +1,193 @@
+{
+  "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
+  "$description": "Design tokens normalisés reconstruits par rétro-ingénierie de l'application chess-cheater dans son état actuel (src/index.css + valeurs inline des composants). Format W3C Design Tokens Community Group (DTCG). Structure en 2 niveaux : (1) `color.palette` = primitives brutes agnostiques au thème ; (2) `color.theme.dark` / `color.theme.light` = tokens sémantiques (rôles) qui référencent les primitives via alias. Le thème `dark` reproduit à l'identique l'app actuelle ; le thème `light` est dérivé de la même palette pour la refonte UX/UI. Les tokens non-couleur (font, space, radius, size…) sont partagés entre les thèmes.",
+
+  "color": {
+    "$type": "color",
+
+    "palette": {
+      "$description": "Primitives : palette brute, source unique de vérité, agnostique au thème. Ne pas consommer directement dans l'UI — passer par les tokens sémantiques de `color.theme`.",
+
+      "neutral": {
+        "$description": "Échelle de gris, du plus clair (0) au plus sombre (900).",
+        "0": { "$value": "#ffffff", "$description": "Blanc pur." },
+        "50": { "$value": "#f5f6f8", "$description": "Fond clair." },
+        "100": { "$value": "#eef0f3", "$description": "Surface élevée claire." },
+        "150": { "$value": "#e6e8ec", "$description": "Texte principal en thème sombre (--text)." },
+        "200": { "$value": "#d5d9e0", "$description": "Bordure claire." },
+        "500": { "$value": "#9aa1ac", "$description": "Texte atténué en thème sombre (--muted)." },
+        "600": { "$value": "#5c6570", "$description": "Texte atténué en thème clair." },
+        "700": { "$value": "#363b45", "$description": "Bordure en thème sombre (--border)." },
+        "800": { "$value": "#2c313b", "$description": "Surface élevée sombre (--panel-2)." },
+        "850": { "$value": "#242830", "$description": "Surface de panneau sombre (--panel)." },
+        "900": { "$value": "#1a1d23", "$description": "Fond sombre (--bg)." }
+      },
+
+      "blue": {
+        "$description": "Bleu de marque (accent).",
+        "400": { "$value": "#4a90e2", "$description": "Accent standard (--accent)." },
+        "500": { "$value": "#357abd", "$description": "Accent renforcé (--accent-strong)." },
+        "600": { "$value": "#2a5f92", "$description": "Accent renforcé pour survol en thème clair." }
+      },
+
+      "red": {
+        "$description": "Rouge d'alerte.",
+        "500": { "$value": "#d9534f", "$description": "Danger en thème sombre (--danger)." },
+        "600": { "$value": "#c9302c", "$description": "Danger en thème clair (meilleur contraste)." }
+      },
+
+      "rank": {
+        "$description": "Couleurs de classement des suggestions moteur (dots du panneau + flèches). Saturées, lisibles sur les deux thèmes — partagées entre ARROW_COLORS (App.tsx) et RANK_COLORS (SuggestionsPanel.tsx).",
+        "1": { "$value": "#2e9e5b", "$description": "Meilleur coup (rang 1) — vert." },
+        "2": { "$value": "#c9a227", "$description": "Deuxième coup (rang 2) — or." },
+        "3": { "$value": "#c96a27", "$description": "Troisième coup (rang 3) — orange." },
+        "fallback": { "$value": "#888888", "$description": "Coups au-delà du rang 3 — gris (fallback \"#888\")." }
+      }
+    },
+
+    "theme": {
+      "$description": "Tokens sémantiques (rôles). Un thème = un mapping rôle → primitive. C'est ce que l'UI doit consommer.",
+
+      "dark": {
+        "$description": "Thème sombre — reproduit à l'identique l'app actuelle (color-scheme: dark).",
+        "background": {
+          "base": { "$value": "{color.palette.neutral.900}", "$description": "Fond global (--bg)." },
+          "panel": { "$value": "{color.palette.neutral.850}", "$description": "Surface des panneaux (--panel)." },
+          "panel-elevated": { "$value": "{color.palette.neutral.800}", "$description": "Surface secondaire / contrôles au repos (--panel-2)." }
+        },
+        "border": {
+          "default": { "$value": "{color.palette.neutral.700}", "$description": "Bordure standard (--border)." }
+        },
+        "text": {
+          "default": { "$value": "{color.palette.neutral.150}", "$description": "Texte principal (--text)." },
+          "muted": { "$value": "{color.palette.neutral.500}", "$description": "Texte secondaire (--muted)." },
+          "on-accent": { "$value": "{color.palette.neutral.0}", "$description": "Texte sur fond accent ou danger (#fff)." }
+        },
+        "accent": {
+          "default": { "$value": "{color.palette.blue.400}", "$description": "Accent : segmented actif, bouton primaire, curseurs (--accent)." },
+          "strong": { "$value": "{color.palette.blue.500}", "$description": "Accent renforcé : survol du bouton primaire (--accent-strong)." }
+        },
+        "feedback": {
+          "danger": { "$value": "{color.palette.red.500}", "$description": "Erreurs et bouton d'arrêt (--danger)." }
+        },
+        "rank": {
+          "1": { "$value": "{color.palette.rank.1}", "$description": "Rang 1." },
+          "2": { "$value": "{color.palette.rank.2}", "$description": "Rang 2." },
+          "3": { "$value": "{color.palette.rank.3}", "$description": "Rang 3." },
+          "fallback": { "$value": "{color.palette.rank.fallback}", "$description": "Au-delà du rang 3." }
+        }
+      },
+
+      "light": {
+        "$description": "Thème clair — dérivé de la même palette (nouveau, pour la refonte UX/UI). Accent et danger assombris d'un cran pour garder le contraste sur fond clair.",
+        "background": {
+          "base": { "$value": "{color.palette.neutral.50}", "$description": "Fond global." },
+          "panel": { "$value": "{color.palette.neutral.0}", "$description": "Surface des panneaux." },
+          "panel-elevated": { "$value": "{color.palette.neutral.100}", "$description": "Surface secondaire / contrôles au repos." }
+        },
+        "border": {
+          "default": { "$value": "{color.palette.neutral.200}", "$description": "Bordure standard." }
+        },
+        "text": {
+          "default": { "$value": "{color.palette.neutral.900}", "$description": "Texte principal." },
+          "muted": { "$value": "{color.palette.neutral.600}", "$description": "Texte secondaire." },
+          "on-accent": { "$value": "{color.palette.neutral.0}", "$description": "Texte sur fond accent ou danger." }
+        },
+        "accent": {
+          "default": { "$value": "{color.palette.blue.500}", "$description": "Accent (assombri d'un cran vs dark pour le contraste sur fond clair)." },
+          "strong": { "$value": "{color.palette.blue.600}", "$description": "Accent renforcé : survol." }
+        },
+        "feedback": {
+          "danger": { "$value": "{color.palette.red.600}", "$description": "Erreurs et bouton d'arrêt (assombri pour le contraste)." }
+        },
+        "rank": {
+          "1": { "$value": "{color.palette.rank.1}", "$description": "Rang 1." },
+          "2": { "$value": "{color.palette.rank.2}", "$description": "Rang 2." },
+          "3": { "$value": "{color.palette.rank.3}", "$description": "Rang 3." },
+          "fallback": { "$value": "{color.palette.rank.fallback}", "$description": "Au-delà du rang 3." }
+        }
+      }
+    }
+  },
+
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "sans": {
+        "$value": ["system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        "$description": "Police système par défaut appliquée au body."
+      }
+    },
+
+    "weight": {
+      "$type": "fontWeight",
+      "regular": { "$value": 400, "$description": "Poids par défaut du corps de texte." },
+      "semibold": { "$value": 600, "$description": "Notation SAN des coups (.move-san)." }
+    },
+
+    "size": {
+      "$type": "dimension",
+      "$description": "Tailles de police exprimées en rem telles que définies dans index.css.",
+      "xs": { "$value": "0.8rem", "$description": "Profondeur de coup, texte muted small (.move-depth, .muted.small)." },
+      "sm": { "$value": "0.85rem", "$description": "Labels de champ, indices (.field-label, .hint)." },
+      "md": { "$value": "0.9rem", "$description": "Cases à cocher (.checkbox)." },
+      "base": { "$value": "1rem", "$description": "Texte de base / bouton primaire (button.primary)." },
+      "lg": { "$value": "1.05rem", "$description": "Titres de panneaux (.panel h2)." },
+      "xl": { "$value": "1.8rem", "$description": "Titre principal (.app-header h1)." }
+    }
+  },
+
+  "space": {
+    "$type": "dimension",
+    "$description": "Échelle d'espacement déduite des gaps, paddings et margins existants.",
+    "3xs": { "$value": "4px", "$description": "Marge haute du sous-titre." },
+    "2xs": { "$value": "6px", "$description": "Gaps fins : castling, checkbox, spare-row, offset de label." },
+    "xs": { "$value": "8px", "$description": "Gaps de boutons, liste de coups, padding vertical des contrôles segmentés." },
+    "sm": { "$value": "10px", "$description": "Gap et padding vertical des lignes de coups (.move-row)." },
+    "md": { "$value": "12px", "$description": "Padding du bouton primaire, marges de titres, offset des actions." },
+    "lg": { "$value": "14px", "$description": "Marge basse des champs, padding horizontal des boutons d'action." },
+    "xl": { "$value": "16px", "$description": "Padding des panneaux, gap de la colonne latérale, padding horizontal du segmented." },
+    "2xl": { "$value": "20px", "$description": "Marge basse du sous-titre." },
+    "3xl": { "$value": "24px", "$description": "Padding de l'app et gap principal de la grille." }
+  },
+
+  "radius": {
+    "$type": "dimension",
+    "$description": "Rayons de bordure.",
+    "sm": { "$value": "6px", "$description": "Pièces de réserve (.spare-piece)." },
+    "md": { "$value": "8px", "$description": "Contrôles : segmented, boutons, lignes de coups." },
+    "lg": { "$value": "10px", "$description": "Panneaux (.panel)." },
+    "full": { "$value": "50%", "$description": "Pastilles de classement circulaires (.rank-dot)." }
+  },
+
+  "border": {
+    "width": {
+      "$type": "dimension",
+      "default": { "$value": "1px", "$description": "Épaisseur unique utilisée pour toutes les bordures." }
+    },
+    "style": {
+      "$type": "strokeStyle",
+      "default": { "$value": "solid", "$description": "Style unique des bordures." }
+    }
+  },
+
+  "size": {
+    "$type": "dimension",
+    "$description": "Dimensions fixes et contraintes de mise en page.",
+    "app-max-width": { "$value": "1100px", "$description": "Largeur maximale du conteneur .app." },
+    "board-max-width": { "$value": "560px", "$description": "Largeur maximale de l'échiquier, de la rangée de réserve et des indices." },
+    "side-column-width": { "$value": "340px", "$description": "Largeur fixe de la colonne latérale dans la grille." },
+    "board-column-min": { "$value": "320px", "$description": "Largeur minimale de la colonne échiquier (minmax)." },
+    "spare-piece": { "$value": "44px", "$description": "Côté carré d'une pièce de réserve." },
+    "rank-dot": { "$value": "12px", "$description": "Diamètre d'une pastille de classement." }
+  },
+
+  "opacity": {
+    "disabled": { "$value": 0.5, "$description": "Opacité des boutons désactivés (button.primary:disabled)." }
+  },
+
+  "breakpoint": {
+    "$type": "dimension",
+    "mobile": { "$value": "860px", "$description": "Point de bascule : la grille passe à une seule colonne en dessous (max-width: 860px)." }
+  }
+}
