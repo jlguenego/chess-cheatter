@@ -64,6 +64,12 @@
         "orange": { "$value": "#cf3a2e", "$description": "Alerte rouge-orangé chaud (error). Texte blanc ≈ 4.89:1 (AA)." },
         "board-light": { "$value": "#b58a6a", "$description": "Case claire (sable chaud), assombrie pour ne pas éblouir sur fond sombre." },
         "board-dark": { "$value": "#6e4335", "$description": "Case sombre (terracotta), fort écart de luminance pour ancrer l'échiquier." }
+      },
+
+      "wireframe": {
+        "$description": "Palette monochrome pour le thème wireframe2025 : noir et blanc PURS, aucun gris, contraste maximal (21:1). Fond blanc, encre noire, tout le contraste porté par le trait plutôt que par la couleur.",
+        "white": { "$value": "#ffffff", "$description": "Blanc pur — fond et texte inversé." },
+        "black": { "$value": "#000000", "$description": "Noir pur — encre, traits et surfaces inversées." }
       }
     },
 
@@ -78,6 +84,10 @@
         "retro": {
           "$value": ["Orbitron", "system-ui", "sans-serif"],
           "$description": "Police d'affichage géométrique sci-fi (Orbitron, auto-hébergée via @font-face dans index.css) pour l'allure synthwave du thème warm80s."
+        },
+        "mono": {
+          "$value": ["ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", "monospace"],
+          "$description": "Police monospace système : trait net, chasse fixe et haute lisibilité pour l'allure filaire technique du thème wireframe2025. Aucune ressource à héberger (pile système)."
         }
       },
       "weight": {
@@ -114,6 +124,7 @@
     "radius": {
       "$type": "dimension",
       "$description": "Échelle de rayons de bordure.",
+      "none": { "$value": "0px", "$description": "Aucun rayon — coins vifs (thème filaire wireframe2025)." },
       "xs": { "$value": "2px", "$description": "Rayon minimal, anguleux (thème rétro)." },
       "sm": { "$value": "6px", "$description": "Petit rayon." },
       "md": { "$value": "8px", "$description": "Rayon moyen (contrôles)." },

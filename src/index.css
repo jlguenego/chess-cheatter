@@ -38,6 +38,22 @@
   color-scheme: dark;
 }
 
+[data-theme="wireframe2025"] {
+  color-scheme: light;
+
+  /* Cases sombres rendues par un hachurage diagonal noir sur blanc (allure
+     blueprint) plutôt qu'un aplat noir : les pièces noires restent lisibles
+     tout en conservant un rendu strictement noir & blanc. Consommé par
+     darkSquareStyle dans BoardEditor via var(--board-dark-fill, …). */
+  --board-dark-fill: repeating-linear-gradient(
+    -45deg,
+    var(--comp-board-dark) 0 2px,
+    var(--comp-board-light) 2px 6px
+  );
+  /* Notation (repères de rangée/colonne) en noir sur le hachurage clair. */
+  --board-dark-notation: var(--comp-board-dark);
+}
+
 * {
   box-sizing: border-box;
 }

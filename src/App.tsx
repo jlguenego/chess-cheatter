@@ -99,6 +99,14 @@ export default function App() {
           >
             🌆 Rétro 80
           </button>
+          <button
+            type="button"
+            className={theme === "wireframe2025" ? "active" : ""}
+            aria-pressed={theme === "wireframe2025"}
+            onClick={() => setTheme("wireframe2025")}
+          >
+            ▢ Wireframe
+          </button>
         </div>
       </header>
 

@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 
-export type Theme = "dark" | "light" | "warm80s";
+export type Theme = "dark" | "light" | "warm80s" | "wireframe2025";
 
 const STORAGE_KEY = "chess-cheater-theme";
 
 function isTheme(value: unknown): value is Theme {
-  return value === "dark" || value === "light" || value === "warm80s";
+  return (
+    value === "dark" ||
+    value === "light" ||
+    value === "warm80s" ||
+    value === "wireframe2025"
+  );
 }
 
 function getInitialTheme(): Theme {
@@ -17,9 +22,10 @@ function getInitialTheme(): Theme {
 }
 
 /**
- * Gère le thème (dark / light / warm80s) : applique l'attribut `data-theme`
- * sur <html> (consommé par les tokens sémantiques de index.css) et persiste le
- * choix. `setTheme` sélectionne directement un thème (contrôle segmenté exclusif).
+ * Gère le thème (dark / light / warm80s / wireframe2025) : applique l'attribut
+ * `data-theme` sur <html> (consommé par les tokens sémantiques de index.css) et
+ * persiste le choix. `setTheme` sélectionne directement un thème (contrôle
+ * segmenté exclusif).
  */
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(getInitialTheme);

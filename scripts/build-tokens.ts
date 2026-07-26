@@ -18,6 +18,7 @@ const SYS = `${TOKENS}/sys.tokens.json`;
 const COMP = `${TOKENS}/comp.tokens.json`;
 const LIGHT = `${TOKENS}/theme/light.tokens.json`;
 const WARM80S = `${TOKENS}/theme/warm80s.tokens.json`;
+const WIREFRAME = `${TOKENS}/theme/wireframe2025.tokens.json`;
 const TMP = ".tokens-tmp";
 
 /**
@@ -159,9 +160,36 @@ const warm80s = new StyleDictionary({
   },
 });
 
+// --- Bloc [data-theme=wireframe2025] : monochrome filaire, mêmes règles que light ---
+// warnings désactivés : mêmes var(--ref-*) volontaires vers primitives hors bloc filtré.
+const wireframe = new StyleDictionary({
+  include: [REF, SYS, COMP],
+  source: [WIREFRAME],
+  log: { warnings: "disabled" },
+  platforms: {
+    css: {
+      transforms: CSS_TRANSFORMS,
+      buildPath: `${TMP}/`,
+      files: [
+        {
+          destination: "wireframe2025.css",
+          format: "css/variables",
+          filter: (token) => token.isSource,
+          options: {
+            outputReferences: true,
+            selector: '[data-theme="wireframe2025"]',
+            showFileHeader: false,
+          },
+        },
+      ],
+    },
+  },
+});
+
 await base.buildAllPlatforms();
 await light.buildAllPlatforms();
 await warm80s.buildAllPlatforms();
+await wireframe.buildAllPlatforms();
 
 const header = `/* ============================================================
    Design tokens — GÉNÉRÉ par scripts/build-tokens.ts (bun run tokens).
@@ -170,13 +198,18 @@ const header = `/* ============================================================
      :root                → thème par défaut (dark)
      [data-theme=light]   → overrides du thème clair
      [data-theme=warm80s] → overrides du thème chaud années 80
+     [data-theme=wireframe2025] → overrides du thème filaire noir & blanc
    ============================================================ */
 `;
 
 const baseCss = readFileSync(`${TMP}/base.css`, "utf8").trim();
 const lightCss = readFileSync(`${TMP}/light.css`, "utf8").trim();
 const warm80sCss = readFileSync(`${TMP}/warm80s.css`, "utf8").trim();
-writeFileSync("src/tokens.gen.css", `${header}\n${baseCss}\n\n${lightCss}\n\n${warm80sCss}\n`);
+const wireframeCss = readFileSync(`${TMP}/wireframe2025.css`, "utf8").trim();
+writeFileSync(
+  "src/tokens.gen.css",
+  `${header}\n${baseCss}\n\n${lightCss}\n\n${warm80sCss}\n\n${wireframeCss}\n`,
+);
 
 rmSync(TMP, { recursive: true, force: true });
 

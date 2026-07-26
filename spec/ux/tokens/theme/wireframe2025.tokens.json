@@ -1,0 +1,57 @@
+{
+  "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
+  "$description": "THÈME WIREFRAME 2025 (color-scheme: light) — OVERRIDE PARTIEL du thème par défaut. Esthétique filaire / blueprint : noir et blanc PURS, AUCUN gris, contraste maximal (21:1). Toutes les surfaces sont blanches et se distinguent uniquement par leur trait noir (bordures fines de 1px, coins vifs). Texte, bordures, accent et alerte sont tous en noir → le sens passe par la forme (position, trait) et non par la couleur. Police monospace nette et lisible. Surcharge les rôles `sys.color.*` PLUS les rôles non-couleur `sys.shape.*` (coins vifs) et `sys.font.*` (monospace) ; tout rôle non listé (on-primary, on-error = blanc ; rank/opacity/duration/breakpoint agnostiques) hérite de sys.tokens.json. Fichier OPTIONNEL. Reflété en CSS par le bloc [data-theme=\"wireframe2025\"] de src/tokens.gen.css. Dérivé de la palette ref.color.wireframe, ref.radius.none et ref.font.family.mono.",
+
+  "sys": {
+    "color": {
+      "$type": "color",
+
+      "surface": {
+        "$description": "Surfaces (fonds) — toutes blanches : la hiérarchie ne passe plus par la tonalité mais par le trait (bordures noires). Contraste maximal avec l'encre noire.",
+        "base": { "$value": "{ref.color.wireframe.white}", "$description": "Fond global blanc." },
+        "container": { "$value": "{ref.color.wireframe.white}", "$description": "Surface des panneaux — blanche, délimitée par sa bordure noire." },
+        "container-high": { "$value": "{ref.color.wireframe.white}", "$description": "Surface secondaire / contrôles au repos — blanche." }
+      },
+      "on-surface": {
+        "$description": "Contenu posé sur les surfaces : noir pur (21:1). `variant` reste noir (aucun gris) — la distinction secondaire passe par la taille/graisse, pas la couleur.",
+        "default": { "$value": "{ref.color.wireframe.black}", "$description": "Texte principal noir." },
+        "variant": { "$value": "{ref.color.wireframe.black}", "$description": "Texte secondaire — noir également (pas de niveau de gris)." }
+      },
+      "outline": {
+        "default": { "$value": "{ref.color.wireframe.black}", "$description": "Bordure noire — porteuse de toute la structure filaire." }
+      },
+      "primary": {
+        "$description": "Accent inversé : encre noire pleine, texte blanc dessus. (`on-primary` hérite de sys : #fff → contraste 21:1.)",
+        "default": { "$value": "{ref.color.wireframe.black}", "$description": "Primary noir." },
+        "hover": { "$value": "{ref.color.wireframe.black}", "$description": "Primary au survol — reste noir (le survol se marque par un autre biais, ex. inversion CSS)." }
+      },
+      "error": {
+        "$description": "Alerte en noir aussi (monochrome strict). (`on-error` hérite de sys : #fff.) La sémantique d'erreur passe par le libellé/l'icône, pas la couleur.",
+        "default": { "$value": "{ref.color.wireframe.black}", "$description": "Erreurs et bouton d'arrêt — noir." }
+      },
+      "board": {
+        "$description": "Échiquier noir et blanc purs (classique). Case sélectionnée / dernier coup en noir.",
+        "light": { "$value": "{ref.color.wireframe.white}", "$description": "Case claire — blanc pur." },
+        "dark": { "$value": "{ref.color.wireframe.black}", "$description": "Case sombre — noir pur." },
+        "highlight": { "$value": "{ref.color.wireframe.black}", "$description": "Case sélectionnée / dernier coup — noir." }
+      }
+    },
+
+    "shape": {
+      "$type": "dimension",
+      "$description": "Coins vifs (rayon nul) sur tous les contrôles et panneaux — allure filaire / blueprint.",
+      "control": { "$value": "{ref.radius.none}", "$description": "Contrôles à coins vifs." },
+      "control-sm": { "$value": "{ref.radius.none}", "$description": "Petits contrôles à coins vifs." },
+      "panel": { "$value": "{ref.radius.none}", "$description": "Panneaux à coins vifs." }
+    },
+
+    "font": {
+      "$description": "Police monospace PARTOUT (corps + titres/contrôles) : trait net, haute lisibilité, allure technique filaire.",
+      "family": {
+        "$type": "fontFamily",
+        "default": { "$value": "{ref.font.family.mono}", "$description": "Corps de texte en monospace." },
+        "display": { "$value": "{ref.font.family.mono}", "$description": "Titres et contrôles en monospace." }
+      }
+    }
+  }
+}
