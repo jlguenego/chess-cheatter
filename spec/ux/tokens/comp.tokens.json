@@ -1,19 +1,19 @@
 {
-  "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
+  "$schema": "./schema/dtcg-format-2025.10.json",
   "$description": "TIER 3 — Composant. Token set du design system chess-cheater (format DTCG). Fait partie d'un ensemble fusionné en un seul arbre par l'outil de build : ce set aliase `{sys.…}` (rôles définis dans sys.tokens.json pour l'agnostique, et dans theme/{dark,light}.tokens.json pour les couleurs de thème — mêmes chemins `sys.color.*`) pour les couleurs/états et `{ref.…}` (défini dans ref.tokens.json) pour les dimensions pures. Les alias de couleur sont THEME-AGNOSTIC (`{sys.color.surface…}`, pas de segment de thème) : le thème est choisi à la compilation/au runtime, pas dans le chemin. Tokens scopés à un composant précis de l'UI. C'est ce que consomment en priorité les règles CSS de chaque composant. Reflété en CSS par le préfixe --comp-*.",
 
   "comp": {
     "app": {
       "$description": "Conteneur racine .app.",
-      "max-width": { "$value": "1100px", "$description": "Largeur maximale du conteneur." },
+      "max-width": { "$type": "dimension", "$value": { "value": 1100, "unit": "px" }, "$description": "Largeur maximale du conteneur." },
       "padding": { "$value": "{ref.space.3xl}", "$description": "Padding interne." }
     },
 
     "layout": {
       "$description": "Grille principale .layout (échiquier + colonne latérale).",
       "gap": { "$value": "{ref.space.3xl}", "$description": "Espacement entre colonnes." },
-      "side-column-width": { "$value": "340px", "$description": "Largeur fixe de la colonne latérale." },
-      "board-column-min": { "$value": "320px", "$description": "Largeur minimale de la colonne échiquier (minmax)." },
+      "side-column-width": { "$type": "dimension", "$value": { "value": 340, "unit": "px" }, "$description": "Largeur fixe de la colonne latérale." },
+      "board-column-min": { "$type": "dimension", "$value": { "value": 320, "unit": "px" }, "$description": "Largeur minimale de la colonne échiquier (minmax)." },
       "side-column-gap": { "$value": "{ref.space.xl}", "$description": "Espacement vertical entre panneaux de la colonne latérale." }
     },
 
@@ -84,12 +84,12 @@
       "light": { "$value": "{sys.color.board.light}", "$description": "Case claire." },
       "dark": { "$value": "{sys.color.board.dark}", "$description": "Case sombre." },
       "highlight": { "$value": "{sys.color.board.highlight}", "$description": "Case sélectionnée / dernier coup." },
-      "max-width": { "$value": "560px", "$description": "Largeur maximale de l'échiquier, de la rangée de réserve et des indices." }
+      "max-width": { "$type": "dimension", "$value": { "value": 560, "unit": "px" }, "$description": "Largeur maximale de l'échiquier, de la rangée de réserve et des indices." }
     },
 
     "spare-piece": {
       "$description": "Pièce de réserve .spare-piece (palette de pièces à glisser).",
-      "size": { "$value": "44px", "$description": "Côté carré." },
+      "size": { "$type": "dimension", "$value": { "value": 44, "unit": "px" }, "$description": "Côté carré." },
       "bg": { "$value": "{sys.color.surface.container-high}", "$description": "Fond." },
       "border-color": { "$value": "{sys.color.outline.default}", "$description": "Couleur de bordure." },
       "radius": { "$value": "{sys.shape.control-sm}", "$description": "Rayon de bordure (rôle sys, thémable)." },
@@ -107,7 +107,7 @@
 
     "rank-dot": {
       "$description": "Pastille de classement .rank-dot (couleur portée par sys.color.rank via JS).",
-      "size": { "$value": "12px", "$description": "Diamètre." },
+      "size": { "$type": "dimension", "$value": { "value": 12, "unit": "px" }, "$description": "Diamètre." },
       "radius": { "$value": "{ref.radius.full}", "$description": "Rayon (cercle)." }
     }
   }

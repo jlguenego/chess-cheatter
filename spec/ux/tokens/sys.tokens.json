@@ -1,5 +1,5 @@
 {
-  "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
+  "$schema": "./schema/dtcg-format-2025.10.json",
   "$description": "TIER 2 — Système / sémantique. Token set du design system chess-cheater (format DTCG). Fait partie d'un ensemble fusionné en un seul arbre par l'outil de build : ce set aliase `{ref.…}` (défini dans ref.tokens.json) et est référencé par `{sys.…}` depuis comp.tokens.json. Rôles (Material Design 3). AUTO-SUFFISANT : contient le THÈME PAR DÉFAUT complet (= dark) — valeurs de couleur + rôles agnostiques (rank, opacity, duration, breakpoint). Retirer le répertoire theme/ laisse un design system fonctionnel (dark). Les fichiers theme/*.tokens.json sont des OVERRIDES partiels OPTIONNELS de `sys.color.*` (ne listent que ce qui diffère du défaut). C'est le niveau que consomme l'UI pour les besoins génériques. Reflété en CSS par le préfixe --sys-* (bloc :root).",
 
   "sys": {
@@ -94,13 +94,13 @@
     "duration": {
       "$type": "duration",
       "$description": "Durées d'animation / transition.",
-      "theme-transition": { "$value": "200ms", "$description": "Transition des couleurs (background, color, border) lors du passage entre thèmes dark et light." }
+      "theme-transition": { "$value": { "value": 200, "unit": "ms" }, "$description": "Transition des couleurs (background, color, border) lors du passage entre thèmes dark et light." }
     },
 
     "breakpoint": {
       "$type": "dimension",
       "$description": "Points de rupture responsive de la mise en page.",
-      "mobile": { "$value": "860px", "$description": "La grille passe à une seule colonne en dessous (max-width: 860px). Rappel : les media queries CSS n'acceptent pas var()." }
+      "mobile": { "$value": { "value": 860, "unit": "px" }, "$description": "La grille passe à une seule colonne en dessous (max-width: 860px). Rappel : les media queries CSS n'acceptent pas var()." }
     }
   }
 }

@@ -65,8 +65,33 @@ StyleDictionary.registerFormat({
   },
 });
 
-/** Transforms CSS : noms maison + hex 6 chiffres + familles de police jointes. */
-const CSS_TRANSFORMS = ["attribute/cti", "name/tokens-css", "color/hex", "fontFamily/css"];
+/**
+ * Transform durée → CSS : rend les tokens DTCG `duration` ({ value, unit }) en
+ * chaîne CSS (`200ms`). Le built-in `time/seconds` ne cible que le type `time`
+ * (ancien nom) et convertirait en secondes — pas ce qu'on veut ici.
+ */
+StyleDictionary.registerTransform({
+  name: "duration/css",
+  type: "value",
+  filter: (token) => (token.$type ?? token.type) === "duration",
+  transform: (token) => {
+    const v = token.$value ?? token.value;
+    return typeof v === "object" && v !== null ? `${v.value}${v.unit}` : String(v);
+  },
+});
+
+/**
+ * Transforms CSS : noms maison + hex 6 chiffres + dimensions ({ value, unit } →
+ * `4px`/`1rem`, `size/rem` préserve l'unité) + durées + familles de police jointes.
+ */
+const CSS_TRANSFORMS = [
+  "attribute/cti",
+  "name/tokens-css",
+  "color/hex",
+  "size/rem",
+  "duration/css",
+  "fontFamily/css",
+];
 
 /**
  * Exclusions du bloc :root :

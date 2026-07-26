@@ -1,5 +1,5 @@
 {
-  "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
+  "$schema": "../schema/dtcg-format-2025.10.json",
   "$description": "THÈME WIREFRAME 2025 (color-scheme: light) — OVERRIDE PARTIEL du thème par défaut. Esthétique filaire / blueprint : noir et blanc PURS, AUCUN gris, contraste maximal (21:1). Toutes les surfaces sont blanches et se distinguent uniquement par leur trait noir (bordures fines de 1px, coins vifs). Texte, bordures, accent et alerte sont tous en noir → le sens passe par la forme (position, trait) et non par la couleur. Police monospace nette et lisible. Surcharge les rôles `sys.color.*` PLUS les rôles non-couleur `sys.shape.*` (coins vifs) et `sys.font.*` (monospace) ; tout rôle non listé (on-primary, on-error = blanc ; rank/opacity/duration/breakpoint agnostiques) hérite de sys.tokens.json. Fichier OPTIONNEL. Reflété en CSS par le bloc [data-theme=\"wireframe2025\"] de src/tokens.gen.css. Dérivé de la palette ref.color.wireframe, ref.radius.none et ref.font.family.mono.",
 
   "sys": {

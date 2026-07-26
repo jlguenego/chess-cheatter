@@ -71,7 +71,7 @@
   --ref-radius-sm: 6px; /** Petit rayon. */
   --ref-radius-md: 8px; /** Rayon moyen (contrôles). */
   --ref-radius-lg: 10px; /** Grand rayon (panneaux). */
-  --ref-radius-full: 50%; /** Rayon circulaire (pastilles). */
+  --ref-radius-full: 50%; /** Rayon circulaire (pastilles). Non typé (pourcentage hors du type dimension DTCG). */
   --ref-border-width: 1px; /** Épaisseur standard des bordures. */
   --ref-border-width-thick: 2px; /** Épaisseur renforcée (contour néon du thème rétro). */
   --ref-border-style: solid; /** Style unique des bordures. */
