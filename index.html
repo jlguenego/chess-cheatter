@@ -8,6 +8,17 @@
       name="description"
       content="Assistant d'échecs local : reproduisez une position et obtenez les meilleurs coups suggérés par Stockfish, entièrement dans le navigateur."
     />
+    <!-- Précharge la police d'affichage (Orbitron, thème warm80s) pour qu'elle
+         soit disponible avant le premier paint et évite le flash de police
+         (FOUT). Servie depuis public/fonts en chemin relatif → compatible avec
+         la base relative "./" (déploiement en sous-chemin GitHub Pages). -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="./fonts/orbitron-latin.woff2"
+      crossorigin
+    />
     <title>Chess Cheater</title>
     <script>
       // Applique le thème AVANT le premier rendu pour éviter le FOUC
@@ -16,12 +27,16 @@
       (function () {
         try {
           var stored = localStorage.getItem("chess-cheater-theme");
-          var theme =
-            stored === "dark" || stored === "light" || stored === "warm80s"
-              ? stored
-              : window.matchMedia("(prefers-color-scheme: light)").matches
-                ? "light"
-                : "dark";
+          var isValid =
+            stored === "dark" ||
+            stored === "light" ||
+            stored === "warm80s" ||
+            stored === "wireframe2025";
+          var theme = isValid
+            ? stored
+            : window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
           document.documentElement.setAttribute("data-theme", theme);
         } catch (e) {
           document.documentElement.setAttribute("data-theme", "dark");

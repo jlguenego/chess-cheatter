@@ -14,13 +14,20 @@
 
 /* Orbitron (auto-hébergée, licence SIL OFL) — police d'affichage variable du
    thème warm80s. Fichier woff2 latin unique couvrant les graisses 400→700.
-   Référencée en relatif pour être fingerprintée par Vite (base "./"). */
+   Servie depuis public/fonts (chemin stable, non fingerprinté) pour pouvoir
+   être préchargée statiquement dans index.html — sinon le nom hashé serait
+   inconnu au moment d'écrire le <link rel="preload">. Chemin relatif à ce CSS
+   (../fonts/) → valide en dev (/fonts/) comme en build (base relative "./").
+   font-display: optional (et non swap) : le navigateur accorde une brève
+   fenêtre à la police puis garde le repli SANS jamais rebasculer → aucun
+   reflow (FOUT) après le premier paint. Combiné au preload, la police est
+   quasi toujours prête à temps et utilisée dès le rendu initial. */
 @font-face {
   font-family: "Orbitron";
   font-style: normal;
   font-weight: 400 700;
-  font-display: swap;
-  src: url("./assets/fonts/orbitron-latin.woff2") format("woff2");
+  font-display: optional;
+  src: url("../fonts/orbitron-latin.woff2") format("woff2");
 }
 
 /* color-scheme : propriété CSS native (pas un design token) — aligne les
