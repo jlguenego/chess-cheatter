@@ -1,51 +1,51 @@
 {
   "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
-  "$description": "Design tokens normalisés reconstruits par rétro-ingénierie de l'application chess-cheater dans son état actuel (src/index.css + valeurs inline des composants). Format W3C Design Tokens Community Group (DTCG). Structure en 2 niveaux : (1) `color.palette` = primitives brutes agnostiques au thème ; (2) `color.theme.dark` / `color.theme.light` = tokens sémantiques (rôles) qui référencent les primitives via alias. Le thème `dark` reproduit à l'identique l'app actuelle ; le thème `light` est dérivé de la même palette pour la refonte UX/UI. Les tokens non-couleur (font, space, radius, size…) sont partagés entre les thèmes.",
+  "$description": "Design tokens de chess-cheater. Format W3C Design Tokens Community Group (DTCG), organisé en 3 tiers explicites (root groups) : (1) `ref` = tokens de référence / primitives brutes, agnostiques au thème et au composant (palette, échelles typo/espacement/rayon/bordure) ; (2) `sys` = tokens système / sémantiques (rôles Material Design 3), variant par thème pour les couleurs (sys.color.theme.dark / .light), partagés sinon — ils aliasent `ref` ; (3) `comp` = tokens de composant, scopés à un composant précis de l'UI, qui aliasent `sys` (ou `ref` pour les dimensions pures). Règle de consommation : l'UI consomme `comp` en priorité, `sys` pour les rôles génériques ; jamais `ref` directement. Chaque tier se reflète dans src/index.css par un préfixe de variable CSS : ref → --ref-*, sys → --sys-*, comp → --comp-*.",
 
-  "color": {
-    "$type": "color",
-    "$description": "Couleurs de l'interface : primitives (palette) et tokens sémantiques par thème (theme.dark / theme.light).",
+  "ref": {
+    "$description": "TIER 1 — Référence / primitives. Valeurs brutes, source unique de vérité, agnostiques au thème ET au composant. Ne jamais consommer directement dans l'UI : passer par `sys` (rôles) ou `comp` (composants). Reflété en CSS par le préfixe --ref-*.",
 
-    "palette": {
-      "$description": "Primitives : palette brute, source unique de vérité, agnostique au thème. Ne pas consommer directement dans l'UI — passer par les tokens sémantiques de `color.theme`.",
+    "color": {
+      "$type": "color",
+      "$description": "Palette brute. Nommage numérique/scalaire, sans intention sémantique.",
 
       "neutral": {
         "$description": "Échelle de gris, du plus clair (0) au plus sombre (900).",
         "0": { "$value": "#ffffff", "$description": "Blanc pur." },
         "50": { "$value": "#f5f6f8", "$description": "Fond clair." },
         "100": { "$value": "#eef0f3", "$description": "Surface élevée claire." },
-        "150": { "$value": "#e6e8ec", "$description": "Texte principal en thème sombre (--color-on-surface)." },
+        "150": { "$value": "#e6e8ec", "$description": "Texte principal en thème sombre." },
         "200": { "$value": "#d5d9e0", "$description": "Bordure claire." },
-        "500": { "$value": "#9aa1ac", "$description": "Texte atténué en thème sombre (--color-on-surface-variant)." },
+        "500": { "$value": "#9aa1ac", "$description": "Texte atténué en thème sombre." },
         "600": { "$value": "#5c6570", "$description": "Texte atténué en thème clair." },
-        "700": { "$value": "#363b45", "$description": "Bordure (outline) en thème sombre (--color-outline)." },
-        "800": { "$value": "#2c313b", "$description": "Surface élevée sombre (--color-surface-container-high)." },
-        "850": { "$value": "#242830", "$description": "Surface de panneau sombre (--color-surface-container)." },
-        "900": { "$value": "#1a1d23", "$description": "Fond sombre (--color-surface)." }
+        "700": { "$value": "#363b45", "$description": "Bordure (outline) en thème sombre." },
+        "800": { "$value": "#2c313b", "$description": "Surface élevée sombre." },
+        "850": { "$value": "#242830", "$description": "Surface de panneau sombre." },
+        "900": { "$value": "#1a1d23", "$description": "Fond sombre." }
       },
 
       "blue": {
         "$description": "Bleu de marque (accent). Valeurs assombries pour que le texte blanc posé dessus atteigne le contraste WCAG AA (≥ 4.5:1).",
-        "400": { "$value": "#3576b5", "$description": "Accent standard (--color-primary, thème sombre). Texte blanc dessus ≈ 4.76:1 (AA)." },
+        "400": { "$value": "#3576b5", "$description": "Accent standard (thème sombre). Texte blanc dessus ≈ 4.76:1 (AA)." },
         "500": { "$value": "#2f6fa8", "$description": "Accent renforcé survol (dark) et accent standard (light). Texte blanc ≈ 5.30:1 (AA)." },
         "600": { "$value": "#2a5f92", "$description": "Accent renforcé pour survol en thème clair. Texte blanc ≈ 6.67:1 (AAA)." }
       },
 
       "red": {
         "$description": "Rouge d'alerte.",
-        "500": { "$value": "#c0392b", "$description": "Danger en thème sombre (--color-error). Assombri pour texte blanc ≈ 5.44:1 (AA)." },
+        "500": { "$value": "#c0392b", "$description": "Danger en thème sombre. Assombri pour texte blanc ≈ 5.44:1 (AA)." },
         "600": { "$value": "#c9302c", "$description": "Danger en thème clair. Texte blanc ≈ 5.33:1 (AA)." }
       },
 
       "rank": {
-        "$description": "Couleurs de classement des suggestions moteur (dots du panneau + flèches). Saturées, lisibles sur les deux thèmes — partagées entre ARROW_COLORS (App.tsx) et RANK_COLORS (SuggestionsPanel.tsx).",
+        "$description": "Couleurs de classement des suggestions moteur. Saturées, lisibles sur les deux thèmes.",
         "1": { "$value": "#2e9e5b", "$description": "Meilleur coup (rang 1) — vert." },
         "2": { "$value": "#a8851a", "$description": "Deuxième coup (rang 2) — or assombri pour ≥ 3:1 sur panneau clair (3.48:1) comme sombre (4.25:1)." },
         "3": { "$value": "#c96a27", "$description": "Troisième coup (rang 3) — orange." },
-        "fallback": { "$value": "#888888", "$description": "Coups au-delà du rang 3 — gris (fallback \"#888\")." }
+        "fallback": { "$value": "#888888", "$description": "Coups au-delà du rang 3 — gris." }
       },
 
-      "boardSlate": {
+      "board-slate": {
         "$description": "Cases de l'échiquier — bleu-gris désaturé, aligné sur l'accent (remplace le brun/crème par défaut de react-chessboard qui jurait avec la palette froide). Écart de contraste volontairement marqué entre thèmes : le light est clair et doux, le dark plus sombre et plus contrasté.",
         "light": { "$value": "#dce1e9", "$description": "Case claire (thème clair) — clair et doux." },
         "dark": { "$value": "#7c8ba6", "$description": "Case sombre (thème clair) — doux, faible écart de luminance." },
@@ -54,181 +54,285 @@
       }
     },
 
-    "theme": {
-      "$description": "Tokens sémantiques (rôles), nommés selon Material Design 3. Un thème = un mapping rôle → primitive. C'est ce que l'UI consomme (variables CSS --color-*). Convention `on-` : chaque groupe conteneur (surface, primary, error) porte un enfant `on` = le contenu (texte/icône) posé dessus. Le contraste à auditer se lit donc directement dans chaque paire (ex. primary/primary.on, error/error.on, surface/on-surface).",
-
-      "dark": {
-        "$description": "Thème sombre — reproduit à l'identique l'app actuelle (color-scheme: dark).",
-        "surface": {
-          "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3).",
-          "base": { "$value": "{color.palette.neutral.900}", "$description": "Fond global (--color-surface)." },
-          "container": { "$value": "{color.palette.neutral.850}", "$description": "Surface des panneaux (--color-surface-container)." },
-          "container-high": { "$value": "{color.palette.neutral.800}", "$description": "Surface secondaire / contrôles au repos (--color-surface-container-high)." }
-        },
-        "on-surface": {
-          "$description": "Contenu posé sur les surfaces. Contrastes vérifiés : default ≈ 13.8:1 sur surface, variant ≈ 5.0:1 sur surface-container-high (le pire cas) → AA.",
-          "default": { "$value": "{color.palette.neutral.150}", "$description": "Texte principal (--color-on-surface)." },
-          "variant": { "$value": "{color.palette.neutral.500}", "$description": "Texte secondaire (--color-on-surface-variant)." }
-        },
-        "outline": {
-          "default": { "$value": "{color.palette.neutral.700}", "$description": "Bordure standard (--color-outline)." }
-        },
-        "primary": {
-          "$description": "Couleur de marque et son contenu. on ≈ 4.76:1 sur default (AA).",
-          "default": { "$value": "{color.palette.blue.400}", "$description": "Primary : segmented actif, bouton primaire, curseurs (--color-primary)." },
-          "hover": { "$value": "{color.palette.blue.500}", "$description": "Primary renforcé : survol du bouton primaire (--color-primary-hover)." },
-          "on": { "$value": "{color.palette.neutral.0}", "$description": "Texte/icône sur primary (--color-on-primary, #fff)." }
-        },
-        "error": {
-          "$description": "Couleur d'alerte et son contenu. on ≈ 5.44:1 sur default (AA).",
-          "default": { "$value": "{color.palette.red.500}", "$description": "Erreurs et bouton d'arrêt (--color-error)." },
-          "on": { "$value": "{color.palette.neutral.0}", "$description": "Texte/icône sur error (--color-on-error, #fff)." }
-        },
-        "rank": {
-          "1": { "$value": "{color.palette.rank.1}", "$description": "Rang 1." },
-          "2": { "$value": "{color.palette.rank.2}", "$description": "Rang 2." },
-          "3": { "$value": "{color.palette.rank.3}", "$description": "Rang 3." },
-          "fallback": { "$value": "{color.palette.rank.fallback}", "$description": "Au-delà du rang 3." }
-        },
-        "board": {
-          "$description": "Cases de l'échiquier — variante assombrie pour éviter que la case claire soit le point le plus lumineux de l'écran en thème sombre.",
-          "light": { "$value": "{color.palette.boardSlate.light-dim}", "$description": "Case claire (--color-board-light)." },
-          "dark": { "$value": "{color.palette.boardSlate.dark-dim}", "$description": "Case sombre (--color-board-dark)." },
-          "highlight": { "$value": "{color.palette.blue.400}", "$description": "Case sélectionnée / dernier coup (--color-board-highlight)." }
+    "font": {
+      "$description": "Primitives typographiques : famille, graisses et échelle de tailles.",
+      "family": {
+        "$type": "fontFamily",
+        "sans": {
+          "$value": ["system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+          "$description": "Police système par défaut appliquée au body."
         }
       },
+      "weight": {
+        "$type": "fontWeight",
+        "regular": { "$value": 400, "$description": "Poids par défaut du corps de texte." },
+        "semibold": { "$value": 600, "$description": "Poids accentué (notation SAN des coups)." }
+      },
+      "size": {
+        "$type": "dimension",
+        "$description": "Tailles de police exprimées en rem.",
+        "xs": { "$value": "0.8rem", "$description": "Petit texte (profondeur de coup, muted small)." },
+        "sm": { "$value": "0.85rem", "$description": "Labels de champ, indices." },
+        "md": { "$value": "0.9rem", "$description": "Cases à cocher, bouton bascule thème." },
+        "base": { "$value": "1rem", "$description": "Texte de base / bouton primaire." },
+        "lg": { "$value": "1.05rem", "$description": "Titres de panneaux." },
+        "xl": { "$value": "1.8rem", "$description": "Titre principal." }
+      }
+    },
 
-      "light": {
-        "$description": "Thème clair — dérivé de la même palette (nouveau, pour la refonte UX/UI). Primary et error assombris d'un cran pour garder le contraste sur fond clair.",
-        "surface": {
-          "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3).",
-          "base": { "$value": "{color.palette.neutral.50}", "$description": "Fond global (--color-surface)." },
-          "container": { "$value": "{color.palette.neutral.0}", "$description": "Surface des panneaux (--color-surface-container)." },
-          "container-high": { "$value": "{color.palette.neutral.100}", "$description": "Surface secondaire / contrôles au repos (--color-surface-container-high)." }
+    "space": {
+      "$type": "dimension",
+      "$description": "Échelle d'espacement (gaps, paddings, margins).",
+      "3xs": { "$value": "4px", "$description": "4px." },
+      "2xs": { "$value": "6px", "$description": "6px." },
+      "xs": { "$value": "8px", "$description": "8px." },
+      "sm": { "$value": "10px", "$description": "10px." },
+      "md": { "$value": "12px", "$description": "12px." },
+      "lg": { "$value": "14px", "$description": "14px." },
+      "xl": { "$value": "16px", "$description": "16px." },
+      "2xl": { "$value": "20px", "$description": "20px." },
+      "3xl": { "$value": "24px", "$description": "24px." }
+    },
+
+    "radius": {
+      "$type": "dimension",
+      "$description": "Échelle de rayons de bordure.",
+      "sm": { "$value": "6px", "$description": "Petit rayon." },
+      "md": { "$value": "8px", "$description": "Rayon moyen (contrôles)." },
+      "lg": { "$value": "10px", "$description": "Grand rayon (panneaux)." },
+      "full": { "$value": "50%", "$description": "Rayon circulaire (pastilles)." }
+    },
+
+    "border": {
+      "$description": "Épaisseur et style de trait des bordures (la couleur vient de sys.color).",
+      "width": {
+        "$type": "dimension",
+        "default": { "$value": "1px", "$description": "Épaisseur unique utilisée pour toutes les bordures." }
+      },
+      "style": {
+        "$type": "strokeStyle",
+        "default": { "$value": "solid", "$description": "Style unique des bordures." }
+      }
+    }
+  },
+
+  "sys": {
+    "$description": "TIER 2 — Système / sémantique. Rôles (Material Design 3) aliasant `ref`. Les rôles de couleur varient par thème (sys.color.theme.dark / .light) ; les autres (rank, opacity, duration, breakpoint) sont partagés. C'est le niveau que consomme l'UI pour les besoins génériques (fonds, textes, bordures). Reflété en CSS par le préfixe --sys-*.",
+
+    "color": {
+      "$type": "color",
+      "$description": "Rôles de couleur. `theme.dark` / `theme.light` = mapping rôle → primitive par thème ; `rank` = rôles agnostiques au thème (définis une seule fois). Convention `on-` : chaque conteneur (surface, primary, error) porte un enfant `on` = le contenu posé dessus ; le contraste se lit dans la paire (primary/on, error/on, surface/on-surface).",
+
+      "rank": {
+        "$description": "Classement des suggestions moteur (dots du panneau + flèches). Agnostique au thème → défini une seule fois (fin de la duplication dark/light). Consommé côté JS via src/theme/rankColors.ts (les flèches et pastilles exigent une chaîne littérale, pas une var() CSS).",
+        "1": { "$value": "{ref.color.rank.1}", "$description": "Rang 1 (meilleur coup)." },
+        "2": { "$value": "{ref.color.rank.2}", "$description": "Rang 2." },
+        "3": { "$value": "{ref.color.rank.3}", "$description": "Rang 3." },
+        "fallback": { "$value": "{ref.color.rank.fallback}", "$description": "Au-delà du rang 3." }
+      },
+
+      "theme": {
+        "$description": "Rôles de couleur dépendant du thème.",
+
+        "dark": {
+          "$description": "Thème sombre (color-scheme: dark).",
+          "surface": {
+            "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3).",
+            "base": { "$value": "{ref.color.neutral.900}", "$description": "Fond global." },
+            "container": { "$value": "{ref.color.neutral.850}", "$description": "Surface des panneaux." },
+            "container-high": { "$value": "{ref.color.neutral.800}", "$description": "Surface secondaire / contrôles au repos." }
+          },
+          "on-surface": {
+            "$description": "Contenu posé sur les surfaces. Contrastes vérifiés : default ≈ 13.8:1 sur surface, variant ≈ 5.0:1 sur surface-container-high (pire cas) → AA.",
+            "default": { "$value": "{ref.color.neutral.150}", "$description": "Texte principal." },
+            "variant": { "$value": "{ref.color.neutral.500}", "$description": "Texte secondaire." }
+          },
+          "outline": {
+            "default": { "$value": "{ref.color.neutral.700}", "$description": "Bordure standard." }
+          },
+          "primary": {
+            "$description": "Couleur de marque et son contenu. on ≈ 4.76:1 sur default (AA).",
+            "default": { "$value": "{ref.color.blue.400}", "$description": "Primary : segmented actif, bouton primaire, curseurs." },
+            "hover": { "$value": "{ref.color.blue.500}", "$description": "Primary renforcé : survol." },
+            "on": { "$value": "{ref.color.neutral.0}", "$description": "Texte/icône sur primary (#fff)." }
+          },
+          "error": {
+            "$description": "Couleur d'alerte et son contenu. on ≈ 5.44:1 sur default (AA).",
+            "default": { "$value": "{ref.color.red.500}", "$description": "Erreurs et bouton d'arrêt." },
+            "on": { "$value": "{ref.color.neutral.0}", "$description": "Texte/icône sur error (#fff)." }
+          },
+          "board": {
+            "$description": "Cases de l'échiquier — variante assombrie pour éviter que la case claire soit le point le plus lumineux de l'écran en thème sombre.",
+            "light": { "$value": "{ref.color.board-slate.light-dim}", "$description": "Case claire." },
+            "dark": { "$value": "{ref.color.board-slate.dark-dim}", "$description": "Case sombre." },
+            "highlight": { "$value": "{ref.color.blue.400}", "$description": "Case sélectionnée / dernier coup." }
+          }
         },
-        "on-surface": {
-          "$description": "Contenu posé sur les surfaces.",
-          "default": { "$value": "{color.palette.neutral.900}", "$description": "Texte principal (--color-on-surface)." },
-          "variant": { "$value": "{color.palette.neutral.600}", "$description": "Texte secondaire (--color-on-surface-variant)." }
-        },
-        "outline": {
-          "default": { "$value": "{color.palette.neutral.200}", "$description": "Bordure standard (--color-outline)." }
-        },
-        "primary": {
-          "$description": "Couleur de marque et son contenu.",
-          "default": { "$value": "{color.palette.blue.500}", "$description": "Primary (assombri d'un cran vs dark pour le contraste sur fond clair) (--color-primary)." },
-          "hover": { "$value": "{color.palette.blue.600}", "$description": "Primary renforcé : survol (--color-primary-hover)." },
-          "on": { "$value": "{color.palette.neutral.0}", "$description": "Texte/icône sur primary (--color-on-primary, #fff)." }
-        },
-        "error": {
-          "$description": "Couleur d'alerte et son contenu.",
-          "default": { "$value": "{color.palette.red.600}", "$description": "Erreurs et bouton d'arrêt (assombri pour le contraste) (--color-error)." },
-          "on": { "$value": "{color.palette.neutral.0}", "$description": "Texte/icône sur error (--color-on-error, #fff)." }
-        },
-        "rank": {
-          "1": { "$value": "{color.palette.rank.1}", "$description": "Rang 1." },
-          "2": { "$value": "{color.palette.rank.2}", "$description": "Rang 2." },
-          "3": { "$value": "{color.palette.rank.3}", "$description": "Rang 3." },
-          "fallback": { "$value": "{color.palette.rank.fallback}", "$description": "Au-delà du rang 3." }
-        },
-        "board": {
-          "$description": "Cases de l'échiquier — bleu-gris désaturé aligné sur la palette froide de l'interface.",
-          "light": { "$value": "{color.palette.boardSlate.light}", "$description": "Case claire (--color-board-light)." },
-          "dark": { "$value": "{color.palette.boardSlate.dark}", "$description": "Case sombre (--color-board-dark)." },
-          "highlight": { "$value": "{color.palette.blue.500}", "$description": "Case sélectionnée / dernier coup (--color-board-highlight)." }
+
+        "light": {
+          "$description": "Thème clair — dérivé de la même palette. Primary et error assombris d'un cran pour garder le contraste sur fond clair.",
+          "surface": {
+            "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3).",
+            "base": { "$value": "{ref.color.neutral.50}", "$description": "Fond global." },
+            "container": { "$value": "{ref.color.neutral.0}", "$description": "Surface des panneaux." },
+            "container-high": { "$value": "{ref.color.neutral.100}", "$description": "Surface secondaire / contrôles au repos." }
+          },
+          "on-surface": {
+            "$description": "Contenu posé sur les surfaces.",
+            "default": { "$value": "{ref.color.neutral.900}", "$description": "Texte principal." },
+            "variant": { "$value": "{ref.color.neutral.600}", "$description": "Texte secondaire." }
+          },
+          "outline": {
+            "default": { "$value": "{ref.color.neutral.200}", "$description": "Bordure standard." }
+          },
+          "primary": {
+            "$description": "Couleur de marque et son contenu.",
+            "default": { "$value": "{ref.color.blue.500}", "$description": "Primary (assombri d'un cran vs dark pour le contraste sur fond clair)." },
+            "hover": { "$value": "{ref.color.blue.600}", "$description": "Primary renforcé : survol." },
+            "on": { "$value": "{ref.color.neutral.0}", "$description": "Texte/icône sur primary (#fff)." }
+          },
+          "error": {
+            "$description": "Couleur d'alerte et son contenu.",
+            "default": { "$value": "{ref.color.red.600}", "$description": "Erreurs et bouton d'arrêt (assombri pour le contraste)." },
+            "on": { "$value": "{ref.color.neutral.0}", "$description": "Texte/icône sur error (#fff)." }
+          },
+          "board": {
+            "$description": "Cases de l'échiquier — bleu-gris désaturé aligné sur la palette froide de l'interface.",
+            "light": { "$value": "{ref.color.board-slate.light}", "$description": "Case claire." },
+            "dark": { "$value": "{ref.color.board-slate.dark}", "$description": "Case sombre." },
+            "highlight": { "$value": "{ref.color.blue.500}", "$description": "Case sélectionnée / dernier coup." }
+          }
         }
       }
-    }
-  },
-
-  "font": {
-    "$description": "Tokens typographiques (partagés entre thèmes) : famille, graisses et échelle de tailles.",
-    "family": {
-      "$type": "fontFamily",
-      "sans": {
-        "$value": ["system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
-        "$description": "Police système par défaut appliquée au body."
-      }
     },
 
-    "weight": {
-      "$type": "fontWeight",
-      "regular": { "$value": 400, "$description": "Poids par défaut du corps de texte." },
-      "semibold": { "$value": 600, "$description": "Notation SAN des coups (.move-san)." }
+    "opacity": {
+      "$description": "Niveaux d'opacité sémantiques pour les états de l'interface.",
+      "disabled": { "$value": 0.5, "$description": "Élément désactivé." }
     },
 
-    "size": {
+    "duration": {
+      "$type": "duration",
+      "$description": "Durées d'animation / transition.",
+      "theme-transition": { "$value": "200ms", "$description": "Transition des couleurs (background, color, border) lors du passage entre thèmes dark et light." }
+    },
+
+    "breakpoint": {
       "$type": "dimension",
-      "$description": "Tailles de police exprimées en rem telles que définies dans index.css.",
-      "xs": { "$value": "0.8rem", "$description": "Profondeur de coup, texte muted small (.move-depth, .muted.small)." },
-      "sm": { "$value": "0.85rem", "$description": "Labels de champ, indices (.field-label, .hint)." },
-      "md": { "$value": "0.9rem", "$description": "Cases à cocher (.checkbox)." },
-      "base": { "$value": "1rem", "$description": "Texte de base / bouton primaire (button.primary)." },
-      "lg": { "$value": "1.05rem", "$description": "Titres de panneaux (.panel h2)." },
-      "xl": { "$value": "1.8rem", "$description": "Titre principal (.app-header h1)." }
+      "$description": "Points de rupture responsive de la mise en page.",
+      "mobile": { "$value": "860px", "$description": "La grille passe à une seule colonne en dessous (max-width: 860px). Rappel : les media queries CSS n'acceptent pas var()." }
     }
   },
 
-  "space": {
-    "$type": "dimension",
-    "$description": "Échelle d'espacement déduite des gaps, paddings et margins existants.",
-    "3xs": { "$value": "4px", "$description": "Marge haute du sous-titre." },
-    "2xs": { "$value": "6px", "$description": "Gaps fins : castling, checkbox, spare-row, offset de label." },
-    "xs": { "$value": "8px", "$description": "Gaps de boutons, liste de coups, padding vertical des contrôles segmentés." },
-    "sm": { "$value": "10px", "$description": "Gap et padding vertical des lignes de coups (.move-row)." },
-    "md": { "$value": "12px", "$description": "Padding du bouton primaire, marges de titres, offset des actions." },
-    "lg": { "$value": "14px", "$description": "Marge basse des champs, padding horizontal des boutons d'action." },
-    "xl": { "$value": "16px", "$description": "Padding des panneaux, gap de la colonne latérale, padding horizontal du segmented." },
-    "2xl": { "$value": "20px", "$description": "Marge basse du sous-titre." },
-    "3xl": { "$value": "24px", "$description": "Padding de l'app et gap principal de la grille." }
-  },
+  "comp": {
+    "$description": "TIER 3 — Composant. Tokens scopés à un composant précis de l'UI, aliasant `sys` (couleurs / états) ou `ref` (dimensions pures). C'est ce que consomment en priorité les règles CSS de chaque composant : changer l'apparence d'un composant = éditer ici, sans toucher aux tiers inférieurs. Reflété en CSS par le préfixe --comp-*.",
 
-  "radius": {
-    "$type": "dimension",
-    "$description": "Rayons de bordure.",
-    "sm": { "$value": "6px", "$description": "Pièces de réserve (.spare-piece)." },
-    "md": { "$value": "8px", "$description": "Contrôles : segmented, boutons, lignes de coups." },
-    "lg": { "$value": "10px", "$description": "Panneaux (.panel)." },
-    "full": { "$value": "50%", "$description": "Pastilles de classement circulaires (.rank-dot)." }
-  },
-
-  "border": {
-    "$description": "Épaisseur et style de trait des bordures (la couleur vient de color.theme.*.border).",
-    "width": {
-      "$type": "dimension",
-      "default": { "$value": "1px", "$description": "Épaisseur unique utilisée pour toutes les bordures." }
+    "app": {
+      "$description": "Conteneur racine .app.",
+      "max-width": { "$value": "1100px", "$description": "Largeur maximale du conteneur." },
+      "padding": { "$value": "{ref.space.3xl}", "$description": "Padding interne." }
     },
-    "style": {
-      "$type": "strokeStyle",
-      "default": { "$value": "solid", "$description": "Style unique des bordures." }
+
+    "layout": {
+      "$description": "Grille principale .layout (échiquier + colonne latérale).",
+      "gap": { "$value": "{ref.space.3xl}", "$description": "Espacement entre colonnes." },
+      "side-column-width": { "$value": "340px", "$description": "Largeur fixe de la colonne latérale." },
+      "board-column-min": { "$value": "320px", "$description": "Largeur minimale de la colonne échiquier (minmax)." },
+      "side-column-gap": { "$value": "{ref.space.xl}", "$description": "Espacement vertical entre panneaux de la colonne latérale." }
+    },
+
+    "header": {
+      "$description": "En-tête .app-header (titre + sous-titre + bascule thème).",
+      "gap": { "$value": "{ref.space.md}", "$description": "Espacement titre / bascule." },
+      "title-size": { "$value": "{ref.font.size.xl}", "$description": "Taille du titre h1." },
+      "subtitle-color": { "$value": "{sys.color.theme.dark.on-surface.variant}", "$description": "Couleur du sous-titre (rôle on-surface-variant, résolu par thème)." }
+    },
+
+    "panel": {
+      "$description": "Panneau .panel (carte de contenu de la colonne latérale).",
+      "bg": { "$value": "{sys.color.theme.dark.surface.container}", "$description": "Fond du panneau." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.lg}", "$description": "Rayon de bordure." },
+      "padding": { "$value": "{ref.space.xl}", "$description": "Padding interne." },
+      "title-size": { "$value": "{ref.font.size.lg}", "$description": "Taille du titre h2." }
+    },
+
+    "theme-toggle": {
+      "$description": "Bouton de bascule de thème .theme-toggle.",
+      "bg": { "$value": "{sys.color.theme.dark.surface.container-high}", "$description": "Fond au repos." },
+      "bg-hover": { "$value": "{sys.color.theme.dark.surface.container}", "$description": "Fond au survol." },
+      "fg": { "$value": "{sys.color.theme.dark.on-surface.default}", "$description": "Couleur du texte." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." },
+      "font-size": { "$value": "{ref.font.size.md}", "$description": "Taille du texte." }
+    },
+
+    "segmented": {
+      "$description": "Contrôle segmenté .segmented (choix mutuellement exclusifs).",
+      "bg": { "$value": "{sys.color.theme.dark.surface.container-high}", "$description": "Fond des segments au repos." },
+      "fg": { "$value": "{sys.color.theme.dark.on-surface.default}", "$description": "Texte des segments." },
+      "active-bg": { "$value": "{sys.color.theme.dark.primary.default}", "$description": "Fond du segment actif." },
+      "active-fg": { "$value": "{sys.color.theme.dark.primary.on}", "$description": "Texte du segment actif." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." }
+    },
+
+    "button-primary": {
+      "$description": "Bouton principal button.primary (lancer l'analyse).",
+      "bg": { "$value": "{sys.color.theme.dark.primary.default}", "$description": "Fond au repos." },
+      "bg-hover": { "$value": "{sys.color.theme.dark.primary.hover}", "$description": "Fond au survol." },
+      "fg": { "$value": "{sys.color.theme.dark.primary.on}", "$description": "Couleur du texte." },
+      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." },
+      "padding": { "$value": "{ref.space.md}", "$description": "Padding interne." },
+      "font-size": { "$value": "{ref.font.size.base}", "$description": "Taille du texte." },
+      "disabled-opacity": { "$value": "{sys.opacity.disabled}", "$description": "Opacité à l'état désactivé." }
+    },
+
+    "button-stop": {
+      "$description": "Variante d'arrêt button.primary.stop (interrompre l'analyse).",
+      "bg": { "$value": "{sys.color.theme.dark.error.default}", "$description": "Fond." },
+      "fg": { "$value": "{sys.color.theme.dark.error.on}", "$description": "Couleur du texte." }
+    },
+
+    "board-action": {
+      "$description": "Boutons d'action sous l'échiquier .board-actions button (réinitialiser, retourner…).",
+      "bg": { "$value": "{sys.color.theme.dark.surface.container-high}", "$description": "Fond au repos." },
+      "bg-hover": { "$value": "{sys.color.theme.dark.surface.container}", "$description": "Fond au survol." },
+      "fg": { "$value": "{sys.color.theme.dark.on-surface.default}", "$description": "Couleur du texte." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." }
+    },
+
+    "board": {
+      "$description": "Échiquier react-chessboard (cases + surbrillance). Consommé aussi inline dans BoardEditor.tsx.",
+      "light": { "$value": "{sys.color.theme.dark.board.light}", "$description": "Case claire." },
+      "dark": { "$value": "{sys.color.theme.dark.board.dark}", "$description": "Case sombre." },
+      "highlight": { "$value": "{sys.color.theme.dark.board.highlight}", "$description": "Case sélectionnée / dernier coup." },
+      "max-width": { "$value": "560px", "$description": "Largeur maximale de l'échiquier, de la rangée de réserve et des indices." }
+    },
+
+    "spare-piece": {
+      "$description": "Pièce de réserve .spare-piece (palette de pièces à glisser).",
+      "size": { "$value": "44px", "$description": "Côté carré." },
+      "bg": { "$value": "{sys.color.theme.dark.surface.container-high}", "$description": "Fond." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.sm}", "$description": "Rayon de bordure." },
+      "gap": { "$value": "{ref.space.2xs}", "$description": "Espacement entre pièces de réserve." }
+    },
+
+    "move-row": {
+      "$description": "Ligne de suggestion .move-row (un coup du top 3).",
+      "bg": { "$value": "{sys.color.theme.dark.surface.container-high}", "$description": "Fond." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." },
+      "gap": { "$value": "{ref.space.sm}", "$description": "Espacement interne entre colonnes." },
+      "san-weight": { "$value": "{ref.font.weight.semibold}", "$description": "Graisse de la notation SAN." }
+    },
+
+    "rank-dot": {
+      "$description": "Pastille de classement .rank-dot (couleur portée par sys.color.rank via JS).",
+      "size": { "$value": "12px", "$description": "Diamètre." },
+      "radius": { "$value": "{ref.radius.full}", "$description": "Rayon (cercle)." }
     }
-  },
-
-  "size": {
-    "$type": "dimension",
-    "$description": "Dimensions fixes et contraintes de mise en page.",
-    "app-max-width": { "$value": "1100px", "$description": "Largeur maximale du conteneur .app." },
-    "board-max-width": { "$value": "560px", "$description": "Largeur maximale de l'échiquier, de la rangée de réserve et des indices." },
-    "side-column-width": { "$value": "340px", "$description": "Largeur fixe de la colonne latérale dans la grille." },
-    "board-column-min": { "$value": "320px", "$description": "Largeur minimale de la colonne échiquier (minmax)." },
-    "spare-piece": { "$value": "44px", "$description": "Côté carré d'une pièce de réserve." },
-    "rank-dot": { "$value": "12px", "$description": "Diamètre d'une pastille de classement." }
-  },
-
-  "opacity": {
-    "$description": "Niveaux d'opacité réutilisables pour les états de l'interface.",
-    "disabled": { "$value": 0.5, "$description": "Opacité des boutons désactivés (button.primary:disabled)." }
-  },
-
-  "duration": {
-    "$type": "duration",
-    "$description": "Durées d'animation / transition.",
-    "theme-transition": { "$value": "200ms", "$description": "Durée de la transition des couleurs (background, color, border) lors du passage entre les thèmes dark et light." }
-  },
-
-  "breakpoint": {
-    "$type": "dimension",
-    "$description": "Points de rupture responsive de la mise en page.",
-    "mobile": { "$value": "860px", "$description": "Point de bascule : la grille passe à une seule colonne en dessous (max-width: 860px)." }
   }
 }

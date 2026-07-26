@@ -1,121 +1,205 @@
 /* ============================================================
    Design tokens — voir spec/ux/design-tokens.json (format DTCG).
-   Primitives (color.palette) : source unique de vérité, agnostiques
-   au thème. Ne pas les consommer directement : passer par les tokens
-   sémantiques --color-* (rôles Material Design 3) définis plus bas.
+   3 tiers explicites, un préfixe de variable CSS par tier :
+     TIER 1  ref  → --ref-*   primitives brutes (agnostiques thème/composant)
+     TIER 2  sys  → --sys-*   rôles sémantiques (MD3), redéfinis par thème
+     TIER 3  comp → --comp-*  tokens scopés à un composant
+   Règle : les composants consomment --comp-* en priorité, --sys-* pour les
+   rôles génériques ; ne jamais consommer --ref-* directement dans l'UI.
    ============================================================ */
 :root {
-  /* --- Primitives : neutres --- */
-  --palette-neutral-0: #ffffff;
-  --palette-neutral-50: #f5f6f8;
-  --palette-neutral-100: #eef0f3;
-  --palette-neutral-150: #e6e8ec;
-  --palette-neutral-200: #d5d9e0;
-  --palette-neutral-500: #9aa1ac;
-  --palette-neutral-600: #5c6570;
-  --palette-neutral-700: #363b45;
-  --palette-neutral-800: #2c313b;
-  --palette-neutral-850: #242830;
-  --palette-neutral-900: #1a1d23;
+  /* ============================================================
+     TIER 1 — Référence (primitives). Préfixe --ref-*.
+     ============================================================ */
 
-  /* --- Primitives : marque / alerte --- */
-  --palette-blue-400: #3576b5;
-  --palette-blue-500: #2f6fa8;
-  --palette-blue-600: #2a5f92;
-  --palette-red-500: #c0392b;
-  --palette-red-600: #c9302c;
+  /* --- ref : couleurs neutres --- */
+  --ref-color-neutral-0: #ffffff;
+  --ref-color-neutral-50: #f5f6f8;
+  --ref-color-neutral-100: #eef0f3;
+  --ref-color-neutral-150: #e6e8ec;
+  --ref-color-neutral-200: #d5d9e0;
+  --ref-color-neutral-500: #9aa1ac;
+  --ref-color-neutral-600: #5c6570;
+  --ref-color-neutral-700: #363b45;
+  --ref-color-neutral-800: #2c313b;
+  --ref-color-neutral-850: #242830;
+  --ref-color-neutral-900: #1a1d23;
 
-  /* --- Primitives : cases de l'échiquier (bleu-gris désaturé) --- */
-  --palette-board-slate-light: #dce1e9;
-  --palette-board-slate-dark: #7c8ba6;
-  --palette-board-slate-light-dim: #8f9bb0;
-  --palette-board-slate-dark-dim: #454f63;
+  /* --- ref : couleurs marque / alerte --- */
+  --ref-color-blue-400: #3576b5;
+  --ref-color-blue-500: #2f6fa8;
+  --ref-color-blue-600: #2a5f92;
+  --ref-color-red-500: #c0392b;
+  --ref-color-red-600: #c9302c;
 
-  /* --- Typographie (partagée entre thèmes) --- */
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-weight-regular: 400;
-  --font-weight-semibold: 600;
-  --font-size-xs: 0.8rem;
-  --font-size-sm: 0.85rem;
-  --font-size-md: 0.9rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.05rem;
-  --font-size-xl: 1.8rem;
+  /* --- ref : cases de l'échiquier (bleu-gris désaturé) --- */
+  --ref-color-board-slate-light: #dce1e9;
+  --ref-color-board-slate-dark: #7c8ba6;
+  --ref-color-board-slate-light-dim: #8f9bb0;
+  --ref-color-board-slate-dark-dim: #454f63;
 
-  /* --- Espacements (partagés) --- */
-  --space-3xs: 4px;
-  --space-2xs: 6px;
-  --space-xs: 8px;
-  --space-sm: 10px;
-  --space-md: 12px;
-  --space-lg: 14px;
-  --space-xl: 16px;
-  --space-2xl: 20px;
-  --space-3xl: 24px;
+  /* --- ref : typographie --- */
+  --ref-font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ref-font-weight-regular: 400;
+  --ref-font-weight-semibold: 600;
+  --ref-font-size-xs: 0.8rem;
+  --ref-font-size-sm: 0.85rem;
+  --ref-font-size-md: 0.9rem;
+  --ref-font-size-base: 1rem;
+  --ref-font-size-lg: 1.05rem;
+  --ref-font-size-xl: 1.8rem;
 
-  /* --- Rayons / bordures (partagés) --- */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 10px;
-  --radius-full: 50%;
-  --border-width: 1px;
-  --border-style: solid;
+  /* --- ref : espacements --- */
+  --ref-space-3xs: 4px;
+  --ref-space-2xs: 6px;
+  --ref-space-xs: 8px;
+  --ref-space-sm: 10px;
+  --ref-space-md: 12px;
+  --ref-space-lg: 14px;
+  --ref-space-xl: 16px;
+  --ref-space-2xl: 20px;
+  --ref-space-3xl: 24px;
 
-  /* --- Tailles / layout (partagés) --- */
-  --size-app-max-width: 1100px;
-  --size-board-max-width: 560px;
-  --size-side-column-width: 340px;
-  --size-board-column-min: 320px;
-  --size-spare-piece: 44px;
-  --size-rank-dot: 12px;
-
-  /* --- Divers --- */
-  --opacity-disabled: 0.5;
-  --duration-theme-transition: 200ms;
+  /* --- ref : rayons / bordures --- */
+  --ref-radius-sm: 6px;
+  --ref-radius-md: 8px;
+  --ref-radius-lg: 10px;
+  --ref-radius-full: 50%;
+  --ref-border-width: 1px;
+  --ref-border-style: solid;
 
   /* ============================================================
-     Tokens sémantiques — thème sombre (défaut).
-     Rôles Material Design 3 : surface(s) + on-surface, primary +
-     on-primary, error + on-error, outline. Chaque on-<rôle> est le
-     contenu (texte/icône) posé sur <rôle> → le contraste se lit
-     directement dans les paires de noms.
+     TIER 2 — Système (sémantique). Préfixe --sys-*.
+     Rôles Material Design 3 aliasant --ref-*. Le bloc couleur =
+     thème sombre (défaut) ; il est redéfini pour le thème clair
+     plus bas. opacity/duration sont partagés entre thèmes.
      ============================================================ */
-  --color-surface: var(--palette-neutral-900);
-  --color-surface-container: var(--palette-neutral-850);
-  --color-surface-container-high: var(--palette-neutral-800);
-  --color-outline: var(--palette-neutral-700);
-  --color-on-surface: var(--palette-neutral-150);
-  --color-on-surface-variant: var(--palette-neutral-500);
-  --color-primary: var(--palette-blue-400);
-  --color-primary-hover: var(--palette-blue-500);
-  --color-on-primary: var(--palette-neutral-0);
-  --color-error: var(--palette-red-500);
-  --color-on-error: var(--palette-neutral-0);
-  --color-board-light: var(--palette-board-slate-light-dim);
-  --color-board-dark: var(--palette-board-slate-dark-dim);
-  --color-board-highlight: var(--palette-blue-400);
+  --sys-color-surface: var(--ref-color-neutral-900);
+  --sys-color-surface-container: var(--ref-color-neutral-850);
+  --sys-color-surface-container-high: var(--ref-color-neutral-800);
+  --sys-color-outline: var(--ref-color-neutral-700);
+  --sys-color-on-surface: var(--ref-color-neutral-150);
+  --sys-color-on-surface-variant: var(--ref-color-neutral-500);
+  --sys-color-primary: var(--ref-color-blue-400);
+  --sys-color-primary-hover: var(--ref-color-blue-500);
+  --sys-color-on-primary: var(--ref-color-neutral-0);
+  --sys-color-error: var(--ref-color-red-500);
+  --sys-color-on-error: var(--ref-color-neutral-0);
+  --sys-color-board-light: var(--ref-color-board-slate-light-dim);
+  --sys-color-board-dark: var(--ref-color-board-slate-dark-dim);
+  --sys-color-board-highlight: var(--ref-color-blue-400);
+
+  /* --- sys : partagés entre thèmes --- */
+  --sys-opacity-disabled: 0.5;
+  --sys-duration-theme-transition: 200ms;
+
+  /* ============================================================
+     TIER 3 — Composant. Préfixe --comp-*.
+     Alias vers --sys-* (couleurs/états → suivent le thème) ou
+     --ref-* (dimensions pures). Consommé en priorité par les
+     règles des composants.
+     ============================================================ */
+
+  /* --- comp : app / layout --- */
+  --comp-app-max-width: 1100px;
+  --comp-app-padding: var(--ref-space-3xl);
+  --comp-layout-gap: var(--ref-space-3xl);
+  --comp-layout-side-column-width: 340px;
+  --comp-layout-board-column-min: 320px;
+  --comp-layout-side-column-gap: var(--ref-space-xl);
+
+  /* --- comp : header --- */
+  --comp-header-gap: var(--ref-space-md);
+  --comp-header-title-size: var(--ref-font-size-xl);
+
+  /* --- comp : panel --- */
+  --comp-panel-bg: var(--sys-color-surface-container);
+  --comp-panel-border-color: var(--sys-color-outline);
+  --comp-panel-radius: var(--ref-radius-lg);
+  --comp-panel-padding: var(--ref-space-xl);
+  --comp-panel-title-size: var(--ref-font-size-lg);
+
+  /* --- comp : theme-toggle --- */
+  --comp-theme-toggle-bg: var(--sys-color-surface-container-high);
+  --comp-theme-toggle-bg-hover: var(--sys-color-surface-container);
+  --comp-theme-toggle-fg: var(--sys-color-on-surface);
+  --comp-theme-toggle-border-color: var(--sys-color-outline);
+  --comp-theme-toggle-radius: var(--ref-radius-md);
+  --comp-theme-toggle-font-size: var(--ref-font-size-md);
+
+  /* --- comp : segmented --- */
+  --comp-segmented-bg: var(--sys-color-surface-container-high);
+  --comp-segmented-fg: var(--sys-color-on-surface);
+  --comp-segmented-active-bg: var(--sys-color-primary);
+  --comp-segmented-active-fg: var(--sys-color-on-primary);
+  --comp-segmented-border-color: var(--sys-color-outline);
+  --comp-segmented-radius: var(--ref-radius-md);
+
+  /* --- comp : button-primary / button-stop --- */
+  --comp-button-primary-bg: var(--sys-color-primary);
+  --comp-button-primary-bg-hover: var(--sys-color-primary-hover);
+  --comp-button-primary-fg: var(--sys-color-on-primary);
+  --comp-button-primary-radius: var(--ref-radius-md);
+  --comp-button-primary-padding: var(--ref-space-md);
+  --comp-button-primary-font-size: var(--ref-font-size-base);
+  --comp-button-primary-disabled-opacity: var(--sys-opacity-disabled);
+  --comp-button-stop-bg: var(--sys-color-error);
+  --comp-button-stop-fg: var(--sys-color-on-error);
+
+  /* --- comp : board-action --- */
+  --comp-board-action-bg: var(--sys-color-surface-container-high);
+  --comp-board-action-bg-hover: var(--sys-color-surface-container);
+  --comp-board-action-fg: var(--sys-color-on-surface);
+  --comp-board-action-border-color: var(--sys-color-outline);
+  --comp-board-action-radius: var(--ref-radius-md);
+
+  /* --- comp : board (échiquier) --- */
+  --comp-board-light: var(--sys-color-board-light);
+  --comp-board-dark: var(--sys-color-board-dark);
+  --comp-board-highlight: var(--sys-color-board-highlight);
+  --comp-board-max-width: 560px;
+
+  /* --- comp : spare-piece --- */
+  --comp-spare-piece-size: 44px;
+  --comp-spare-piece-bg: var(--sys-color-surface-container-high);
+  --comp-spare-piece-border-color: var(--sys-color-outline);
+  --comp-spare-piece-radius: var(--ref-radius-sm);
+  --comp-spare-piece-gap: var(--ref-space-2xs);
+
+  /* --- comp : move-row --- */
+  --comp-move-row-bg: var(--sys-color-surface-container-high);
+  --comp-move-row-border-color: var(--sys-color-outline);
+  --comp-move-row-radius: var(--ref-radius-md);
+  --comp-move-row-gap: var(--ref-space-sm);
+  --comp-move-row-san-weight: var(--ref-font-weight-semibold);
+
+  /* --- comp : rank-dot --- */
+  --comp-rank-dot-size: 12px;
+  --comp-rank-dot-radius: var(--ref-radius-full);
 
   color-scheme: dark;
 }
 
 /* ============================================================
-   Tokens sémantiques — thème clair.
+   TIER 2 — Système : override thème clair.
+   Seuls les rôles de couleur dépendant du thème sont redéfinis ;
+   les tokens --comp-* pointant sur --sys-* suivent automatiquement.
    ============================================================ */
 [data-theme="light"] {
-  --color-surface: var(--palette-neutral-50);
-  --color-surface-container: var(--palette-neutral-0);
-  --color-surface-container-high: var(--palette-neutral-100);
-  --color-outline: var(--palette-neutral-200);
-  --color-on-surface: var(--palette-neutral-900);
-  --color-on-surface-variant: var(--palette-neutral-600);
-  --color-primary: var(--palette-blue-500);
-  --color-primary-hover: var(--palette-blue-600);
-  --color-on-primary: var(--palette-neutral-0);
-  --color-error: var(--palette-red-600);
-  --color-on-error: var(--palette-neutral-0);
-  --color-board-light: var(--palette-board-slate-light);
-  --color-board-dark: var(--palette-board-slate-dark);
-  --color-board-highlight: var(--palette-blue-500);
+  --sys-color-surface: var(--ref-color-neutral-50);
+  --sys-color-surface-container: var(--ref-color-neutral-0);
+  --sys-color-surface-container-high: var(--ref-color-neutral-100);
+  --sys-color-outline: var(--ref-color-neutral-200);
+  --sys-color-on-surface: var(--ref-color-neutral-900);
+  --sys-color-on-surface-variant: var(--ref-color-neutral-600);
+  --sys-color-primary: var(--ref-color-blue-500);
+  --sys-color-primary-hover: var(--ref-color-blue-600);
+  --sys-color-on-primary: var(--ref-color-neutral-0);
+  --sys-color-error: var(--ref-color-red-600);
+  --sys-color-on-error: var(--ref-color-neutral-0);
+  --sys-color-board-light: var(--ref-color-board-slate-light);
+  --sys-color-board-dark: var(--ref-color-board-slate-dark);
+  --sys-color-board-highlight: var(--ref-color-blue-500);
 
   color-scheme: light;
 }
@@ -126,9 +210,9 @@
 
 body {
   margin: 0;
-  background: var(--color-surface);
-  color: var(--color-on-surface);
-  font-family: var(--font-sans);
+  background: var(--sys-color-surface);
+  color: var(--sys-color-on-surface);
+  font-family: var(--ref-font-sans);
 }
 
 /* Transition douce des couleurs lors du changement de thème. */
@@ -142,9 +226,9 @@ body,
 button.primary,
 .move-row {
   transition:
-    background-color var(--duration-theme-transition) ease,
-    border-color var(--duration-theme-transition) ease,
-    color var(--duration-theme-transition) ease;
+    background-color var(--sys-duration-theme-transition) ease,
+    border-color var(--sys-duration-theme-transition) ease,
+    color var(--sys-duration-theme-transition) ease;
 }
 
 /* Respecte la préférence de réduction de mouvement. */
@@ -163,51 +247,51 @@ button.primary,
 }
 
 .app {
-  max-width: var(--size-app-max-width);
+  max-width: var(--comp-app-max-width);
   margin: 0 auto;
-  padding: var(--space-3xl);
+  padding: var(--comp-app-padding);
 }
 
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: var(--space-md);
+  gap: var(--comp-header-gap);
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: var(--font-size-xl);
+  font-size: var(--comp-header-title-size);
 }
 
 .subtitle {
-  margin: var(--space-3xs) 0 var(--space-2xl);
-  color: var(--color-on-surface-variant);
+  margin: var(--ref-space-3xs) 0 var(--ref-space-2xl);
+  color: var(--sys-color-on-surface-variant);
 }
 
 .theme-toggle {
   flex-shrink: 0;
-  background: var(--color-surface-container-high);
-  color: var(--color-on-surface);
-  border: var(--border-width) var(--border-style) var(--color-outline);
-  border-radius: var(--radius-md);
-  padding: var(--space-xs) var(--space-md);
-  font-size: var(--font-size-md);
+  background: var(--comp-theme-toggle-bg);
+  color: var(--comp-theme-toggle-fg);
+  border: var(--ref-border-width) var(--ref-border-style) var(--comp-theme-toggle-border-color);
+  border-radius: var(--comp-theme-toggle-radius);
+  padding: var(--ref-space-xs) var(--ref-space-md);
+  font-size: var(--comp-theme-toggle-font-size);
   cursor: pointer;
 }
 
 .theme-toggle:hover {
-  background: var(--color-surface-container);
+  background: var(--comp-theme-toggle-bg-hover);
 }
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(var(--size-board-column-min), 1fr) var(--size-side-column-width);
-  gap: var(--space-3xl);
+  grid-template-columns: minmax(var(--comp-layout-board-column-min), 1fr) var(--comp-layout-side-column-width);
+  gap: var(--comp-layout-gap);
   align-items: start;
 }
 
-/* --breakpoint-mobile: 860px (les media queries n'acceptent pas les var()). */
+/* --sys-breakpoint-mobile: 860px (les media queries n'acceptent pas les var()). */
 @media (max-width: 860px) {
   .layout {
     grid-template-columns: 1fr;
@@ -219,102 +303,102 @@ button.primary,
 }
 
 .board-wrapper {
-  max-width: var(--size-board-max-width);
+  max-width: var(--comp-board-max-width);
 }
 
 .spare-row {
   display: flex;
-  gap: var(--space-2xs);
-  padding: var(--space-2xs) 0;
-  max-width: var(--size-board-max-width);
+  gap: var(--comp-spare-piece-gap);
+  padding: var(--ref-space-2xs) 0;
+  max-width: var(--comp-board-max-width);
 }
 
 .spare-piece {
-  width: var(--size-spare-piece);
-  height: var(--size-spare-piece);
-  background: var(--color-surface-container-high);
-  border: var(--border-width) var(--border-style) var(--color-outline);
-  border-radius: var(--radius-sm);
+  width: var(--comp-spare-piece-size);
+  height: var(--comp-spare-piece-size);
+  background: var(--comp-spare-piece-bg);
+  border: var(--ref-border-width) var(--ref-border-style) var(--comp-spare-piece-border-color);
+  border-radius: var(--comp-spare-piece-radius);
   cursor: grab;
 }
 
 .board-actions {
   display: flex;
-  gap: var(--space-xs);
-  margin-top: var(--space-md);
+  gap: var(--ref-space-xs);
+  margin-top: var(--ref-space-md);
 }
 
 .hint {
-  color: var(--color-on-surface-variant);
-  font-size: var(--font-size-sm);
-  max-width: var(--size-board-max-width);
+  color: var(--sys-color-on-surface-variant);
+  font-size: var(--ref-font-size-sm);
+  max-width: var(--comp-board-max-width);
 }
 
 .side-column {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--comp-layout-side-column-gap);
 }
 
 .panel {
-  background: var(--color-surface-container);
-  border: var(--border-width) var(--border-style) var(--color-outline);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
+  background: var(--comp-panel-bg);
+  border: var(--ref-border-width) var(--ref-border-style) var(--comp-panel-border-color);
+  border-radius: var(--comp-panel-radius);
+  padding: var(--comp-panel-padding);
 }
 
 .panel h2 {
-  margin: 0 0 var(--space-md);
-  font-size: var(--font-size-lg);
+  margin: 0 0 var(--ref-space-md);
+  font-size: var(--comp-panel-title-size);
 }
 
 .field {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--ref-space-lg);
 }
 
 .field-label {
   display: block;
-  font-size: var(--font-size-sm);
-  color: var(--color-on-surface-variant);
-  margin-bottom: var(--space-2xs);
+  font-size: var(--ref-font-size-sm);
+  color: var(--sys-color-on-surface-variant);
+  margin-bottom: var(--ref-space-2xs);
 }
 
 .segmented {
   display: inline-flex;
-  border: var(--border-width) var(--border-style) var(--color-outline);
-  border-radius: var(--radius-md);
+  border: var(--ref-border-width) var(--ref-border-style) var(--comp-segmented-border-color);
+  border-radius: var(--comp-segmented-radius);
   overflow: hidden;
 }
 
 .segmented button {
-  background: var(--color-surface-container-high);
-  color: var(--color-on-surface);
+  background: var(--comp-segmented-bg);
+  color: var(--comp-segmented-fg);
   border: none;
-  padding: var(--space-xs) var(--space-xl);
+  padding: var(--ref-space-xs) var(--ref-space-xl);
   cursor: pointer;
 }
 
 .segmented button.active {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
+  background: var(--comp-segmented-active-bg);
+  color: var(--comp-segmented-active-fg);
 }
 
 .castling {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-2xs);
+  gap: var(--ref-space-2xs);
 }
 
 .checkbox {
   display: flex;
   align-items: center;
-  gap: var(--space-2xs);
-  font-size: var(--font-size-md);
+  gap: var(--ref-space-2xs);
+  font-size: var(--ref-font-size-md);
 }
 
 input[type="range"] {
   width: 100%;
-  accent-color: var(--color-primary);
+  accent-color: var(--sys-color-primary);
 }
 
 button {
@@ -322,45 +406,45 @@ button {
 }
 
 .board-actions button {
-  background: var(--color-surface-container-high);
-  color: var(--color-on-surface);
-  border: var(--border-width) var(--border-style) var(--color-outline);
-  border-radius: var(--radius-md);
-  padding: var(--space-xs) var(--space-lg);
+  background: var(--comp-board-action-bg);
+  color: var(--comp-board-action-fg);
+  border: var(--ref-border-width) var(--ref-border-style) var(--comp-board-action-border-color);
+  border-radius: var(--comp-board-action-radius);
+  padding: var(--ref-space-xs) var(--ref-space-lg);
   cursor: pointer;
 }
 
 .board-actions button:hover {
-  background: var(--color-surface-container);
+  background: var(--comp-board-action-bg-hover);
 }
 
 .analyze-actions {
-  margin-top: var(--space-xs);
+  margin-top: var(--ref-space-xs);
 }
 
 button.primary {
   width: 100%;
-  background: var(--color-primary);
-  color: var(--color-on-primary);
+  background: var(--comp-button-primary-bg);
+  color: var(--comp-button-primary-fg);
   border: none;
-  border-radius: var(--radius-md);
-  padding: var(--space-md);
-  font-size: var(--font-size-base);
+  border-radius: var(--comp-button-primary-radius);
+  padding: var(--comp-button-primary-padding);
+  font-size: var(--comp-button-primary-font-size);
   cursor: pointer;
 }
 
 button.primary:hover {
-  background: var(--color-primary-hover);
+  background: var(--comp-button-primary-bg-hover);
 }
 
 button.primary:disabled {
-  opacity: var(--opacity-disabled);
+  opacity: var(--comp-button-primary-disabled-opacity);
   cursor: not-allowed;
 }
 
 button.primary.stop {
-  background: var(--color-error);
-  color: var(--color-on-error);
+  background: var(--comp-button-stop-bg);
+  color: var(--comp-button-stop-fg);
 }
 
 .move-list {
@@ -369,49 +453,49 @@ button.primary.stop {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--ref-space-xs);
 }
 
 .move-row {
   display: grid;
   grid-template-columns: auto 1fr auto auto;
-  gap: var(--space-sm);
+  gap: var(--comp-move-row-gap);
   align-items: center;
-  background: var(--color-surface-container-high);
-  border: var(--border-width) var(--border-style) var(--color-outline);
-  border-radius: var(--radius-md);
-  padding: var(--space-sm) var(--space-md);
+  background: var(--comp-move-row-bg);
+  border: var(--ref-border-width) var(--ref-border-style) var(--comp-move-row-border-color);
+  border-radius: var(--comp-move-row-radius);
+  padding: var(--ref-space-sm) var(--ref-space-md);
 }
 
 .rank-dot {
-  width: var(--size-rank-dot);
-  height: var(--size-rank-dot);
-  border-radius: var(--radius-full);
+  width: var(--comp-rank-dot-size);
+  height: var(--comp-rank-dot-size);
+  border-radius: var(--comp-rank-dot-radius);
 }
 
 .move-san {
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--comp-move-row-san-weight);
   font-variant-numeric: tabular-nums;
 }
 
 .move-score {
   font-variant-numeric: tabular-nums;
-  color: var(--color-on-surface);
+  color: var(--sys-color-on-surface);
 }
 
 .move-depth {
-  font-size: var(--font-size-xs);
-  color: var(--color-on-surface-variant);
+  font-size: var(--ref-font-size-xs);
+  color: var(--sys-color-on-surface-variant);
 }
 
 .muted {
-  color: var(--color-on-surface-variant);
+  color: var(--sys-color-on-surface-variant);
 }
 
 .muted.small {
-  font-size: var(--font-size-xs);
+  font-size: var(--ref-font-size-xs);
 }
 
 .error {
-  color: var(--color-error);
+  color: var(--sys-color-error);
 }

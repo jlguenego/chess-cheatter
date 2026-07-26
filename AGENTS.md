@@ -35,7 +35,7 @@ React 19 + TypeScript strict + Vite 6. Règles d'échecs : `chess.js`. Échiquie
 
 ## Couleurs / thème
 
-Consomme toujours les tokens **sémantiques** (`--color-*` de [src/index.css](src/index.css)), jamais les primitives (`--palette-*`) directement. Source de vérité : [spec/ux/design-tokens.json](spec/ux/design-tokens.json) (format DTCG, thèmes `dark`/`light`).
+Consomme toujours les tokens **de composant** (`--comp-*`) ou, à défaut, les rôles **système** (`--sys-*` de [src/index.css](src/index.css)) ; jamais les primitives (`--ref-*`) directement. Source de vérité : [spec/ux/design-tokens.json](spec/ux/design-tokens.json) (format DTCG, 3 tiers `ref`/`sys`/`comp`, thèmes `dark`/`light`).
 
 - **Lis [spec/ux/design-tokens.json](spec/ux/design-tokens.json) avant** toute proposition ou modification de couleur/thème — il documente l'intention (palette froide, variante `-dim` du dark, etc.).
 - Tout changement de token doit être répercuté dans **les deux** fichiers : [spec/ux/design-tokens.json](spec/ux/design-tokens.json) (source de vérité DTCG) **et** [src/index.css](src/index.css) (primitives + tokens sémantiques).
