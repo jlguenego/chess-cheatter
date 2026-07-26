@@ -10,7 +10,10 @@
         "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3).",
         "base": { "$value": "{ref.color.neutral.50}", "$description": "Fond global." },
         "container": { "$value": "{ref.color.neutral.0}", "$description": "Surface des panneaux." },
-        "container-high": { "$value": "{ref.color.neutral.100}", "$description": "Surface secondaire / contrôles au repos." }
+        "container-high": {
+          "$value": "{ref.color.neutral.100}",
+          "$description": "Surface secondaire / contrôles au repos."
+        }
       },
       "on-surface": {
         "$description": "Contenu posé sur les surfaces.",
@@ -33,7 +36,10 @@
         "$description": "Cases de l'échiquier — bleu-gris désaturé aligné sur la palette froide de l'interface.",
         "light": { "$value": "{ref.color.board-slate.light}", "$description": "Case claire." },
         "dark": { "$value": "{ref.color.board-slate.dark}", "$description": "Case sombre." },
-        "highlight": { "$value": "{ref.color.blue.500}", "$description": "Case sélectionnée / dernier coup." }
+        "highlight": {
+          "$value": "{ref.color.blue.500}",
+          "$description": "Case sélectionnée / dernier coup."
+        }
       }
     }
   }

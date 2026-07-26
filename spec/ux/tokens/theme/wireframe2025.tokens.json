@@ -9,31 +9,61 @@
       "surface": {
         "$description": "Surfaces (fonds) — toutes blanches : la hiérarchie ne passe plus par la tonalité mais par le trait (bordures noires). Contraste maximal avec l'encre noire.",
         "base": { "$value": "{ref.color.wireframe.white}", "$description": "Fond global blanc." },
-        "container": { "$value": "{ref.color.wireframe.white}", "$description": "Surface des panneaux — blanche, délimitée par sa bordure noire." },
-        "container-high": { "$value": "{ref.color.wireframe.white}", "$description": "Surface secondaire / contrôles au repos — blanche." }
+        "container": {
+          "$value": "{ref.color.wireframe.white}",
+          "$description": "Surface des panneaux — blanche, délimitée par sa bordure noire."
+        },
+        "container-high": {
+          "$value": "{ref.color.wireframe.white}",
+          "$description": "Surface secondaire / contrôles au repos — blanche."
+        }
       },
       "on-surface": {
         "$description": "Contenu posé sur les surfaces : noir pur (21:1). `variant` reste noir (aucun gris) — la distinction secondaire passe par la taille/graisse, pas la couleur.",
-        "default": { "$value": "{ref.color.wireframe.black}", "$description": "Texte principal noir." },
-        "variant": { "$value": "{ref.color.wireframe.black}", "$description": "Texte secondaire — noir également (pas de niveau de gris)." }
+        "default": {
+          "$value": "{ref.color.wireframe.black}",
+          "$description": "Texte principal noir."
+        },
+        "variant": {
+          "$value": "{ref.color.wireframe.black}",
+          "$description": "Texte secondaire — noir également (pas de niveau de gris)."
+        }
       },
       "outline": {
-        "default": { "$value": "{ref.color.wireframe.black}", "$description": "Bordure noire — porteuse de toute la structure filaire." }
+        "default": {
+          "$value": "{ref.color.wireframe.black}",
+          "$description": "Bordure noire — porteuse de toute la structure filaire."
+        }
       },
       "primary": {
         "$description": "Accent inversé : encre noire pleine, texte blanc dessus. (`on-primary` hérite de sys : #fff → contraste 21:1.)",
         "default": { "$value": "{ref.color.wireframe.black}", "$description": "Primary noir." },
-        "hover": { "$value": "{ref.color.wireframe.black}", "$description": "Primary au survol — reste noir (le survol se marque par un autre biais, ex. inversion CSS)." }
+        "hover": {
+          "$value": "{ref.color.wireframe.black}",
+          "$description": "Primary au survol — reste noir (le survol se marque par un autre biais, ex. inversion CSS)."
+        }
       },
       "error": {
         "$description": "Alerte en noir aussi (monochrome strict). (`on-error` hérite de sys : #fff.) La sémantique d'erreur passe par le libellé/l'icône, pas la couleur.",
-        "default": { "$value": "{ref.color.wireframe.black}", "$description": "Erreurs et bouton d'arrêt — noir." }
+        "default": {
+          "$value": "{ref.color.wireframe.black}",
+          "$description": "Erreurs et bouton d'arrêt — noir."
+        }
       },
       "board": {
         "$description": "Échiquier noir et blanc purs (classique). Case sélectionnée / dernier coup en noir.",
-        "light": { "$value": "{ref.color.wireframe.white}", "$description": "Case claire — blanc pur." },
-        "dark": { "$value": "{ref.color.wireframe.black}", "$description": "Case sombre — noir pur." },
-        "highlight": { "$value": "{ref.color.wireframe.black}", "$description": "Case sélectionnée / dernier coup — noir." }
+        "light": {
+          "$value": "{ref.color.wireframe.white}",
+          "$description": "Case claire — blanc pur."
+        },
+        "dark": {
+          "$value": "{ref.color.wireframe.black}",
+          "$description": "Case sombre — noir pur."
+        },
+        "highlight": {
+          "$value": "{ref.color.wireframe.black}",
+          "$description": "Case sélectionnée / dernier coup — noir."
+        }
       }
     },
 
@@ -41,7 +71,10 @@
       "$type": "dimension",
       "$description": "Coins vifs (rayon nul) sur tous les contrôles et panneaux — allure filaire / blueprint.",
       "control": { "$value": "{ref.radius.none}", "$description": "Contrôles à coins vifs." },
-      "control-sm": { "$value": "{ref.radius.none}", "$description": "Petits contrôles à coins vifs." },
+      "control-sm": {
+        "$value": "{ref.radius.none}",
+        "$description": "Petits contrôles à coins vifs."
+      },
       "panel": { "$value": "{ref.radius.none}", "$description": "Panneaux à coins vifs." }
     },
 
@@ -49,8 +82,14 @@
       "$description": "Police monospace PARTOUT (corps + titres/contrôles) : trait net, haute lisibilité, allure technique filaire.",
       "family": {
         "$type": "fontFamily",
-        "default": { "$value": "{ref.font.family.mono}", "$description": "Corps de texte en monospace." },
-        "display": { "$value": "{ref.font.family.mono}", "$description": "Titres et contrôles en monospace." }
+        "default": {
+          "$value": "{ref.font.family.mono}",
+          "$description": "Corps de texte en monospace."
+        },
+        "display": {
+          "$value": "{ref.font.family.mono}",
+          "$description": "Titres et contrôles en monospace."
+        }
       }
     }
   }

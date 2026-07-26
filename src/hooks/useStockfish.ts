@@ -1,9 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import {
-  StockfishEngine,
-  type AnalysisLimit,
-  type LineEval,
-} from "../engine/engine";
+import { StockfishEngine, type AnalysisLimit, type LineEval } from "../engine/engine";
 
 export interface UseStockfish {
   lines: LineEval[];

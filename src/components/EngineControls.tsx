@@ -15,11 +15,7 @@ interface EngineControlsProps {
   onStop: () => void;
 }
 
-export function buildLimit(
-  mode: LimitMode,
-  movetimeMs: number,
-  depth: number,
-): AnalysisLimit {
+export function buildLimit(mode: LimitMode, movetimeMs: number, depth: number): AnalysisLimit {
   return mode === "movetime"
     ? { kind: "movetime", value: movetimeMs }
     : { kind: "depth", value: depth };
@@ -61,9 +57,7 @@ export function EngineControls({
 
       {mode === "movetime" ? (
         <div className="field">
-          <span className="field-label">
-            Temps par coup : {(movetimeMs / 1000).toFixed(1)} s
-          </span>
+          <span className="field-label">Temps par coup : {(movetimeMs / 1000).toFixed(1)} s</span>
           <input
             type="range"
             aria-label="Temps par coup en millisecondes"
@@ -95,11 +89,7 @@ export function EngineControls({
             Stop
           </button>
         ) : (
-          <button
-            className="primary"
-            onClick={onAnalyze}
-            disabled={!canAnalyze}
-          >
+          <button className="primary" onClick={onAnalyze} disabled={!canAnalyze}>
             Analyser
           </button>
         )}

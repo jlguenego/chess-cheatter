@@ -33,5 +33,5 @@ Les flèches de `react-chessboard` et les pastilles de rang exigent une **chaîn
 ```tsx
 import { rankColor } from "../theme/rankColors";
 // ...
-<span style={{ color: rankColor(i) }} />
+<span style={{ color: rankColor(i) }} />;
 ```

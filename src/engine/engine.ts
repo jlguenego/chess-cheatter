@@ -18,9 +18,7 @@ export interface LineEval {
   pvUci: string[];
 }
 
-export type AnalysisLimit =
-  | { kind: "movetime"; value: number }
-  | { kind: "depth"; value: number };
+export type AnalysisLimit = { kind: "movetime"; value: number } | { kind: "depth"; value: number };
 
 interface AnalysisCallbacks {
   onUpdate?: (lines: LineEval[]) => void;
@@ -128,11 +126,7 @@ export class StockfishEngine {
     this.send(`setoption name MultiPV value ${this.multipv}`);
     this.send("ucinewgame");
     this.send(`position fen ${fen}`);
-    this.send(
-      limit.kind === "movetime"
-        ? `go movetime ${limit.value}`
-        : `go depth ${limit.value}`,
-    );
+    this.send(limit.kind === "movetime" ? `go movetime ${limit.value}` : `go depth ${limit.value}`);
 
     return new Promise((resolve) => {
       const userDone = callbacks.onDone;

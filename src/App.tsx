@@ -2,11 +2,7 @@ import { useMemo, useState } from "react";
 import type { Arrow } from "react-chessboard";
 import { BoardEditor } from "./components/BoardEditor";
 import { GameConfig } from "./components/GameConfig";
-import {
-  EngineControls,
-  buildLimit,
-  type LimitMode,
-} from "./components/EngineControls";
+import { EngineControls, buildLimit, type LimitMode } from "./components/EngineControls";
 import { SuggestionsPanel } from "./components/SuggestionsPanel";
 import { useStockfish } from "./hooks/useStockfish";
 import { useTheme } from "./hooks/useTheme";
@@ -70,11 +66,7 @@ export default function App() {
             Reproduisez la position, lancez Stockfish, jouez le meilleur coup.
           </p>
         </div>
-        <div
-          className="segmented theme-switch"
-          role="group"
-          aria-label="Choix du thème"
-        >
+        <div className="segmented theme-switch" role="group" aria-label="Choix du thème">
           <button
             type="button"
             className={theme === "dark" ? "active" : ""}

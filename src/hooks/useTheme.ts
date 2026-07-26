@@ -5,20 +5,13 @@ export type Theme = "dark" | "light" | "warm80s" | "wireframe2025";
 const STORAGE_KEY = "chess-cheater-theme";
 
 function isTheme(value: unknown): value is Theme {
-  return (
-    value === "dark" ||
-    value === "light" ||
-    value === "warm80s" ||
-    value === "wireframe2025"
-  );
+  return value === "dark" || value === "light" || value === "warm80s" || value === "wireframe2025";
 }
 
 function getInitialTheme(): Theme {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (isTheme(stored)) return stored;
-  return window.matchMedia("(prefers-color-scheme: light)").matches
-    ? "light"
-    : "dark";
+  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
 }
 
 /**

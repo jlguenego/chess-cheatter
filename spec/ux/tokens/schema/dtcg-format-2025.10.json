@@ -1321,16 +1321,7 @@
       "oneOf": [
         {
           "type": "string",
-          "enum": [
-            "solid",
-            "dashed",
-            "dotted",
-            "double",
-            "groove",
-            "ridge",
-            "outset",
-            "inset"
-          ],
+          "enum": ["solid", "dashed", "dotted", "double", "groove", "ridge", "outset", "inset"],
           "description": "Pre-defined stroke style values with the same meaning as CSS line style values"
         },
         {
@@ -1681,13 +1672,7 @@
           ]
         }
       },
-      "required": [
-        "fontFamily",
-        "fontSize",
-        "fontWeight",
-        "letterSpacing",
-        "lineHeight"
-      ],
+      "required": ["fontFamily", "fontSize", "fontWeight", "letterSpacing", "lineHeight"],
       "additionalProperties": false
     },
     "https://www.designtokens.org/schemas/2025.10/format/groupOrToken.json": {

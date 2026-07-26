@@ -20,6 +20,7 @@ localement. La rapidité et la justesse de la suggestion sont le critère de ré
 ## Périmètre fonctionnel
 
 ### 1. Saisie de la position
+
 - **Priorité 1 — Saisie manuelle :** échiquier interactif permettant de placer/déplacer les
   pièces (glisser-déposer). C'est le mode principal à livrer en premier.
 - **Priorité 2 — Reconnaissance par caméra :** capture d'un échiquier réel via la webcam et
@@ -28,21 +29,25 @@ localement. La rapidité et la justesse de la suggestion sont le critère de ré
   hors-ligne. Ce mode alimente ensuite l'échiquier manuel (résultat éditable/corrigeable).
 
 ### 2. Configuration de la partie
+
 - L'utilisateur **choisit manuellement son camp** (blancs ou noirs) et indique à qui c'est de
   jouer.
 
 ### 3. Validation des règles
+
 - L'échiquier valide la **légalité des coups et des positions** via une bibliothèque de règles
   (`chess.js` ou équivalent), couplée à un composant d'échiquier interactif (ex.
   `react-chessboard`).
 
 ### 4. Analyse Stockfish
+
 - Moteur **Stockfish compilé en WebAssembly**, exécuté entièrement dans le navigateur (idéalement
   dans un Web Worker pour ne pas bloquer l'UI).
 - Sortie attendue : **les 3 meilleurs coups (top 3) avec leur évaluation** (score/centipions,
   et si possible mat en N). Utilisation du mode `MultiPV` de Stockfish.
 
 ### 5. Affichage des suggestions
+
 - Rendu **combiné** :
   - **Flèche(s)** dessinée(s) sur l'échiquier pour visualiser le(s) coup(s) recommandé(s).
   - **Liste textuelle** des coups en notation, avec leur évaluation.

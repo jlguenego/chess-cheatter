@@ -9,12 +9,7 @@ interface SuggestionsPanelProps {
   error?: string;
 }
 
-export function SuggestionsPanel({
-  fen,
-  lines,
-  analyzing,
-  error,
-}: SuggestionsPanelProps) {
+export function SuggestionsPanel({ fen, lines, analyzing, error }: SuggestionsPanelProps) {
   return (
     <section className="panel suggestions">
       <h2>Meilleurs coups</h2>
@@ -23,9 +18,7 @@ export function SuggestionsPanel({
 
       {!error && lines.length === 0 && (
         <p className="muted">
-          {analyzing
-            ? "Analyse en cours…"
-            : "Placez une position et lancez l'analyse."}
+          {analyzing ? "Analyse en cours…" : "Placez une position et lancez l'analyse."}
         </p>
       )}
 
@@ -34,10 +27,7 @@ export function SuggestionsPanel({
           const decoded = fen ? uciToMove(fen, line.pvUci[0]) : null;
           return (
             <li key={line.multipv} className="move-row">
-              <span
-                className="rank-dot"
-                style={{ background: rankColor(i) }}
-              />
+              <span className="rank-dot" style={{ background: rankColor(i) }} />
               <span className="move-san">{decoded?.san ?? line.pvUci[0]}</span>
               <span className="move-score">{formatScore(line)}</span>
               <span className="move-depth">prof. {line.depth}</span>

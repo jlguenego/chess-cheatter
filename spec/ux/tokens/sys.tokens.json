@@ -18,8 +18,14 @@
       "surface": {
         "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3). Valeurs par défaut = dark.",
         "base": { "$value": "{ref.color.neutral.900}", "$description": "Fond global." },
-        "container": { "$value": "{ref.color.neutral.850}", "$description": "Surface des panneaux." },
-        "container-high": { "$value": "{ref.color.neutral.800}", "$description": "Surface secondaire / contrôles au repos." }
+        "container": {
+          "$value": "{ref.color.neutral.850}",
+          "$description": "Surface des panneaux."
+        },
+        "container-high": {
+          "$value": "{ref.color.neutral.800}",
+          "$description": "Surface secondaire / contrôles au repos."
+        }
       },
       "on-surface": {
         "$description": "Contenu posé sur les surfaces. Contrastes vérifiés (dark) : default ≈ 13.8:1 sur surface, variant ≈ 5.0:1 sur surface-container-high (pire cas) → AA.",
@@ -31,7 +37,10 @@
       },
       "primary": {
         "$description": "Couleur de marque. on-primary ≈ 4.76:1 sur default (AA, dark).",
-        "default": { "$value": "{ref.color.blue.400}", "$description": "Primary : segmented actif, bouton primaire, curseurs." },
+        "default": {
+          "$value": "{ref.color.blue.400}",
+          "$description": "Primary : segmented actif, bouton primaire, curseurs."
+        },
         "hover": { "$value": "{ref.color.blue.500}", "$description": "Primary renforcé : survol." }
       },
       "on-primary": {
@@ -50,7 +59,10 @@
         "$description": "Cases de l'échiquier — par défaut (dark) : variante assombrie pour éviter que la case claire soit le point le plus lumineux de l'écran.",
         "light": { "$value": "{ref.color.board-slate.light-dim}", "$description": "Case claire." },
         "dark": { "$value": "{ref.color.board-slate.dark-dim}", "$description": "Case sombre." },
-        "highlight": { "$value": "{ref.color.blue.400}", "$description": "Case sélectionnée / dernier coup." }
+        "highlight": {
+          "$value": "{ref.color.blue.400}",
+          "$description": "Case sélectionnée / dernier coup."
+        }
       }
     },
 
@@ -62,23 +74,38 @@
     "shape": {
       "$type": "dimension",
       "$description": "Rôles de forme (rayons de bordure) du THÈME PAR DÉFAUT. Consommés par comp.*.radius. Un thème peut les surcharger pour changer l'allure (ex : warm80s anguleux). Valeurs par défaut = look actuel.",
-      "control": { "$value": "{ref.radius.md}", "$description": "Rayon des contrôles (boutons, segmented, action d'échiquier, ligne de coup)." },
-      "control-sm": { "$value": "{ref.radius.sm}", "$description": "Rayon des petits contrôles (pièce de réserve)." },
+      "control": {
+        "$value": "{ref.radius.md}",
+        "$description": "Rayon des contrôles (boutons, segmented, action d'échiquier, ligne de coup)."
+      },
+      "control-sm": {
+        "$value": "{ref.radius.sm}",
+        "$description": "Rayon des petits contrôles (pièce de réserve)."
+      },
       "panel": { "$value": "{ref.radius.lg}", "$description": "Rayon des panneaux (cartes)." }
     },
 
     "space": {
       "$type": "dimension",
       "$description": "Rôles d'espacement sémantiques surchargeables par thème (paddings internes). Consommés par comp.*.padding. Valeurs par défaut = look actuel.",
-      "panel-padding": { "$value": "{ref.space.xl}", "$description": "Padding interne des panneaux." },
-      "control-padding": { "$value": "{ref.space.md}", "$description": "Padding interne des contrôles (bouton primaire)." }
+      "panel-padding": {
+        "$value": "{ref.space.xl}",
+        "$description": "Padding interne des panneaux."
+      },
+      "control-padding": {
+        "$value": "{ref.space.md}",
+        "$description": "Padding interne des contrôles (bouton primaire)."
+      }
     },
 
     "border": {
       "$description": "Rôle d'épaisseur de bordure surchargeable par thème (la couleur vient de sys.color, le style de ref.border). Consommé par les bordures de composants. Valeur par défaut = look actuel.",
       "width": {
         "$type": "dimension",
-        "default": { "$value": "{ref.border.width.default}", "$description": "Épaisseur des bordures." }
+        "default": {
+          "$value": "{ref.border.width.default}",
+          "$description": "Épaisseur des bordures."
+        }
       }
     },
 
@@ -86,21 +113,33 @@
       "$description": "Rôles de police surchargeables par thème. `default` = corps de texte ; `display` = titres et contrôles (un thème peut lui donner une police d'affichage, ex : warm80s → Orbitron). Défauts = pile système (look actuel inchangé).",
       "family": {
         "$type": "fontFamily",
-        "default": { "$value": "{ref.font.family.sans}", "$description": "Police du corps de texte." },
-        "display": { "$value": "{ref.font.family.sans}", "$description": "Police des titres et contrôles." }
+        "default": {
+          "$value": "{ref.font.family.sans}",
+          "$description": "Police du corps de texte."
+        },
+        "display": {
+          "$value": "{ref.font.family.sans}",
+          "$description": "Police des titres et contrôles."
+        }
       }
     },
 
     "duration": {
       "$type": "duration",
       "$description": "Durées d'animation / transition.",
-      "theme-transition": { "$value": { "value": 200, "unit": "ms" }, "$description": "Transition des couleurs (background, color, border) lors du passage entre thèmes dark et light." }
+      "theme-transition": {
+        "$value": { "value": 200, "unit": "ms" },
+        "$description": "Transition des couleurs (background, color, border) lors du passage entre thèmes dark et light."
+      }
     },
 
     "breakpoint": {
       "$type": "dimension",
       "$description": "Points de rupture responsive de la mise en page.",
-      "mobile": { "$value": { "value": 860, "unit": "px" }, "$description": "La grille passe à une seule colonne en dessous (max-width: 860px). Rappel : les media queries CSS n'acceptent pas var()." }
+      "mobile": {
+        "$value": { "value": 860, "unit": "px" },
+        "$description": "La grille passe à une seule colonne en dessous (max-width: 860px). Rappel : les media queries CSS n'acceptent pas var()."
+      }
     }
   }
 }

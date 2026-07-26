@@ -10,11 +10,11 @@ Pour toute demande d'analyse, de critique ou de design/UX (mots-clés : _analyse
 
 Ce projet utilise **bun** (v1.3.14). N'utilise JAMAIS `npm`, `npx`, `yarn` ni `pnpm`.
 
-| Au lieu de      | Utilise         |
-| --------------- | --------------- |
-| `npm install`   | `bun install`   |
-| `npm run <x>`   | `bun run <x>`   |
-| `npx <outil>`   | `bunx <outil>`  |
+| Au lieu de    | Utilise        |
+| ------------- | -------------- |
+| `npm install` | `bun install`  |
+| `npm run <x>` | `bun run <x>`  |
+| `npx <outil>` | `bunx <outil>` |
 
 ## Commandes
 

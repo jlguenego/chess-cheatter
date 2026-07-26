@@ -1,0 +1,12 @@
+# Fichiers générés (pilotés par leur générateur, pas par Prettier)
+src/tokens.gen.css
+src/theme/rankColors.gen.ts
+
+# Vendored (moteur Stockfish WASM)
+public/engine/
+
+# Build
+dist/
+
+# Lockfile bun
+bun.lock

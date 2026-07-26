@@ -141,7 +141,9 @@ button.primary,
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(var(--comp-layout-board-column-min), 1fr) var(--comp-layout-side-column-width);
+  grid-template-columns: minmax(var(--comp-layout-board-column-min), 1fr) var(
+      --comp-layout-side-column-width
+    );
   gap: var(--comp-layout-gap);
   align-items: start;
 }
