@@ -1,5 +1,5 @@
 /* ============================================================
-   Design tokens — voir spec/ux/design-tokens.json (format DTCG).
+   Design tokens — voir spec/ux/tokens/ (format DTCG, sets ref/sys/comp).
    3 tiers explicites, un préfixe de variable CSS par tier :
      TIER 1  ref  → --ref-*   primitives brutes (agnostiques thème/composant)
      TIER 2  sys  → --sys-*   rôles sémantiques (MD3), redéfinis par thème

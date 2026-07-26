@@ -6,7 +6,7 @@ applyTo: "src/**/*.{ts,tsx}"
 
 # Couleurs & design tokens (.ts / .tsx)
 
-Source de vérité des couleurs : [spec/ux/design-tokens.json](../../spec/ux/design-tokens.json) (DTCG, 3 tiers `ref`/`sys`/`comp`), reflétée en variables CSS dans [src/index.css](../../src/index.css) via les préfixes `--ref-*` / `--sys-*` / `--comp-*`.
+Source de vérité des couleurs : les token sets de [spec/ux/tokens/](../../spec/ux/tokens/) (DTCG, 3 tiers répartis en `ref.tokens.json` / `sys.tokens.json` / `comp.tokens.json`), reflétée en variables CSS dans [src/index.css](../../src/index.css) via les préfixes `--ref-*` / `--sys-*` / `--comp-*`.
 
 ## Règles
 
@@ -24,7 +24,7 @@ Source de vérité des couleurs : [spec/ux/design-tokens.json](../../spec/ux/des
   <div style={{ backgroundColor: "var(--ref-color-neutral-850)" }} />
   ```
 
-- **Si un nouveau rôle de couleur manque**, ajoute-le d'abord comme token système `--sys-*` dans [src/index.css](../../src/index.css) (et dans [spec/ux/design-tokens.json](../../spec/ux/design-tokens.json)), pour les deux thèmes `dark`/`light` ; ajoute au besoin un token composant `--comp-*` qui l'alias. Puis consomme le token.
+- **Si un nouveau rôle de couleur manque**, ajoute-le d'abord comme token système `--sys-*` dans [src/index.css](../../src/index.css) (et dans le token set adéquat de [spec/ux/tokens/](../../spec/ux/tokens/)), pour les deux thèmes `dark`/`light` ; ajoute au besoin un token composant `--comp-*` qui l'alias. Puis consomme le token.
 
 ## Exception : couleurs de rang (flèches / pastilles)
 

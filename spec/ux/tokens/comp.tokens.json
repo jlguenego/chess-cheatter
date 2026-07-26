@@ -1,0 +1,114 @@
+{
+  "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
+  "$description": "TIER 3 — Composant. Token set du design system chess-cheater (format DTCG). Fait partie d'un ensemble de 3 fichiers (ref / sys / comp) fusionnés en un seul arbre par l'outil de build : ce set aliase `{sys.…}` (défini dans sys.tokens.json) pour les couleurs/états et `{ref.…}` (défini dans ref.tokens.json) pour les dimensions pures. Tokens scopés à un composant précis de l'UI. C'est ce que consomment en priorité les règles CSS de chaque composant : changer l'apparence d'un composant = éditer ici, sans toucher aux tiers inférieurs. Reflété en CSS par le préfixe --comp-*.",
+
+  "comp": {
+    "app": {
+      "$description": "Conteneur racine .app.",
+      "max-width": { "$value": "1100px", "$description": "Largeur maximale du conteneur." },
+      "padding": { "$value": "{ref.space.3xl}", "$description": "Padding interne." }
+    },
+
+    "layout": {
+      "$description": "Grille principale .layout (échiquier + colonne latérale).",
+      "gap": { "$value": "{ref.space.3xl}", "$description": "Espacement entre colonnes." },
+      "side-column-width": { "$value": "340px", "$description": "Largeur fixe de la colonne latérale." },
+      "board-column-min": { "$value": "320px", "$description": "Largeur minimale de la colonne échiquier (minmax)." },
+      "side-column-gap": { "$value": "{ref.space.xl}", "$description": "Espacement vertical entre panneaux de la colonne latérale." }
+    },
+
+    "header": {
+      "$description": "En-tête .app-header (titre + sous-titre + bascule thème).",
+      "gap": { "$value": "{ref.space.md}", "$description": "Espacement titre / bascule." },
+      "title-size": { "$value": "{ref.font.size.xl}", "$description": "Taille du titre h1." },
+      "subtitle-color": { "$value": "{sys.color.theme.dark.on-surface.variant}", "$description": "Couleur du sous-titre (rôle on-surface-variant, résolu par thème)." }
+    },
+
+    "panel": {
+      "$description": "Panneau .panel (carte de contenu de la colonne latérale).",
+      "bg": { "$value": "{sys.color.theme.dark.surface.container}", "$description": "Fond du panneau." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.lg}", "$description": "Rayon de bordure." },
+      "padding": { "$value": "{ref.space.xl}", "$description": "Padding interne." },
+      "title-size": { "$value": "{ref.font.size.lg}", "$description": "Taille du titre h2." }
+    },
+
+    "theme-toggle": {
+      "$description": "Bouton de bascule de thème .theme-toggle.",
+      "bg": { "$value": "{sys.color.theme.dark.surface.container-high}", "$description": "Fond au repos." },
+      "bg-hover": { "$value": "{sys.color.theme.dark.surface.container}", "$description": "Fond au survol." },
+      "fg": { "$value": "{sys.color.theme.dark.on-surface.default}", "$description": "Couleur du texte." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." },
+      "font-size": { "$value": "{ref.font.size.md}", "$description": "Taille du texte." }
+    },
+
+    "segmented": {
+      "$description": "Contrôle segmenté .segmented (choix mutuellement exclusifs).",
+      "bg": { "$value": "{sys.color.theme.dark.surface.container-high}", "$description": "Fond des segments au repos." },
+      "fg": { "$value": "{sys.color.theme.dark.on-surface.default}", "$description": "Texte des segments." },
+      "active-bg": { "$value": "{sys.color.theme.dark.primary.default}", "$description": "Fond du segment actif." },
+      "active-fg": { "$value": "{sys.color.theme.dark.primary.on}", "$description": "Texte du segment actif." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." }
+    },
+
+    "button-primary": {
+      "$description": "Bouton principal button.primary (lancer l'analyse).",
+      "bg": { "$value": "{sys.color.theme.dark.primary.default}", "$description": "Fond au repos." },
+      "bg-hover": { "$value": "{sys.color.theme.dark.primary.hover}", "$description": "Fond au survol." },
+      "fg": { "$value": "{sys.color.theme.dark.primary.on}", "$description": "Couleur du texte." },
+      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." },
+      "padding": { "$value": "{ref.space.md}", "$description": "Padding interne." },
+      "font-size": { "$value": "{ref.font.size.base}", "$description": "Taille du texte." },
+      "disabled-opacity": { "$value": "{sys.opacity.disabled}", "$description": "Opacité à l'état désactivé." }
+    },
+
+    "button-stop": {
+      "$description": "Variante d'arrêt button.primary.stop (interrompre l'analyse).",
+      "bg": { "$value": "{sys.color.theme.dark.error.default}", "$description": "Fond." },
+      "fg": { "$value": "{sys.color.theme.dark.error.on}", "$description": "Couleur du texte." }
+    },
+
+    "board-action": {
+      "$description": "Boutons d'action sous l'échiquier .board-actions button (réinitialiser, retourner…).",
+      "bg": { "$value": "{sys.color.theme.dark.surface.container-high}", "$description": "Fond au repos." },
+      "bg-hover": { "$value": "{sys.color.theme.dark.surface.container}", "$description": "Fond au survol." },
+      "fg": { "$value": "{sys.color.theme.dark.on-surface.default}", "$description": "Couleur du texte." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." }
+    },
+
+    "board": {
+      "$description": "Échiquier react-chessboard (cases + surbrillance). Consommé aussi inline dans BoardEditor.tsx.",
+      "light": { "$value": "{sys.color.theme.dark.board.light}", "$description": "Case claire." },
+      "dark": { "$value": "{sys.color.theme.dark.board.dark}", "$description": "Case sombre." },
+      "highlight": { "$value": "{sys.color.theme.dark.board.highlight}", "$description": "Case sélectionnée / dernier coup." },
+      "max-width": { "$value": "560px", "$description": "Largeur maximale de l'échiquier, de la rangée de réserve et des indices." }
+    },
+
+    "spare-piece": {
+      "$description": "Pièce de réserve .spare-piece (palette de pièces à glisser).",
+      "size": { "$value": "44px", "$description": "Côté carré." },
+      "bg": { "$value": "{sys.color.theme.dark.surface.container-high}", "$description": "Fond." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.sm}", "$description": "Rayon de bordure." },
+      "gap": { "$value": "{ref.space.2xs}", "$description": "Espacement entre pièces de réserve." }
+    },
+
+    "move-row": {
+      "$description": "Ligne de suggestion .move-row (un coup du top 3).",
+      "bg": { "$value": "{sys.color.theme.dark.surface.container-high}", "$description": "Fond." },
+      "border-color": { "$value": "{sys.color.theme.dark.outline.default}", "$description": "Couleur de bordure." },
+      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." },
+      "gap": { "$value": "{ref.space.sm}", "$description": "Espacement interne entre colonnes." },
+      "san-weight": { "$value": "{ref.font.weight.semibold}", "$description": "Graisse de la notation SAN." }
+    },
+
+    "rank-dot": {
+      "$description": "Pastille de classement .rank-dot (couleur portée par sys.color.rank via JS).",
+      "size": { "$value": "12px", "$description": "Diamètre." },
+      "radius": { "$value": "{ref.radius.full}", "$description": "Rayon (cercle)." }
+    }
+  }
+}
