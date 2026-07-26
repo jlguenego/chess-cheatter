@@ -4,7 +4,7 @@
  * pastilles du panneau (SuggestionsPanel). Alignées sur
  * spec/ux/design-tokens.json → color.palette.rank.
  */
-export const RANK_COLORS = ["#2e9e5b", "#c9a227", "#c96a27"] as const;
+export const RANK_COLORS = ["#2e9e5b", "#a8851a", "#c96a27"] as const;
 
 export const RANK_FALLBACK = "#888888";
 

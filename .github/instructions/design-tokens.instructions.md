@@ -10,13 +10,13 @@ Source de vérité des couleurs : [spec/ux/design-tokens.json](../../spec/ux/des
 
 ## Règles
 
-- **Jamais de littéral couleur en dur** dans le JSX/TSX (`#rrggbb`, `rgb()`, `hsl()`, noms CSS comme `red`). Utilise les tokens **sémantiques** : `var(--color-bg)`, `var(--color-text)`, `var(--color-accent)`, `var(--color-board-light)`…
+- **Jamais de littéral couleur en dur** dans le JSX/TSX (`#rrggbb`, `rgb()`, `hsl()`, noms CSS comme `red`). Utilise les tokens **sémantiques** (rôles Material Design 3) : `var(--color-surface)`, `var(--color-on-surface)`, `var(--color-primary)`, `var(--color-board-light)`…
 - **Ne consomme jamais les primitives** `--palette-*` directement (ni en dur, ni via `var()`). Elles ne sont là que pour alimenter les tokens sémantiques `--color-*` par thème.
 - **Privilégie le CSS** ([src/index.css](../../src/index.css)) au style inline. N'ajoute un style inline que si la valeur est dynamique ; dans ce cas, référence quand même un token :
 
   ```tsx
   // ✅ token sémantique
-  <div style={{ backgroundColor: "var(--color-panel)" }} />
+  <div style={{ backgroundColor: "var(--color-surface-container)" }} />
   // ❌ littéral en dur
   <div style={{ backgroundColor: "#242830" }} />
   // ❌ primitive

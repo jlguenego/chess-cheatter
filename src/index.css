@@ -2,7 +2,7 @@
    Design tokens — voir spec/ux/design-tokens.json (format DTCG).
    Primitives (color.palette) : source unique de vérité, agnostiques
    au thème. Ne pas les consommer directement : passer par les tokens
-   sémantiques --color-* définis plus bas.
+   sémantiques --color-* (rôles Material Design 3) définis plus bas.
    ============================================================ */
 :root {
   /* --- Primitives : neutres --- */
@@ -19,17 +19,17 @@
   --palette-neutral-900: #1a1d23;
 
   /* --- Primitives : marque / alerte --- */
-  --palette-blue-400: #4a90e2;
-  --palette-blue-500: #357abd;
+  --palette-blue-400: #3576b5;
+  --palette-blue-500: #2f6fa8;
   --palette-blue-600: #2a5f92;
-  --palette-red-500: #d9534f;
+  --palette-red-500: #c0392b;
   --palette-red-600: #c9302c;
 
   /* --- Primitives : cases de l'échiquier (bleu-gris désaturé) --- */
-  --palette-board-slate-light: #c7cfda;
-  --palette-board-slate-dark: #6c7a93;
-  --palette-board-slate-light-dim: #aeb8c7;
-  --palette-board-slate-dark-dim: #586580;
+  --palette-board-slate-light: #dce1e9;
+  --palette-board-slate-dark: #7c8ba6;
+  --palette-board-slate-light-dim: #8f9bb0;
+  --palette-board-slate-dark-dim: #454f63;
 
   /* --- Typographie (partagée entre thèmes) --- */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -75,17 +75,22 @@
 
   /* ============================================================
      Tokens sémantiques — thème sombre (défaut).
+     Rôles Material Design 3 : surface(s) + on-surface, primary +
+     on-primary, error + on-error, outline. Chaque on-<rôle> est le
+     contenu (texte/icône) posé sur <rôle> → le contraste se lit
+     directement dans les paires de noms.
      ============================================================ */
-  --color-bg: var(--palette-neutral-900);
-  --color-panel: var(--palette-neutral-850);
-  --color-panel-elevated: var(--palette-neutral-800);
-  --color-border: var(--palette-neutral-700);
-  --color-text: var(--palette-neutral-150);
-  --color-text-muted: var(--palette-neutral-500);
-  --color-text-on-accent: var(--palette-neutral-0);
-  --color-accent: var(--palette-blue-400);
-  --color-accent-strong: var(--palette-blue-500);
-  --color-danger: var(--palette-red-500);
+  --color-surface: var(--palette-neutral-900);
+  --color-surface-container: var(--palette-neutral-850);
+  --color-surface-container-high: var(--palette-neutral-800);
+  --color-outline: var(--palette-neutral-700);
+  --color-on-surface: var(--palette-neutral-150);
+  --color-on-surface-variant: var(--palette-neutral-500);
+  --color-primary: var(--palette-blue-400);
+  --color-primary-hover: var(--palette-blue-500);
+  --color-on-primary: var(--palette-neutral-0);
+  --color-error: var(--palette-red-500);
+  --color-on-error: var(--palette-neutral-0);
   --color-board-light: var(--palette-board-slate-light-dim);
   --color-board-dark: var(--palette-board-slate-dark-dim);
   --color-board-highlight: var(--palette-blue-400);
@@ -97,16 +102,17 @@
    Tokens sémantiques — thème clair.
    ============================================================ */
 [data-theme="light"] {
-  --color-bg: var(--palette-neutral-50);
-  --color-panel: var(--palette-neutral-0);
-  --color-panel-elevated: var(--palette-neutral-100);
-  --color-border: var(--palette-neutral-200);
-  --color-text: var(--palette-neutral-900);
-  --color-text-muted: var(--palette-neutral-600);
-  --color-text-on-accent: var(--palette-neutral-0);
-  --color-accent: var(--palette-blue-500);
-  --color-accent-strong: var(--palette-blue-600);
-  --color-danger: var(--palette-red-600);
+  --color-surface: var(--palette-neutral-50);
+  --color-surface-container: var(--palette-neutral-0);
+  --color-surface-container-high: var(--palette-neutral-100);
+  --color-outline: var(--palette-neutral-200);
+  --color-on-surface: var(--palette-neutral-900);
+  --color-on-surface-variant: var(--palette-neutral-600);
+  --color-primary: var(--palette-blue-500);
+  --color-primary-hover: var(--palette-blue-600);
+  --color-on-primary: var(--palette-neutral-0);
+  --color-error: var(--palette-red-600);
+  --color-on-error: var(--palette-neutral-0);
   --color-board-light: var(--palette-board-slate-light);
   --color-board-dark: var(--palette-board-slate-dark);
   --color-board-highlight: var(--palette-blue-500);
@@ -120,8 +126,8 @@
 
 body {
   margin: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--color-surface);
+  color: var(--color-on-surface);
   font-family: var(--font-sans);
 }
 
@@ -176,14 +182,14 @@ button.primary,
 
 .subtitle {
   margin: var(--space-3xs) 0 var(--space-2xl);
-  color: var(--color-text-muted);
+  color: var(--color-on-surface-variant);
 }
 
 .theme-toggle {
   flex-shrink: 0;
-  background: var(--color-panel-elevated);
-  color: var(--color-text);
-  border: var(--border-width) var(--border-style) var(--color-border);
+  background: var(--color-surface-container-high);
+  color: var(--color-on-surface);
+  border: var(--border-width) var(--border-style) var(--color-outline);
   border-radius: var(--radius-md);
   padding: var(--space-xs) var(--space-md);
   font-size: var(--font-size-md);
@@ -191,7 +197,7 @@ button.primary,
 }
 
 .theme-toggle:hover {
-  background: var(--color-panel);
+  background: var(--color-surface-container);
 }
 
 .layout {
@@ -226,8 +232,8 @@ button.primary,
 .spare-piece {
   width: var(--size-spare-piece);
   height: var(--size-spare-piece);
-  background: var(--color-panel-elevated);
-  border: var(--border-width) var(--border-style) var(--color-border);
+  background: var(--color-surface-container-high);
+  border: var(--border-width) var(--border-style) var(--color-outline);
   border-radius: var(--radius-sm);
   cursor: grab;
 }
@@ -239,7 +245,7 @@ button.primary,
 }
 
 .hint {
-  color: var(--color-text-muted);
+  color: var(--color-on-surface-variant);
   font-size: var(--font-size-sm);
   max-width: var(--size-board-max-width);
 }
@@ -251,8 +257,8 @@ button.primary,
 }
 
 .panel {
-  background: var(--color-panel);
-  border: var(--border-width) var(--border-style) var(--color-border);
+  background: var(--color-surface-container);
+  border: var(--border-width) var(--border-style) var(--color-outline);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
 }
@@ -269,28 +275,28 @@ button.primary,
 .field-label {
   display: block;
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--color-on-surface-variant);
   margin-bottom: var(--space-2xs);
 }
 
 .segmented {
   display: inline-flex;
-  border: var(--border-width) var(--border-style) var(--color-border);
+  border: var(--border-width) var(--border-style) var(--color-outline);
   border-radius: var(--radius-md);
   overflow: hidden;
 }
 
 .segmented button {
-  background: var(--color-panel-elevated);
-  color: var(--color-text);
+  background: var(--color-surface-container-high);
+  color: var(--color-on-surface);
   border: none;
   padding: var(--space-xs) var(--space-xl);
   cursor: pointer;
 }
 
 .segmented button.active {
-  background: var(--color-accent);
-  color: var(--color-text-on-accent);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
 .castling {
@@ -308,7 +314,7 @@ button.primary,
 
 input[type="range"] {
   width: 100%;
-  accent-color: var(--color-accent);
+  accent-color: var(--color-primary);
 }
 
 button {
@@ -316,16 +322,16 @@ button {
 }
 
 .board-actions button {
-  background: var(--color-panel-elevated);
-  color: var(--color-text);
-  border: var(--border-width) var(--border-style) var(--color-border);
+  background: var(--color-surface-container-high);
+  color: var(--color-on-surface);
+  border: var(--border-width) var(--border-style) var(--color-outline);
   border-radius: var(--radius-md);
   padding: var(--space-xs) var(--space-lg);
   cursor: pointer;
 }
 
 .board-actions button:hover {
-  background: var(--color-panel);
+  background: var(--color-surface-container);
 }
 
 .analyze-actions {
@@ -334,8 +340,8 @@ button {
 
 button.primary {
   width: 100%;
-  background: var(--color-accent);
-  color: var(--color-text-on-accent);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
   border: none;
   border-radius: var(--radius-md);
   padding: var(--space-md);
@@ -344,7 +350,7 @@ button.primary {
 }
 
 button.primary:hover {
-  background: var(--color-accent-strong);
+  background: var(--color-primary-hover);
 }
 
 button.primary:disabled {
@@ -353,7 +359,8 @@ button.primary:disabled {
 }
 
 button.primary.stop {
-  background: var(--color-danger);
+  background: var(--color-error);
+  color: var(--color-on-error);
 }
 
 .move-list {
@@ -370,8 +377,8 @@ button.primary.stop {
   grid-template-columns: auto 1fr auto auto;
   gap: var(--space-sm);
   align-items: center;
-  background: var(--color-panel-elevated);
-  border: var(--border-width) var(--border-style) var(--color-border);
+  background: var(--color-surface-container-high);
+  border: var(--border-width) var(--border-style) var(--color-outline);
   border-radius: var(--radius-md);
   padding: var(--space-sm) var(--space-md);
 }
@@ -389,16 +396,16 @@ button.primary.stop {
 
 .move-score {
   font-variant-numeric: tabular-nums;
-  color: var(--color-text);
+  color: var(--color-on-surface);
 }
 
 .move-depth {
   font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  color: var(--color-on-surface-variant);
 }
 
 .muted {
-  color: var(--color-text-muted);
+  color: var(--color-on-surface-variant);
 }
 
 .muted.small {
@@ -406,5 +413,5 @@ button.primary.stop {
 }
 
 .error {
-  color: var(--color-danger);
+  color: var(--color-error);
 }

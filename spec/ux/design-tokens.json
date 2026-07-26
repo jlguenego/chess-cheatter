@@ -14,70 +14,75 @@
         "0": { "$value": "#ffffff", "$description": "Blanc pur." },
         "50": { "$value": "#f5f6f8", "$description": "Fond clair." },
         "100": { "$value": "#eef0f3", "$description": "Surface élevée claire." },
-        "150": { "$value": "#e6e8ec", "$description": "Texte principal en thème sombre (--text)." },
+        "150": { "$value": "#e6e8ec", "$description": "Texte principal en thème sombre (--color-on-surface)." },
         "200": { "$value": "#d5d9e0", "$description": "Bordure claire." },
-        "500": { "$value": "#9aa1ac", "$description": "Texte atténué en thème sombre (--muted)." },
+        "500": { "$value": "#9aa1ac", "$description": "Texte atténué en thème sombre (--color-on-surface-variant)." },
         "600": { "$value": "#5c6570", "$description": "Texte atténué en thème clair." },
-        "700": { "$value": "#363b45", "$description": "Bordure en thème sombre (--border)." },
-        "800": { "$value": "#2c313b", "$description": "Surface élevée sombre (--panel-2)." },
-        "850": { "$value": "#242830", "$description": "Surface de panneau sombre (--panel)." },
-        "900": { "$value": "#1a1d23", "$description": "Fond sombre (--bg)." }
+        "700": { "$value": "#363b45", "$description": "Bordure (outline) en thème sombre (--color-outline)." },
+        "800": { "$value": "#2c313b", "$description": "Surface élevée sombre (--color-surface-container-high)." },
+        "850": { "$value": "#242830", "$description": "Surface de panneau sombre (--color-surface-container)." },
+        "900": { "$value": "#1a1d23", "$description": "Fond sombre (--color-surface)." }
       },
 
       "blue": {
-        "$description": "Bleu de marque (accent).",
-        "400": { "$value": "#4a90e2", "$description": "Accent standard (--accent)." },
-        "500": { "$value": "#357abd", "$description": "Accent renforcé (--accent-strong)." },
-        "600": { "$value": "#2a5f92", "$description": "Accent renforcé pour survol en thème clair." }
+        "$description": "Bleu de marque (accent). Valeurs assombries pour que le texte blanc posé dessus atteigne le contraste WCAG AA (≥ 4.5:1).",
+        "400": { "$value": "#3576b5", "$description": "Accent standard (--color-primary, thème sombre). Texte blanc dessus ≈ 4.76:1 (AA)." },
+        "500": { "$value": "#2f6fa8", "$description": "Accent renforcé survol (dark) et accent standard (light). Texte blanc ≈ 5.30:1 (AA)." },
+        "600": { "$value": "#2a5f92", "$description": "Accent renforcé pour survol en thème clair. Texte blanc ≈ 6.67:1 (AAA)." }
       },
 
       "red": {
         "$description": "Rouge d'alerte.",
-        "500": { "$value": "#d9534f", "$description": "Danger en thème sombre (--danger)." },
-        "600": { "$value": "#c9302c", "$description": "Danger en thème clair (meilleur contraste)." }
+        "500": { "$value": "#c0392b", "$description": "Danger en thème sombre (--color-error). Assombri pour texte blanc ≈ 5.44:1 (AA)." },
+        "600": { "$value": "#c9302c", "$description": "Danger en thème clair. Texte blanc ≈ 5.33:1 (AA)." }
       },
 
       "rank": {
         "$description": "Couleurs de classement des suggestions moteur (dots du panneau + flèches). Saturées, lisibles sur les deux thèmes — partagées entre ARROW_COLORS (App.tsx) et RANK_COLORS (SuggestionsPanel.tsx).",
         "1": { "$value": "#2e9e5b", "$description": "Meilleur coup (rang 1) — vert." },
-        "2": { "$value": "#c9a227", "$description": "Deuxième coup (rang 2) — or." },
+        "2": { "$value": "#a8851a", "$description": "Deuxième coup (rang 2) — or assombri pour ≥ 3:1 sur panneau clair (3.48:1) comme sombre (4.25:1)." },
         "3": { "$value": "#c96a27", "$description": "Troisième coup (rang 3) — orange." },
         "fallback": { "$value": "#888888", "$description": "Coups au-delà du rang 3 — gris (fallback \"#888\")." }
       },
 
       "boardSlate": {
-        "$description": "Cases de l'échiquier — bleu-gris désaturé, aligné sur l'accent (remplace le brun/crème par défaut de react-chessboard qui jurait avec la palette froide).",
-        "light": { "$value": "#c7cfda", "$description": "Case claire (thème clair)." },
-        "dark": { "$value": "#6c7a93", "$description": "Case sombre (thème clair)." },
-        "light-dim": { "$value": "#aeb8c7", "$description": "Case claire assombrie d'un cran pour le thème sombre." },
-        "dark-dim": { "$value": "#586580", "$description": "Case sombre assombrie d'un cran pour le thème sombre." }
+        "$description": "Cases de l'échiquier — bleu-gris désaturé, aligné sur l'accent (remplace le brun/crème par défaut de react-chessboard qui jurait avec la palette froide). Écart de contraste volontairement marqué entre thèmes : le light est clair et doux, le dark plus sombre et plus contrasté.",
+        "light": { "$value": "#dce1e9", "$description": "Case claire (thème clair) — clair et doux." },
+        "dark": { "$value": "#7c8ba6", "$description": "Case sombre (thème clair) — doux, faible écart de luminance." },
+        "light-dim": { "$value": "#8f9bb0", "$description": "Case claire (thème sombre) — assombrie pour ne pas éblouir sur fond sombre." },
+        "dark-dim": { "$value": "#454f63", "$description": "Case sombre (thème sombre) — fort écart de luminance pour ancrer l'échiquier." }
       }
     },
 
     "theme": {
-      "$description": "Tokens sémantiques (rôles). Un thème = un mapping rôle → primitive. C'est ce que l'UI doit consommer.",
+      "$description": "Tokens sémantiques (rôles), nommés selon Material Design 3. Un thème = un mapping rôle → primitive. C'est ce que l'UI consomme (variables CSS --color-*). Convention `on-` : chaque groupe conteneur (surface, primary, error) porte un enfant `on` = le contenu (texte/icône) posé dessus. Le contraste à auditer se lit donc directement dans chaque paire (ex. primary/primary.on, error/error.on, surface/on-surface).",
 
       "dark": {
         "$description": "Thème sombre — reproduit à l'identique l'app actuelle (color-scheme: dark).",
-        "background": {
-          "base": { "$value": "{color.palette.neutral.900}", "$description": "Fond global (--bg)." },
-          "panel": { "$value": "{color.palette.neutral.850}", "$description": "Surface des panneaux (--panel)." },
-          "panel-elevated": { "$value": "{color.palette.neutral.800}", "$description": "Surface secondaire / contrôles au repos (--panel-2)." }
+        "surface": {
+          "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3).",
+          "base": { "$value": "{color.palette.neutral.900}", "$description": "Fond global (--color-surface)." },
+          "container": { "$value": "{color.palette.neutral.850}", "$description": "Surface des panneaux (--color-surface-container)." },
+          "container-high": { "$value": "{color.palette.neutral.800}", "$description": "Surface secondaire / contrôles au repos (--color-surface-container-high)." }
         },
-        "border": {
-          "default": { "$value": "{color.palette.neutral.700}", "$description": "Bordure standard (--border)." }
+        "on-surface": {
+          "$description": "Contenu posé sur les surfaces. Contrastes vérifiés : default ≈ 13.8:1 sur surface, variant ≈ 5.0:1 sur surface-container-high (le pire cas) → AA.",
+          "default": { "$value": "{color.palette.neutral.150}", "$description": "Texte principal (--color-on-surface)." },
+          "variant": { "$value": "{color.palette.neutral.500}", "$description": "Texte secondaire (--color-on-surface-variant)." }
         },
-        "text": {
-          "default": { "$value": "{color.palette.neutral.150}", "$description": "Texte principal (--text)." },
-          "muted": { "$value": "{color.palette.neutral.500}", "$description": "Texte secondaire (--muted)." },
-          "on-accent": { "$value": "{color.palette.neutral.0}", "$description": "Texte sur fond accent ou danger (#fff)." }
+        "outline": {
+          "default": { "$value": "{color.palette.neutral.700}", "$description": "Bordure standard (--color-outline)." }
         },
-        "accent": {
-          "default": { "$value": "{color.palette.blue.400}", "$description": "Accent : segmented actif, bouton primaire, curseurs (--accent)." },
-          "strong": { "$value": "{color.palette.blue.500}", "$description": "Accent renforcé : survol du bouton primaire (--accent-strong)." }
+        "primary": {
+          "$description": "Couleur de marque et son contenu. on ≈ 4.76:1 sur default (AA).",
+          "default": { "$value": "{color.palette.blue.400}", "$description": "Primary : segmented actif, bouton primaire, curseurs (--color-primary)." },
+          "hover": { "$value": "{color.palette.blue.500}", "$description": "Primary renforcé : survol du bouton primaire (--color-primary-hover)." },
+          "on": { "$value": "{color.palette.neutral.0}", "$description": "Texte/icône sur primary (--color-on-primary, #fff)." }
         },
-        "feedback": {
-          "danger": { "$value": "{color.palette.red.500}", "$description": "Erreurs et bouton d'arrêt (--danger)." }
+        "error": {
+          "$description": "Couleur d'alerte et son contenu. on ≈ 5.44:1 sur default (AA).",
+          "default": { "$value": "{color.palette.red.500}", "$description": "Erreurs et bouton d'arrêt (--color-error)." },
+          "on": { "$value": "{color.palette.neutral.0}", "$description": "Texte/icône sur error (--color-on-error, #fff)." }
         },
         "rank": {
           "1": { "$value": "{color.palette.rank.1}", "$description": "Rang 1." },
@@ -87,33 +92,38 @@
         },
         "board": {
           "$description": "Cases de l'échiquier — variante assombrie pour éviter que la case claire soit le point le plus lumineux de l'écran en thème sombre.",
-          "light": { "$value": "{color.palette.boardSlate.light-dim}", "$description": "Case claire." },
-          "dark": { "$value": "{color.palette.boardSlate.dark-dim}", "$description": "Case sombre." },
-          "highlight": { "$value": "{color.palette.blue.400}", "$description": "Case sélectionnée / dernier coup." }
+          "light": { "$value": "{color.palette.boardSlate.light-dim}", "$description": "Case claire (--color-board-light)." },
+          "dark": { "$value": "{color.palette.boardSlate.dark-dim}", "$description": "Case sombre (--color-board-dark)." },
+          "highlight": { "$value": "{color.palette.blue.400}", "$description": "Case sélectionnée / dernier coup (--color-board-highlight)." }
         }
       },
 
       "light": {
-        "$description": "Thème clair — dérivé de la même palette (nouveau, pour la refonte UX/UI). Accent et danger assombris d'un cran pour garder le contraste sur fond clair.",
-        "background": {
-          "base": { "$value": "{color.palette.neutral.50}", "$description": "Fond global." },
-          "panel": { "$value": "{color.palette.neutral.0}", "$description": "Surface des panneaux." },
-          "panel-elevated": { "$value": "{color.palette.neutral.100}", "$description": "Surface secondaire / contrôles au repos." }
+        "$description": "Thème clair — dérivé de la même palette (nouveau, pour la refonte UX/UI). Primary et error assombris d'un cran pour garder le contraste sur fond clair.",
+        "surface": {
+          "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3).",
+          "base": { "$value": "{color.palette.neutral.50}", "$description": "Fond global (--color-surface)." },
+          "container": { "$value": "{color.palette.neutral.0}", "$description": "Surface des panneaux (--color-surface-container)." },
+          "container-high": { "$value": "{color.palette.neutral.100}", "$description": "Surface secondaire / contrôles au repos (--color-surface-container-high)." }
         },
-        "border": {
-          "default": { "$value": "{color.palette.neutral.200}", "$description": "Bordure standard." }
+        "on-surface": {
+          "$description": "Contenu posé sur les surfaces.",
+          "default": { "$value": "{color.palette.neutral.900}", "$description": "Texte principal (--color-on-surface)." },
+          "variant": { "$value": "{color.palette.neutral.600}", "$description": "Texte secondaire (--color-on-surface-variant)." }
         },
-        "text": {
-          "default": { "$value": "{color.palette.neutral.900}", "$description": "Texte principal." },
-          "muted": { "$value": "{color.palette.neutral.600}", "$description": "Texte secondaire." },
-          "on-accent": { "$value": "{color.palette.neutral.0}", "$description": "Texte sur fond accent ou danger." }
+        "outline": {
+          "default": { "$value": "{color.palette.neutral.200}", "$description": "Bordure standard (--color-outline)." }
         },
-        "accent": {
-          "default": { "$value": "{color.palette.blue.500}", "$description": "Accent (assombri d'un cran vs dark pour le contraste sur fond clair)." },
-          "strong": { "$value": "{color.palette.blue.600}", "$description": "Accent renforcé : survol." }
+        "primary": {
+          "$description": "Couleur de marque et son contenu.",
+          "default": { "$value": "{color.palette.blue.500}", "$description": "Primary (assombri d'un cran vs dark pour le contraste sur fond clair) (--color-primary)." },
+          "hover": { "$value": "{color.palette.blue.600}", "$description": "Primary renforcé : survol (--color-primary-hover)." },
+          "on": { "$value": "{color.palette.neutral.0}", "$description": "Texte/icône sur primary (--color-on-primary, #fff)." }
         },
-        "feedback": {
-          "danger": { "$value": "{color.palette.red.600}", "$description": "Erreurs et bouton d'arrêt (assombri pour le contraste)." }
+        "error": {
+          "$description": "Couleur d'alerte et son contenu.",
+          "default": { "$value": "{color.palette.red.600}", "$description": "Erreurs et bouton d'arrêt (assombri pour le contraste) (--color-error)." },
+          "on": { "$value": "{color.palette.neutral.0}", "$description": "Texte/icône sur error (--color-on-error, #fff)." }
         },
         "rank": {
           "1": { "$value": "{color.palette.rank.1}", "$description": "Rang 1." },
@@ -123,9 +133,9 @@
         },
         "board": {
           "$description": "Cases de l'échiquier — bleu-gris désaturé aligné sur la palette froide de l'interface.",
-          "light": { "$value": "{color.palette.boardSlate.light}", "$description": "Case claire." },
-          "dark": { "$value": "{color.palette.boardSlate.dark}", "$description": "Case sombre." },
-          "highlight": { "$value": "{color.palette.blue.500}", "$description": "Case sélectionnée / dernier coup." }
+          "light": { "$value": "{color.palette.boardSlate.light}", "$description": "Case claire (--color-board-light)." },
+          "dark": { "$value": "{color.palette.boardSlate.dark}", "$description": "Case sombre (--color-board-dark)." },
+          "highlight": { "$value": "{color.palette.blue.500}", "$description": "Case sélectionnée / dernier coup (--color-board-highlight)." }
         }
       }
     }
