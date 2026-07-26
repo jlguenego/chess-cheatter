@@ -4,6 +4,7 @@
 
   "color": {
     "$type": "color",
+    "$description": "Couleurs de l'interface : primitives (palette) et tokens sémantiques par thème (theme.dark / theme.light).",
 
     "palette": {
       "$description": "Primitives : palette brute, source unique de vérité, agnostique au thème. Ne pas consommer directement dans l'UI — passer par les tokens sémantiques de `color.theme`.",
@@ -111,6 +112,7 @@
   },
 
   "font": {
+    "$description": "Tokens typographiques (partagés entre thèmes) : famille, graisses et échelle de tailles.",
     "family": {
       "$type": "fontFamily",
       "sans": {
@@ -161,6 +163,7 @@
   },
 
   "border": {
+    "$description": "Épaisseur et style de trait des bordures (la couleur vient de color.theme.*.border).",
     "width": {
       "$type": "dimension",
       "default": { "$value": "1px", "$description": "Épaisseur unique utilisée pour toutes les bordures." }
@@ -183,11 +186,19 @@
   },
 
   "opacity": {
+    "$description": "Niveaux d'opacité réutilisables pour les états de l'interface.",
     "disabled": { "$value": 0.5, "$description": "Opacité des boutons désactivés (button.primary:disabled)." }
+  },
+
+  "duration": {
+    "$type": "duration",
+    "$description": "Durées d'animation / transition.",
+    "theme-transition": { "$value": "200ms", "$description": "Durée de la transition des couleurs (background, color, border) lors du passage entre les thèmes dark et light." }
   },
 
   "breakpoint": {
     "$type": "dimension",
+    "$description": "Points de rupture responsive de la mise en page.",
     "mobile": { "$value": "860px", "$description": "Point de bascule : la grille passe à une seule colonne en dessous (max-width: 860px)." }
   }
 }

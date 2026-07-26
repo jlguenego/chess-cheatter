@@ -65,6 +65,7 @@
 
   /* --- Divers --- */
   --opacity-disabled: 0.5;
+  --duration-theme-transition: 200ms;
 
   /* ============================================================
      Tokens sémantiques — thème sombre (défaut).
@@ -110,6 +111,37 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
+}
+
+/* Transition douce des couleurs lors du changement de thème. */
+body,
+.theme-toggle,
+.spare-piece,
+.panel,
+.segmented,
+.segmented button,
+.board-actions button,
+button.primary,
+.move-row {
+  transition:
+    background-color var(--duration-theme-transition) ease,
+    border-color var(--duration-theme-transition) ease,
+    color var(--duration-theme-transition) ease;
+}
+
+/* Respecte la préférence de réduction de mouvement. */
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .theme-toggle,
+  .spare-piece,
+  .panel,
+  .segmented,
+  .segmented button,
+  .board-actions button,
+  button.primary,
+  .move-row {
+    transition: none;
+  }
 }
 
 .app {
