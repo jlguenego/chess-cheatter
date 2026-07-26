@@ -2,6 +2,10 @@
 
 Assistant d'échecs 100 % front-end : l'utilisateur reproduit une position, Stockfish (WASM, local) suggère le top 3. Aucun back-end, aucune API cloud. Contexte détaillé : [brief.md](brief.md), [brief-clarified.md](brief-clarified.md).
 
+## Mode de travail
+
+Pour toute demande d'analyse, de critique ou de design/UX (mots-clés : _analyse_, _critique_, _propose_, _revois_), présente d'abord une **proposition** et attends validation avant d'éditer des fichiers. Ne bascule en implémentation que sur demande explicite.
+
 ## Gestionnaire de paquets : bun UNIQUEMENT
 
 Ce projet utilise **bun** (v1.3.14). N'utilise JAMAIS `npm`, `npx`, `yarn` ni `pnpm`.
@@ -32,6 +36,9 @@ React 19 + TypeScript strict + Vite 6. Règles d'échecs : `chess.js`. Échiquie
 ## Couleurs / thème
 
 Consomme toujours les tokens **sémantiques** (`--color-*` de [src/index.css](src/index.css)), jamais les primitives (`--palette-*`) directement. Source de vérité : [spec/ux/design-tokens.json](spec/ux/design-tokens.json) (format DTCG, thèmes `dark`/`light`).
+
+- **Lis [spec/ux/design-tokens.json](spec/ux/design-tokens.json) avant** toute proposition ou modification de couleur/thème — il documente l'intention (palette froide, variante `-dim` du dark, etc.).
+- Tout changement de token doit être répercuté dans **les deux** fichiers : [spec/ux/design-tokens.json](spec/ux/design-tokens.json) (source de vérité DTCG) **et** [src/index.css](src/index.css) (primitives + tokens sémantiques).
 
 ## Fichiers clés
 
