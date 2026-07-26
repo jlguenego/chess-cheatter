@@ -49,6 +49,21 @@
         "dark": { "$value": "#7c8ba6", "$description": "Case sombre (thème clair) — doux, faible écart de luminance." },
         "light-dim": { "$value": "#8f9bb0", "$description": "Case claire (thème sombre) — assombrie pour ne pas éblouir sur fond sombre." },
         "dark-dim": { "$value": "#454f63", "$description": "Case sombre (thème sombre) — fort écart de luminance pour ancrer l'échiquier." }
+      },
+
+      "retro": {
+        "$description": "Palette « chaud années 80 » (synthwave / sunset) pour le thème sombre chaud warm80s : fond aubergine chaud, accent magenta néon, alerte rouge-orangé, texte crème. Contrastes texte blanc vérifiés (magenta ≈ 5.4:1, orange ≈ 4.9:1 → AA).",
+        "bg-900": { "$value": "#241520", "$description": "Fond global aubergine très sombre et chaud." },
+        "bg-850": { "$value": "#2e1a29", "$description": "Surface des panneaux (plum sombre)." },
+        "bg-800": { "$value": "#3a2333", "$description": "Surface secondaire / contrôles au repos." },
+        "outline": { "$value": "#5c3a52", "$description": "Bordure mauve chaude." },
+        "text": { "$value": "#f7e6d5", "$description": "Texte principal crème chaud." },
+        "text-dim": { "$value": "#caa39c", "$description": "Texte secondaire rose-brun atténué." },
+        "magenta": { "$value": "#c81f6f", "$description": "Accent magenta néon (primary). Texte blanc dessus ≈ 5.41:1 (AA)." },
+        "magenta-strong": { "$value": "#a81a5c", "$description": "Magenta renforcé pour le survol." },
+        "orange": { "$value": "#cf3a2e", "$description": "Alerte rouge-orangé chaud (error). Texte blanc ≈ 4.89:1 (AA)." },
+        "board-light": { "$value": "#b58a6a", "$description": "Case claire (sable chaud), assombrie pour ne pas éblouir sur fond sombre." },
+        "board-dark": { "$value": "#6e4335", "$description": "Case sombre (terracotta), fort écart de luminance pour ancrer l'échiquier." }
       }
     },
 
@@ -95,6 +110,7 @@
     "radius": {
       "$type": "dimension",
       "$description": "Échelle de rayons de bordure.",
+      "xs": { "$value": "2px", "$description": "Rayon minimal, anguleux (thème rétro)." },
       "sm": { "$value": "6px", "$description": "Petit rayon." },
       "md": { "$value": "8px", "$description": "Rayon moyen (contrôles)." },
       "lg": { "$value": "10px", "$description": "Grand rayon (panneaux)." },
@@ -105,7 +121,8 @@
       "$description": "Épaisseur et style de trait des bordures (la couleur vient de sys.color).",
       "width": {
         "$type": "dimension",
-        "default": { "$value": "1px", "$description": "Épaisseur unique utilisée pour toutes les bordures." }
+        "default": { "$value": "1px", "$description": "Épaisseur standard des bordures." },
+        "thick": { "$value": "2px", "$description": "Épaisseur renforcée (contour néon du thème rétro)." }
       },
       "style": {
         "$type": "strokeStyle",

@@ -59,6 +59,29 @@
       "disabled": { "$value": 0.5, "$description": "Élément désactivé." }
     },
 
+    "shape": {
+      "$type": "dimension",
+      "$description": "Rôles de forme (rayons de bordure) du THÈME PAR DÉFAUT. Consommés par comp.*.radius. Un thème peut les surcharger pour changer l'allure (ex : warm80s anguleux). Valeurs par défaut = look actuel.",
+      "control": { "$value": "{ref.radius.md}", "$description": "Rayon des contrôles (boutons, segmented, action d'échiquier, ligne de coup)." },
+      "control-sm": { "$value": "{ref.radius.sm}", "$description": "Rayon des petits contrôles (pièce de réserve)." },
+      "panel": { "$value": "{ref.radius.lg}", "$description": "Rayon des panneaux (cartes)." }
+    },
+
+    "space": {
+      "$type": "dimension",
+      "$description": "Rôles d'espacement sémantiques surchargeables par thème (paddings internes). Consommés par comp.*.padding. Valeurs par défaut = look actuel.",
+      "panel-padding": { "$value": "{ref.space.xl}", "$description": "Padding interne des panneaux." },
+      "control-padding": { "$value": "{ref.space.md}", "$description": "Padding interne des contrôles (bouton primaire)." }
+    },
+
+    "border": {
+      "$description": "Rôle d'épaisseur de bordure surchargeable par thème (la couleur vient de sys.color, le style de ref.border). Consommé par les bordures de composants. Valeur par défaut = look actuel.",
+      "width": {
+        "$type": "dimension",
+        "default": { "$value": "{ref.border.width.default}", "$description": "Épaisseur des bordures." }
+      }
+    },
+
     "duration": {
       "$type": "duration",
       "$description": "Durées d'animation / transition.",

@@ -17,6 +17,7 @@ const REF = `${TOKENS}/ref.tokens.json`;
 const SYS = `${TOKENS}/sys.tokens.json`;
 const COMP = `${TOKENS}/comp.tokens.json`;
 const LIGHT = `${TOKENS}/theme/light.tokens.json`;
+const WARM80S = `${TOKENS}/theme/warm80s.tokens.json`;
 const TMP = ".tokens-tmp";
 
 /**
@@ -132,21 +133,50 @@ const light = new StyleDictionary({
   },
 });
 
+// --- Bloc [data-theme=warm80s] : thème chaud années 80, mêmes règles que light ---
+// warnings désactivés : mêmes var(--ref-*) volontaires vers primitives hors bloc filtré.
+const warm80s = new StyleDictionary({
+  include: [REF, SYS, COMP],
+  source: [WARM80S],
+  log: { warnings: "disabled" },
+  platforms: {
+    css: {
+      transforms: CSS_TRANSFORMS,
+      buildPath: `${TMP}/`,
+      files: [
+        {
+          destination: "warm80s.css",
+          format: "css/variables",
+          filter: (token) => token.isSource,
+          options: {
+            outputReferences: true,
+            selector: '[data-theme="warm80s"]',
+            showFileHeader: false,
+          },
+        },
+      ],
+    },
+  },
+});
+
 await base.buildAllPlatforms();
 await light.buildAllPlatforms();
+await warm80s.buildAllPlatforms();
 
 const header = `/* ============================================================
    Design tokens — GÉNÉRÉ par scripts/build-tokens.ts (bun run tokens).
    Source de vérité : spec/ux/tokens/ (DTCG : ref / sys / comp + theme/).
    NE PAS ÉDITER CE FICHIER À LA MAIN.
-     :root              → thème par défaut (dark)
-     [data-theme=light] → overrides du thème clair
+     :root                → thème par défaut (dark)
+     [data-theme=light]   → overrides du thème clair
+     [data-theme=warm80s] → overrides du thème chaud années 80
    ============================================================ */
 `;
 
 const baseCss = readFileSync(`${TMP}/base.css`, "utf8").trim();
 const lightCss = readFileSync(`${TMP}/light.css`, "utf8").trim();
-writeFileSync("src/tokens.gen.css", `${header}\n${baseCss}\n\n${lightCss}\n`);
+const warm80sCss = readFileSync(`${TMP}/warm80s.css`, "utf8").trim();
+writeFileSync("src/tokens.gen.css", `${header}\n${baseCss}\n\n${lightCss}\n\n${warm80sCss}\n`);
 
 rmSync(TMP, { recursive: true, force: true });
 

@@ -23,7 +23,7 @@ import {
 } from "./chess/fen";
 
 export default function App() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [board, setBoard] = useState<BoardPosition>({ ...START_BOARD });
   const [orientation, setOrientation] = useState<"white" | "black">("white");
   const [meta, setMeta] = useState<PositionMeta>({ ...DEFAULT_META });
@@ -70,16 +70,36 @@ export default function App() {
             Reproduisez la position, lancez Stockfish, jouez le meilleur coup.
           </p>
         </div>
-        <button
-          type="button"
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label={
-            theme === "dark" ? "Passer au thème clair" : "Passer au thème sombre"
-          }
+        <div
+          className="segmented theme-switch"
+          role="group"
+          aria-label="Choix du thème"
         >
-          {theme === "dark" ? "☀️ Clair" : "🌙 Sombre"}
-        </button>
+          <button
+            type="button"
+            className={theme === "dark" ? "active" : ""}
+            aria-pressed={theme === "dark"}
+            onClick={() => setTheme("dark")}
+          >
+            🌙 Sombre
+          </button>
+          <button
+            type="button"
+            className={theme === "light" ? "active" : ""}
+            aria-pressed={theme === "light"}
+            onClick={() => setTheme("light")}
+          >
+            ☀️ Clair
+          </button>
+          <button
+            type="button"
+            className={theme === "warm80s" ? "active" : ""}
+            aria-pressed={theme === "warm80s"}
+            onClick={() => setTheme("warm80s")}
+          >
+            🌆 Rétro 80
+          </button>
+        </div>
       </header>
 
       <main className="layout">

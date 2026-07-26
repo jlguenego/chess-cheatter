@@ -23,6 +23,10 @@
   color-scheme: light;
 }
 
+[data-theme="warm80s"] {
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -36,7 +40,7 @@ body {
 
 /* Transition douce des couleurs lors du changement de thème. */
 body,
-.theme-toggle,
+.theme-switch,
 .spare-piece,
 .panel,
 .segmented,
@@ -53,7 +57,7 @@ button.primary,
 /* Respecte la préférence de réduction de mouvement. */
 @media (prefers-reduced-motion: reduce) {
   body,
-  .theme-toggle,
+  .theme-switch,
   .spare-piece,
   .panel,
   .segmented,
@@ -88,19 +92,13 @@ button.primary,
   color: var(--sys-color-on-surface-variant);
 }
 
-.theme-toggle {
+.theme-switch {
   flex-shrink: 0;
-  background: var(--comp-theme-toggle-bg);
-  color: var(--comp-theme-toggle-fg);
-  border: var(--ref-border-width) var(--ref-border-style) var(--comp-theme-toggle-border-color);
-  border-radius: var(--comp-theme-toggle-radius);
-  padding: var(--ref-space-xs) var(--ref-space-md);
-  font-size: var(--comp-theme-toggle-font-size);
-  cursor: pointer;
 }
 
-.theme-toggle:hover {
-  background: var(--comp-theme-toggle-bg-hover);
+.theme-switch button {
+  font-size: var(--comp-theme-toggle-font-size);
+  white-space: nowrap;
 }
 
 .layout {
@@ -136,7 +134,7 @@ button.primary,
   width: var(--comp-spare-piece-size);
   height: var(--comp-spare-piece-size);
   background: var(--comp-spare-piece-bg);
-  border: var(--ref-border-width) var(--ref-border-style) var(--comp-spare-piece-border-color);
+  border: var(--sys-border-width) var(--ref-border-style) var(--comp-spare-piece-border-color);
   border-radius: var(--comp-spare-piece-radius);
   cursor: grab;
 }
@@ -161,7 +159,7 @@ button.primary,
 
 .panel {
   background: var(--comp-panel-bg);
-  border: var(--ref-border-width) var(--ref-border-style) var(--comp-panel-border-color);
+  border: var(--sys-border-width) var(--ref-border-style) var(--comp-panel-border-color);
   border-radius: var(--comp-panel-radius);
   padding: var(--comp-panel-padding);
 }
@@ -184,7 +182,7 @@ button.primary,
 
 .segmented {
   display: inline-flex;
-  border: var(--ref-border-width) var(--ref-border-style) var(--comp-segmented-border-color);
+  border: var(--sys-border-width) var(--ref-border-style) var(--comp-segmented-border-color);
   border-radius: var(--comp-segmented-radius);
   overflow: hidden;
 }
@@ -227,7 +225,7 @@ button {
 .board-actions button {
   background: var(--comp-board-action-bg);
   color: var(--comp-board-action-fg);
-  border: var(--ref-border-width) var(--ref-border-style) var(--comp-board-action-border-color);
+  border: var(--sys-border-width) var(--ref-border-style) var(--comp-board-action-border-color);
   border-radius: var(--comp-board-action-radius);
   padding: var(--ref-space-xs) var(--ref-space-lg);
   cursor: pointer;
@@ -281,7 +279,7 @@ button.primary.stop {
   gap: var(--comp-move-row-gap);
   align-items: center;
   background: var(--comp-move-row-bg);
-  border: var(--ref-border-width) var(--ref-border-style) var(--comp-move-row-border-color);
+  border: var(--sys-border-width) var(--ref-border-style) var(--comp-move-row-border-color);
   border-radius: var(--comp-move-row-radius);
   padding: var(--ref-space-sm) var(--ref-space-md);
 }

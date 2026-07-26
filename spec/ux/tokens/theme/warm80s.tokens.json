@@ -1,0 +1,63 @@
+{
+  "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
+  "$description": "THÈME CHAUD ANNÉES 80 (color-scheme: dark) — OVERRIDE PARTIEL du thème par défaut. Esthétique synthwave / sunset : fond aubergine chaud, accent magenta néon, alerte rouge-orangé, texte crème, ET une allure anguleuse (rayons quasi nuls), bordures épaisses (néon) et paddings généreux (chunky). Surcharge les rôles `sys.color.*` qui diffèrent du défaut PLUS les rôles non-couleur `sys.shape.*` / `sys.space.*` / `sys.border.width` ; tout rôle non listé (on-primary, on-error = blanc ; rank/opacity/duration/breakpoint agnostiques) hérite de sys.tokens.json. Fichier OPTIONNEL. Reflété en CSS par le bloc [data-theme=\"warm80s\"] de src/tokens.gen.css. Dérivé de la palette ref.color.retro et des primitives ref.radius.xs / ref.border.width.thick.",
+
+  "sys": {
+    "color": {
+      "$type": "color",
+
+      "surface": {
+        "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3). Aubergine chaud.",
+        "base": { "$value": "{ref.color.retro.bg-900}", "$description": "Fond global." },
+        "container": { "$value": "{ref.color.retro.bg-850}", "$description": "Surface des panneaux." },
+        "container-high": { "$value": "{ref.color.retro.bg-800}", "$description": "Surface secondaire / contrôles au repos." }
+      },
+      "on-surface": {
+        "$description": "Contenu posé sur les surfaces (texte crème).",
+        "default": { "$value": "{ref.color.retro.text}", "$description": "Texte principal." },
+        "variant": { "$value": "{ref.color.retro.text-dim}", "$description": "Texte secondaire." }
+      },
+      "outline": {
+        "default": { "$value": "{ref.color.retro.outline}", "$description": "Bordure standard (mauve chaude)." }
+      },
+      "primary": {
+        "$description": "Couleur de marque : magenta néon. (`on-primary` hérite de sys : #fff.)",
+        "default": { "$value": "{ref.color.retro.magenta}", "$description": "Primary." },
+        "hover": { "$value": "{ref.color.retro.magenta-strong}", "$description": "Primary renforcé : survol." }
+      },
+      "error": {
+        "$description": "Couleur d'alerte : rouge-orangé chaud. (`on-error` hérite de sys : #fff.)",
+        "default": { "$value": "{ref.color.retro.orange}", "$description": "Erreurs et bouton d'arrêt." }
+      },
+      "board": {
+        "$description": "Cases de l'échiquier — sable / terracotta chauds, assombris pour ne pas éblouir sur fond sombre.",
+        "light": { "$value": "{ref.color.retro.board-light}", "$description": "Case claire." },
+        "dark": { "$value": "{ref.color.retro.board-dark}", "$description": "Case sombre." },
+        "highlight": { "$value": "{ref.color.retro.magenta}", "$description": "Case sélectionnée / dernier coup." }
+      }
+    },
+
+    "shape": {
+      "$type": "dimension",
+      "$description": "Formes anguleuses (synthwave) : rayons quasi nuls sur contrôles et panneaux.",
+      "control": { "$value": "{ref.radius.xs}", "$description": "Contrôles anguleux." },
+      "control-sm": { "$value": "{ref.radius.xs}", "$description": "Petits contrôles anguleux." },
+      "panel": { "$value": "{ref.radius.xs}", "$description": "Panneaux anguleux." }
+    },
+
+    "space": {
+      "$type": "dimension",
+      "$description": "Espacements plus généreux (allure chunky).",
+      "panel-padding": { "$value": "{ref.space.3xl}", "$description": "Padding panneau renforcé." },
+      "control-padding": { "$value": "{ref.space.lg}", "$description": "Padding contrôle renforcé." }
+    },
+
+    "border": {
+      "$description": "Bordures épaissies (contour néon).",
+      "width": {
+        "$type": "dimension",
+        "default": { "$value": "{ref.border.width.thick}", "$description": "Bordure épaisse." }
+      }
+    }
+  }
+}

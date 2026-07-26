@@ -17,7 +17,7 @@
         try {
           var stored = localStorage.getItem("chess-cheater-theme");
           var theme =
-            stored === "dark" || stored === "light"
+            stored === "dark" || stored === "light" || stored === "warm80s"
               ? stored
               : window.matchMedia("(prefers-color-scheme: light)").matches
                 ? "light"

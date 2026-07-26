@@ -28,8 +28,8 @@
       "$description": "Panneau .panel (carte de contenu de la colonne latérale).",
       "bg": { "$value": "{sys.color.surface.container}", "$description": "Fond du panneau." },
       "border-color": { "$value": "{sys.color.outline.default}", "$description": "Couleur de bordure." },
-      "radius": { "$value": "{ref.radius.lg}", "$description": "Rayon de bordure." },
-      "padding": { "$value": "{ref.space.xl}", "$description": "Padding interne." },
+      "radius": { "$value": "{sys.shape.panel}", "$description": "Rayon de bordure (rôle sys, thémable)." },
+      "padding": { "$value": "{sys.space.panel-padding}", "$description": "Padding interne (rôle sys, thémable)." },
       "title-size": { "$value": "{ref.font.size.lg}", "$description": "Taille du titre h2." }
     },
 
@@ -39,7 +39,7 @@
       "bg-hover": { "$value": "{sys.color.surface.container}", "$description": "Fond au survol." },
       "fg": { "$value": "{sys.color.on-surface.default}", "$description": "Couleur du texte." },
       "border-color": { "$value": "{sys.color.outline.default}", "$description": "Couleur de bordure." },
-      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." },
+      "radius": { "$value": "{sys.shape.control}", "$description": "Rayon de bordure (rôle sys, thémable)." },
       "font-size": { "$value": "{ref.font.size.md}", "$description": "Taille du texte." }
     },
 
@@ -50,7 +50,7 @@
       "active-bg": { "$value": "{sys.color.primary.default}", "$description": "Fond du segment actif." },
       "active-fg": { "$value": "{sys.color.on-primary.default}", "$description": "Texte du segment actif." },
       "border-color": { "$value": "{sys.color.outline.default}", "$description": "Couleur de bordure." },
-      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." }
+      "radius": { "$value": "{sys.shape.control}", "$description": "Rayon de bordure (rôle sys, thémable)." }
     },
 
     "button-primary": {
@@ -58,8 +58,8 @@
       "bg": { "$value": "{sys.color.primary.default}", "$description": "Fond au repos." },
       "bg-hover": { "$value": "{sys.color.primary.hover}", "$description": "Fond au survol." },
       "fg": { "$value": "{sys.color.on-primary.default}", "$description": "Couleur du texte." },
-      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." },
-      "padding": { "$value": "{ref.space.md}", "$description": "Padding interne." },
+      "radius": { "$value": "{sys.shape.control}", "$description": "Rayon de bordure (rôle sys, thémable)." },
+      "padding": { "$value": "{sys.space.control-padding}", "$description": "Padding interne (rôle sys, thémable)." },
       "font-size": { "$value": "{ref.font.size.base}", "$description": "Taille du texte." },
       "disabled-opacity": { "$value": "{sys.opacity.disabled}", "$description": "Opacité à l'état désactivé." }
     },
@@ -76,7 +76,7 @@
       "bg-hover": { "$value": "{sys.color.surface.container}", "$description": "Fond au survol." },
       "fg": { "$value": "{sys.color.on-surface.default}", "$description": "Couleur du texte." },
       "border-color": { "$value": "{sys.color.outline.default}", "$description": "Couleur de bordure." },
-      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." }
+      "radius": { "$value": "{sys.shape.control}", "$description": "Rayon de bordure (rôle sys, thémable)." }
     },
 
     "board": {
@@ -92,7 +92,7 @@
       "size": { "$value": "44px", "$description": "Côté carré." },
       "bg": { "$value": "{sys.color.surface.container-high}", "$description": "Fond." },
       "border-color": { "$value": "{sys.color.outline.default}", "$description": "Couleur de bordure." },
-      "radius": { "$value": "{ref.radius.sm}", "$description": "Rayon de bordure." },
+      "radius": { "$value": "{sys.shape.control-sm}", "$description": "Rayon de bordure (rôle sys, thémable)." },
       "gap": { "$value": "{ref.space.2xs}", "$description": "Espacement entre pièces de réserve." }
     },
 
@@ -100,7 +100,7 @@
       "$description": "Ligne de suggestion .move-row (un coup du top 3).",
       "bg": { "$value": "{sys.color.surface.container-high}", "$description": "Fond." },
       "border-color": { "$value": "{sys.color.outline.default}", "$description": "Couleur de bordure." },
-      "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." },
+      "radius": { "$value": "{sys.shape.control}", "$description": "Rayon de bordure (rôle sys, thémable)." },
       "gap": { "$value": "{ref.space.sm}", "$description": "Espacement interne entre colonnes." },
       "san-weight": { "$value": "{ref.font.weight.semibold}", "$description": "Graisse de la notation SAN." }
     },
