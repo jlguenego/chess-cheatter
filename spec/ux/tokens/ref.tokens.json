@@ -1,337 +1,291 @@
 {
   "$schema": "./schema/dtcg-format-2025.10.json",
   "$description": "TIER 1 — Référence / primitives. Token set du design system chess-cheater (format DTCG). Fait partie d'un ensemble de 3 fichiers (ref / sys / comp) fusionnés en un seul arbre par l'outil de build : les alias `{ref.…}` des autres fichiers pointent vers ce set. Valeurs brutes, source unique de vérité, agnostiques au thème ET au composant. Ne jamais consommer directement dans l'UI : passer par `sys` (rôles) ou `comp` (composants). Reflété en CSS par le préfixe --ref-*.",
-
   "ref": {
     "color": {
       "$type": "color",
       "$description": "Palette brute. Nommage numérique/scalaire, sans intention sémantique.",
-
       "neutral": {
-        "$description": "Échelle de gris, du plus clair (0) au plus sombre (900).",
         "0": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [1, 1, 1],
-            "hex": "#ffffff"
+            "colorSpace": "oklch",
+            "components": [1, 0, 0]
           },
           "$description": "Blanc pur."
         },
         "50": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.960784, 0.964706, 0.972549],
-            "hex": "#f5f6f8"
+            "colorSpace": "oklch",
+            "components": [0.9729, 0.0029, 264.54]
           },
           "$description": "Fond clair."
         },
         "100": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.933333, 0.941176, 0.952941],
-            "hex": "#eef0f3"
+            "colorSpace": "oklch",
+            "components": [0.9545, 0.0046, 258.32]
           },
           "$description": "Surface élevée claire."
         },
         "150": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.901961, 0.909804, 0.92549],
-            "hex": "#e6e8ec"
+            "colorSpace": "oklch",
+            "components": [0.9306, 0.0058, 264.53]
           },
           "$description": "Texte principal en thème sombre."
         },
         "200": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.835294, 0.85098, 0.878431],
-            "hex": "#d5d9e0"
+            "colorSpace": "oklch",
+            "components": [0.8843, 0.0105, 261.79]
           },
           "$description": "Bordure claire."
         },
         "500": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.603922, 0.631373, 0.67451],
-            "hex": "#9aa1ac"
+            "colorSpace": "oklch",
+            "components": [0.7069, 0.0179, 259.42]
           },
           "$description": "Texte atténué en thème sombre."
         },
         "600": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.360784, 0.396078, 0.439216],
-            "hex": "#5c6570"
+            "colorSpace": "oklch",
+            "components": [0.5029, 0.0208, 253.47]
           },
           "$description": "Texte atténué en thème clair."
         },
         "700": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.211765, 0.231373, 0.270588],
-            "hex": "#363b45"
+            "colorSpace": "oklch",
+            "components": [0.3516, 0.0187, 264.3]
           },
           "$description": "Bordure (outline) en thème sombre."
         },
         "800": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.172549, 0.192157, 0.231373],
-            "hex": "#2c313b"
+            "colorSpace": "oklch",
+            "components": [0.3125, 0.0193, 264.24]
           },
           "$description": "Surface élevée sombre."
         },
         "850": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.141176, 0.156863, 0.188235],
-            "hex": "#242830"
+            "colorSpace": "oklch",
+            "components": [0.2763, 0.0159, 264.27]
           },
           "$description": "Surface de panneau sombre."
         },
         "900": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.101961, 0.113725, 0.137255],
-            "hex": "#1a1d23"
+            "colorSpace": "oklch",
+            "components": [0.2303, 0.0125, 264.29]
           },
           "$description": "Fond sombre."
-        }
+        },
+        "$description": "Échelle de gris, du plus clair (0) au plus sombre (900)."
       },
-
       "blue": {
-        "$description": "Bleu de marque (accent). Valeurs assombries pour que le texte blanc posé dessus atteigne le contraste WCAG AA (≥ 4.5:1).",
         "400": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.207843, 0.462745, 0.709804],
-            "hex": "#3576b5"
+            "colorSpace": "oklch",
+            "components": [0.5538, 0.1186, 250.23]
           },
           "$description": "Accent standard (thème sombre). Texte blanc dessus ≈ 4.76:1 (AA)."
         },
         "500": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.184314, 0.435294, 0.658824],
-            "hex": "#2f6fa8"
+            "colorSpace": "oklch",
+            "components": [0.5277, 0.1111, 248.48]
           },
           "$description": "Accent renforcé survol (dark) et accent standard (light). Texte blanc ≈ 5.30:1 (AA)."
         },
         "600": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.164706, 0.372549, 0.572549],
-            "hex": "#2a5f92"
+            "colorSpace": "oklch",
+            "components": [0.4748, 0.1002, 250]
           },
           "$description": "Accent renforcé pour survol en thème clair. Texte blanc ≈ 6.67:1 (AAA)."
-        }
+        },
+        "$description": "Bleu de marque (accent). Valeurs assombries pour que le texte blanc posé dessus atteigne le contraste WCAG AA (≥ 4.5:1)."
       },
-
       "red": {
-        "$description": "Rouge d'alerte.",
         "500": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.752941, 0.223529, 0.168627],
-            "hex": "#c0392b"
+            "colorSpace": "oklch",
+            "components": [0.5433, 0.174, 29.7]
           },
           "$description": "Danger en thème sombre. Assombri pour texte blanc ≈ 5.44:1 (AA)."
         },
         "600": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.788235, 0.188235, 0.172549],
-            "hex": "#c9302c"
+            "colorSpace": "oklch",
+            "components": [0.5507, 0.1903, 27.22]
           },
           "$description": "Danger en thème clair. Texte blanc ≈ 5.33:1 (AA)."
-        }
+        },
+        "$description": "Rouge d'alerte."
       },
-
       "rank": {
-        "$description": "Couleurs de classement des suggestions moteur. Saturées, lisibles sur les deux thèmes.",
         "1": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.180392, 0.619608, 0.356863],
-            "hex": "#2e9e5b"
+            "colorSpace": "oklch",
+            "components": [0.6206, 0.1415, 152.69]
           },
           "$description": "Meilleur coup (rang 1) — vert."
         },
         "2": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.658824, 0.521569, 0.101961],
-            "hex": "#a8851a"
+            "colorSpace": "oklch",
+            "components": [0.6327, 0.122, 88.67]
           },
           "$description": "Deuxième coup (rang 2) — or assombri pour ≥ 3:1 sur panneau clair (3.48:1) comme sombre (4.25:1)."
         },
         "3": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.788235, 0.415686, 0.152941],
-            "hex": "#c96a27"
+            "colorSpace": "oklch",
+            "components": [0.6239, 0.1429, 51.39]
           },
           "$description": "Troisième coup (rang 3) — orange."
         },
+        "$description": "Couleurs de classement des suggestions moteur. Saturées, lisibles sur les deux thèmes.",
         "fallback": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.533333, 0.533333, 0.533333],
-            "hex": "#888888"
+            "colorSpace": "oklch",
+            "components": [0.6268, 0, 0]
           },
           "$description": "Coups au-delà du rang 3 — gris."
         }
       },
-
       "board-slate": {
         "$description": "Cases de l'échiquier — bleu-gris désaturé, aligné sur l'accent (remplace le brun/crème par défaut de react-chessboard qui jurait avec la palette froide). Écart de contraste volontairement marqué entre thèmes : le light est clair et doux, le dark plus sombre et plus contrasté.",
         "light": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.862745, 0.882353, 0.913725],
-            "hex": "#dce1e9"
+            "colorSpace": "oklch",
+            "components": [0.9083, 0.0122, 259.82]
           },
           "$description": "Case claire (thème clair) — clair et doux."
         },
         "dark": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.486275, 0.545098, 0.65098],
-            "hex": "#7c8ba6"
+            "colorSpace": "oklch",
+            "components": [0.6343, 0.0443, 262.18]
           },
           "$description": "Case sombre (thème clair) — doux, faible écart de luminance."
         },
         "light-dim": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.560784, 0.607843, 0.690196],
-            "hex": "#8f9bb0"
+            "colorSpace": "oklch",
+            "components": [0.687, 0.0339, 261.7]
           },
           "$description": "Case claire (thème sombre) — assombrie pour ne pas éblouir sur fond sombre."
         },
         "dark-dim": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.270588, 0.309804, 0.388235],
-            "hex": "#454f63"
+            "colorSpace": "oklch",
+            "components": [0.4268, 0.0357, 264.09]
           },
           "$description": "Case sombre (thème sombre) — fort écart de luminance pour ancrer l'échiquier."
         }
       },
-
       "retro": {
         "$description": "Palette « chaud années 80 » (synthwave / sunset) pour le thème sombre chaud warm80s : fond aubergine chaud, accent magenta néon, alerte rouge-orangé, texte crème. Contrastes texte blanc vérifiés (magenta ≈ 5.4:1, orange ≈ 4.9:1 → AA).",
         "bg-900": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.141176, 0.082353, 0.12549],
-            "hex": "#241520"
+            "colorSpace": "oklch",
+            "components": [0.2205, 0.0311, 336.83]
           },
           "$description": "Fond global aubergine très sombre et chaud."
         },
         "bg-850": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.180392, 0.101961, 0.160784],
-            "hex": "#2e1a29"
+            "colorSpace": "oklch",
+            "components": [0.2506, 0.0404, 336.4]
           },
           "$description": "Surface des panneaux (plum sombre)."
         },
         "bg-800": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.227451, 0.137255, 0.2],
-            "hex": "#3a2333"
+            "colorSpace": "oklch",
+            "components": [0.2916, 0.0435, 338.69]
           },
           "$description": "Surface secondaire / contrôles au repos."
         },
         "outline": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.360784, 0.227451, 0.321569],
-            "hex": "#5c3a52"
+            "colorSpace": "oklch",
+            "components": [0.3971, 0.0599, 338.24]
           },
           "$description": "Bordure mauve chaude."
         },
         "text": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.968627, 0.901961, 0.835294],
-            "hex": "#f7e6d5"
+            "colorSpace": "oklch",
+            "components": [0.934, 0.0293, 67.46]
           },
           "$description": "Texte principal crème chaud."
         },
         "text-dim": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.792157, 0.639216, 0.611765],
-            "hex": "#caa39c"
+            "colorSpace": "oklch",
+            "components": [0.7489, 0.0475, 30.02]
           },
           "$description": "Texte secondaire rose-brun atténué."
         },
         "magenta": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.784314, 0.121569, 0.435294],
-            "hex": "#c81f6f"
+            "colorSpace": "oklch",
+            "components": [0.5516, 0.2072, 359.11]
           },
           "$description": "Accent magenta néon (primary). Texte blanc dessus ≈ 5.41:1 (AA)."
         },
         "magenta-strong": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.658824, 0.101961, 0.360784],
-            "hex": "#a81a5c"
+            "colorSpace": "oklch",
+            "components": [0.4854, 0.1807, 359.42]
           },
           "$description": "Magenta renforcé pour le survol."
         },
         "orange": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.811765, 0.227451, 0.180392],
-            "hex": "#cf3a2e"
+            "colorSpace": "oklch",
+            "components": [0.5705, 0.1878, 28.95]
           },
           "$description": "Alerte rouge-orangé chaud (error). Texte blanc ≈ 4.89:1 (AA)."
         },
         "board-light": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.709804, 0.541176, 0.415686],
-            "hex": "#b58a6a"
+            "colorSpace": "oklch",
+            "components": [0.6668, 0.0691, 57.88]
           },
           "$description": "Case claire (sable chaud), assombrie pour ne pas éblouir sur fond sombre."
         },
         "board-dark": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0.431373, 0.262745, 0.207843],
-            "hex": "#6e4335"
+            "colorSpace": "oklch",
+            "components": [0.4297, 0.0642, 38.79]
           },
           "$description": "Case sombre (terracotta), fort écart de luminance pour ancrer l'échiquier."
         }
       },
-
       "wireframe": {
         "$description": "Palette monochrome pour le thème wireframe2025 : noir et blanc PURS, aucun gris, contraste maximal (21:1). Fond blanc, encre noire, tout le contraste porté par le trait plutôt que par la couleur.",
         "white": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [1, 1, 1],
-            "hex": "#ffffff"
+            "colorSpace": "oklch",
+            "components": [1, 0, 0]
           },
           "$description": "Blanc pur — fond et texte inversé."
         },
         "black": {
           "$value": {
-            "colorSpace": "srgb",
-            "components": [0, 0, 0],
-            "hex": "#000000"
+            "colorSpace": "oklch",
+            "components": [0, 0, 0]
           },
           "$description": "Noir pur — encre, traits et surfaces inversées."
         }
       }
     },
-
     "font": {
       "$description": "Primitives typographiques : famille, graisses et échelle de tailles.",
       "family": {
@@ -371,89 +325,156 @@
         "$type": "dimension",
         "$description": "Tailles de police exprimées en rem.",
         "xs": {
-          "$value": { "value": 0.8, "unit": "rem" },
+          "$value": {
+            "value": 0.8,
+            "unit": "rem"
+          },
           "$description": "Petit texte (profondeur de coup, muted small)."
         },
         "sm": {
-          "$value": { "value": 0.85, "unit": "rem" },
+          "$value": {
+            "value": 0.85,
+            "unit": "rem"
+          },
           "$description": "Labels de champ, indices."
         },
         "md": {
-          "$value": { "value": 0.9, "unit": "rem" },
+          "$value": {
+            "value": 0.9,
+            "unit": "rem"
+          },
           "$description": "Cases à cocher, bouton bascule thème."
         },
         "base": {
-          "$value": { "value": 1, "unit": "rem" },
+          "$value": {
+            "value": 1,
+            "unit": "rem"
+          },
           "$description": "Texte de base / bouton primaire."
         },
         "lg": {
-          "$value": { "value": 1.05, "unit": "rem" },
+          "$value": {
+            "value": 1.05,
+            "unit": "rem"
+          },
           "$description": "Titres de panneaux."
         },
         "xl": {
-          "$value": { "value": 1.8, "unit": "rem" },
+          "$value": {
+            "value": 1.8,
+            "unit": "rem"
+          },
           "$description": "Titre principal."
         }
       }
     },
-
     "space": {
       "$type": "dimension",
       "$description": "Échelle d'espacement (gaps, paddings, margins).",
-      "3xs": { "$value": { "value": 4, "unit": "px" }, "$description": "4px." },
-      "2xs": { "$value": { "value": 6, "unit": "px" }, "$description": "6px." },
-      "xs": { "$value": { "value": 8, "unit": "px" }, "$description": "8px." },
+      "3xs": {
+        "$value": {
+          "value": 4,
+          "unit": "px"
+        },
+        "$description": "4px."
+      },
+      "2xs": {
+        "$value": {
+          "value": 6,
+          "unit": "px"
+        },
+        "$description": "6px."
+      },
+      "xs": {
+        "$value": {
+          "value": 8,
+          "unit": "px"
+        },
+        "$description": "8px."
+      },
       "sm": {
-        "$value": { "value": 10, "unit": "px" },
+        "$value": {
+          "value": 10,
+          "unit": "px"
+        },
         "$description": "10px."
       },
       "md": {
-        "$value": { "value": 12, "unit": "px" },
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        },
         "$description": "12px."
       },
       "lg": {
-        "$value": { "value": 14, "unit": "px" },
+        "$value": {
+          "value": 14,
+          "unit": "px"
+        },
         "$description": "14px."
       },
       "xl": {
-        "$value": { "value": 16, "unit": "px" },
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        },
         "$description": "16px."
       },
       "2xl": {
-        "$value": { "value": 20, "unit": "px" },
+        "$value": {
+          "value": 20,
+          "unit": "px"
+        },
         "$description": "20px."
       },
       "3xl": {
-        "$value": { "value": 24, "unit": "px" },
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        },
         "$description": "24px."
       }
     },
-
     "radius": {
       "$description": "Échelle de rayons de bordure. Les rayons numériques sont typés `dimension` ; `full` (50%) reste non typé car le type dimension DTCG 2025.10 n'admet que px/rem (pas de %).",
       "none": {
         "$type": "dimension",
-        "$value": { "value": 0, "unit": "px" },
+        "$value": {
+          "value": 0,
+          "unit": "px"
+        },
         "$description": "Aucun rayon — coins vifs (thème filaire wireframe2025)."
       },
       "xs": {
         "$type": "dimension",
-        "$value": { "value": 2, "unit": "px" },
+        "$value": {
+          "value": 2,
+          "unit": "px"
+        },
         "$description": "Rayon minimal, anguleux (thème rétro)."
       },
       "sm": {
         "$type": "dimension",
-        "$value": { "value": 6, "unit": "px" },
+        "$value": {
+          "value": 6,
+          "unit": "px"
+        },
         "$description": "Petit rayon."
       },
       "md": {
         "$type": "dimension",
-        "$value": { "value": 8, "unit": "px" },
+        "$value": {
+          "value": 8,
+          "unit": "px"
+        },
         "$description": "Rayon moyen (contrôles)."
       },
       "lg": {
         "$type": "dimension",
-        "$value": { "value": 10, "unit": "px" },
+        "$value": {
+          "value": 10,
+          "unit": "px"
+        },
         "$description": "Grand rayon (panneaux)."
       },
       "full": {
@@ -461,17 +482,22 @@
         "$description": "Rayon circulaire (pastilles). Non typé (pourcentage hors du type dimension DTCG)."
       }
     },
-
     "border": {
       "$description": "Épaisseur et style de trait des bordures (la couleur vient de sys.color).",
       "width": {
         "$type": "dimension",
         "default": {
-          "$value": { "value": 1, "unit": "px" },
+          "$value": {
+            "value": 1,
+            "unit": "px"
+          },
           "$description": "Épaisseur standard des bordures."
         },
         "thick": {
-          "$value": { "value": 2, "unit": "px" },
+          "$value": {
+            "value": 2,
+            "unit": "px"
+          },
           "$description": "Épaisseur renforcée (contour néon du thème rétro)."
         }
       },

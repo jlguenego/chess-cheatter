@@ -9,43 +9,80 @@
    ============================================================ */
 
 :root {
-  --ref-color-neutral-0: #ffffff; /** Blanc pur. */
-  --ref-color-neutral-50: #f5f6f8; /** Fond clair. */
-  --ref-color-neutral-100: #eef0f3; /** Surface élevée claire. */
-  --ref-color-neutral-150: #e6e8ec; /** Texte principal en thème sombre. */
-  --ref-color-neutral-200: #d5d9e0; /** Bordure claire. */
-  --ref-color-neutral-500: #9aa1ac; /** Texte atténué en thème sombre. */
-  --ref-color-neutral-600: #5c6570; /** Texte atténué en thème clair. */
-  --ref-color-neutral-700: #363b45; /** Bordure (outline) en thème sombre. */
-  --ref-color-neutral-800: #2c313b; /** Surface élevée sombre. */
-  --ref-color-neutral-850: #242830; /** Surface de panneau sombre. */
-  --ref-color-neutral-900: #1a1d23; /** Fond sombre. */
-  --ref-color-blue-400: #3576b5; /** Accent standard (thème sombre). Texte blanc dessus ≈ 4.76:1 (AA). */
-  --ref-color-blue-500: #2f6fa8; /** Accent renforcé survol (dark) et accent standard (light). Texte blanc ≈ 5.30:1 (AA). */
-  --ref-color-blue-600: #2a5f92; /** Accent renforcé pour survol en thème clair. Texte blanc ≈ 6.67:1 (AAA). */
-  --ref-color-red-500: #c0392b; /** Danger en thème sombre. Assombri pour texte blanc ≈ 5.44:1 (AA). */
-  --ref-color-red-600: #c9302c; /** Danger en thème clair. Texte blanc ≈ 5.33:1 (AA). */
-  --ref-color-rank-1: #2e9e5b; /** Meilleur coup (rang 1) — vert. */
-  --ref-color-rank-2: #a8851a; /** Deuxième coup (rang 2) — or assombri pour ≥ 3:1 sur panneau clair (3.48:1) comme sombre (4.25:1). */
-  --ref-color-rank-3: #c96a27; /** Troisième coup (rang 3) — orange. */
-  --ref-color-rank-fallback: #888888; /** Coups au-delà du rang 3 — gris. */
-  --ref-color-board-slate-light: #dce1e9; /** Case claire (thème clair) — clair et doux. */
-  --ref-color-board-slate-dark: #7c8ba6; /** Case sombre (thème clair) — doux, faible écart de luminance. */
-  --ref-color-board-slate-light-dim: #8f9bb0; /** Case claire (thème sombre) — assombrie pour ne pas éblouir sur fond sombre. */
-  --ref-color-board-slate-dark-dim: #454f63; /** Case sombre (thème sombre) — fort écart de luminance pour ancrer l'échiquier. */
-  --ref-color-retro-bg-900: #241520; /** Fond global aubergine très sombre et chaud. */
-  --ref-color-retro-bg-850: #2e1a29; /** Surface des panneaux (plum sombre). */
-  --ref-color-retro-bg-800: #3a2333; /** Surface secondaire / contrôles au repos. */
-  --ref-color-retro-outline: #5c3a52; /** Bordure mauve chaude. */
-  --ref-color-retro-text: #f7e6d5; /** Texte principal crème chaud. */
-  --ref-color-retro-text-dim: #caa39c; /** Texte secondaire rose-brun atténué. */
-  --ref-color-retro-magenta: #c81f6f; /** Accent magenta néon (primary). Texte blanc dessus ≈ 5.41:1 (AA). */
-  --ref-color-retro-magenta-strong: #a81a5c; /** Magenta renforcé pour le survol. */
-  --ref-color-retro-orange: #cf3a2e; /** Alerte rouge-orangé chaud (error). Texte blanc ≈ 4.89:1 (AA). */
-  --ref-color-retro-board-light: #b58a6a; /** Case claire (sable chaud), assombrie pour ne pas éblouir sur fond sombre. */
-  --ref-color-retro-board-dark: #6e4335; /** Case sombre (terracotta), fort écart de luminance pour ancrer l'échiquier. */
-  --ref-color-wireframe-white: #ffffff; /** Blanc pur — fond et texte inversé. */
-  --ref-color-wireframe-black: #000000; /** Noir pur — encre, traits et surfaces inversées. */
+  --ref-color-neutral-0: #ffffff; /* fallback sRGB */
+  --ref-color-neutral-0: oklch(1 0 0); /** Blanc pur. */
+  --ref-color-neutral-50: #f5f6f8; /* fallback sRGB */
+  --ref-color-neutral-50: oklch(0.9729 0.0029 264.54); /** Fond clair. */
+  --ref-color-neutral-100: #eef0f3; /* fallback sRGB */
+  --ref-color-neutral-100: oklch(0.9545 0.0046 258.32); /** Surface élevée claire. */
+  --ref-color-neutral-150: #e6e8ec; /* fallback sRGB */
+  --ref-color-neutral-150: oklch(0.9306 0.0058 264.53); /** Texte principal en thème sombre. */
+  --ref-color-neutral-200: #d5d9e0; /* fallback sRGB */
+  --ref-color-neutral-200: oklch(0.8843 0.0105 261.79); /** Bordure claire. */
+  --ref-color-neutral-500: #9aa1ac; /* fallback sRGB */
+  --ref-color-neutral-500: oklch(0.7069 0.0179 259.42); /** Texte atténué en thème sombre. */
+  --ref-color-neutral-600: #5c6570; /* fallback sRGB */
+  --ref-color-neutral-600: oklch(0.5029 0.0208 253.47); /** Texte atténué en thème clair. */
+  --ref-color-neutral-700: #363b45; /* fallback sRGB */
+  --ref-color-neutral-700: oklch(0.3516 0.0187 264.3); /** Bordure (outline) en thème sombre. */
+  --ref-color-neutral-800: #2c313b; /* fallback sRGB */
+  --ref-color-neutral-800: oklch(0.3125 0.0193 264.24); /** Surface élevée sombre. */
+  --ref-color-neutral-850: #242830; /* fallback sRGB */
+  --ref-color-neutral-850: oklch(0.2763 0.0159 264.27); /** Surface de panneau sombre. */
+  --ref-color-neutral-900: #1a1d23; /* fallback sRGB */
+  --ref-color-neutral-900: oklch(0.2303 0.0125 264.29); /** Fond sombre. */
+  --ref-color-blue-400: #3576b5; /* fallback sRGB */
+  --ref-color-blue-400: oklch(0.5538 0.1186 250.23); /** Accent standard (thème sombre). Texte blanc dessus ≈ 4.76:1 (AA). */
+  --ref-color-blue-500: #2f6fa8; /* fallback sRGB */
+  --ref-color-blue-500: oklch(0.5277 0.1111 248.48); /** Accent renforcé survol (dark) et accent standard (light). Texte blanc ≈ 5.30:1 (AA). */
+  --ref-color-blue-600: #2a5f92; /* fallback sRGB */
+  --ref-color-blue-600: oklch(0.4748 0.1002 250); /** Accent renforcé pour survol en thème clair. Texte blanc ≈ 6.67:1 (AAA). */
+  --ref-color-red-500: #c0392b; /* fallback sRGB */
+  --ref-color-red-500: oklch(0.5433 0.174 29.7); /** Danger en thème sombre. Assombri pour texte blanc ≈ 5.44:1 (AA). */
+  --ref-color-red-600: #c9302c; /* fallback sRGB */
+  --ref-color-red-600: oklch(0.5507 0.1903 27.22); /** Danger en thème clair. Texte blanc ≈ 5.33:1 (AA). */
+  --ref-color-rank-1: #2e9e5b; /* fallback sRGB */
+  --ref-color-rank-1: oklch(0.6206 0.1415 152.69); /** Meilleur coup (rang 1) — vert. */
+  --ref-color-rank-2: #a8851a; /* fallback sRGB */
+  --ref-color-rank-2: oklch(0.6327 0.122 88.67); /** Deuxième coup (rang 2) — or assombri pour ≥ 3:1 sur panneau clair (3.48:1) comme sombre (4.25:1). */
+  --ref-color-rank-3: #c96a27; /* fallback sRGB */
+  --ref-color-rank-3: oklch(0.6239 0.1429 51.39); /** Troisième coup (rang 3) — orange. */
+  --ref-color-rank-fallback: #888888; /* fallback sRGB */
+  --ref-color-rank-fallback: oklch(0.6268 0 0); /** Coups au-delà du rang 3 — gris. */
+  --ref-color-board-slate-light: #dce1e9; /* fallback sRGB */
+  --ref-color-board-slate-light: oklch(0.9083 0.0122 259.82); /** Case claire (thème clair) — clair et doux. */
+  --ref-color-board-slate-dark: #7c8ba6; /* fallback sRGB */
+  --ref-color-board-slate-dark: oklch(0.6343 0.0443 262.18); /** Case sombre (thème clair) — doux, faible écart de luminance. */
+  --ref-color-board-slate-light-dim: #8f9bb0; /* fallback sRGB */
+  --ref-color-board-slate-light-dim: oklch(0.687 0.0339 261.7); /** Case claire (thème sombre) — assombrie pour ne pas éblouir sur fond sombre. */
+  --ref-color-board-slate-dark-dim: #454f63; /* fallback sRGB */
+  --ref-color-board-slate-dark-dim: oklch(0.4268 0.0357 264.09); /** Case sombre (thème sombre) — fort écart de luminance pour ancrer l'échiquier. */
+  --ref-color-retro-bg-900: #241520; /* fallback sRGB */
+  --ref-color-retro-bg-900: oklch(0.2205 0.0311 336.83); /** Fond global aubergine très sombre et chaud. */
+  --ref-color-retro-bg-850: #2e1a29; /* fallback sRGB */
+  --ref-color-retro-bg-850: oklch(0.2506 0.0404 336.4); /** Surface des panneaux (plum sombre). */
+  --ref-color-retro-bg-800: #3a2333; /* fallback sRGB */
+  --ref-color-retro-bg-800: oklch(0.2916 0.0435 338.69); /** Surface secondaire / contrôles au repos. */
+  --ref-color-retro-outline: #5c3a52; /* fallback sRGB */
+  --ref-color-retro-outline: oklch(0.3971 0.0599 338.24); /** Bordure mauve chaude. */
+  --ref-color-retro-text: #f7e6d5; /* fallback sRGB */
+  --ref-color-retro-text: oklch(0.934 0.0293 67.46); /** Texte principal crème chaud. */
+  --ref-color-retro-text-dim: #caa39c; /* fallback sRGB */
+  --ref-color-retro-text-dim: oklch(0.7489 0.0475 30.02); /** Texte secondaire rose-brun atténué. */
+  --ref-color-retro-magenta: #c81f6f; /* fallback sRGB */
+  --ref-color-retro-magenta: oklch(0.5516 0.2072 359.11); /** Accent magenta néon (primary). Texte blanc dessus ≈ 5.41:1 (AA). */
+  --ref-color-retro-magenta-strong: #a81a5c; /* fallback sRGB */
+  --ref-color-retro-magenta-strong: oklch(0.4854 0.1807 359.42); /** Magenta renforcé pour le survol. */
+  --ref-color-retro-orange: #cf3a2e; /* fallback sRGB */
+  --ref-color-retro-orange: oklch(0.5705 0.1878 28.95); /** Alerte rouge-orangé chaud (error). Texte blanc ≈ 4.89:1 (AA). */
+  --ref-color-retro-board-light: #b58a6a; /* fallback sRGB */
+  --ref-color-retro-board-light: oklch(0.6668 0.0691 57.88); /** Case claire (sable chaud), assombrie pour ne pas éblouir sur fond sombre. */
+  --ref-color-retro-board-dark: #6e4335; /* fallback sRGB */
+  --ref-color-retro-board-dark: oklch(0.4297 0.0642 38.79); /** Case sombre (terracotta), fort écart de luminance pour ancrer l'échiquier. */
+  --ref-color-wireframe-white: #ffffff; /* fallback sRGB */
+  --ref-color-wireframe-white: oklch(1 0 0); /** Blanc pur — fond et texte inversé. */
+  --ref-color-wireframe-black: #000000; /* fallback sRGB */
+  --ref-color-wireframe-black: oklch(0 0 0); /** Noir pur — encre, traits et surfaces inversées. */
   --ref-font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; /** Police système par défaut appliquée au body. */
   --ref-font-retro: Orbitron, system-ui, sans-serif; /** Police d'affichage géométrique sci-fi (Orbitron, auto-hébergée via @font-face dans index.css) pour l'allure synthwave du thème warm80s. */
   --ref-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace; /** Police monospace système : trait net, chasse fixe et haute lisibilité pour l'allure filaire technique du thème wireframe2025. Aucune ressource à héberger (pile système). */

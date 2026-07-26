@@ -11,6 +11,7 @@
  */
 import { readFileSync, writeFileSync, rmSync } from "node:fs";
 import StyleDictionary from "style-dictionary";
+import { formatHex } from "culori";
 
 const TOKENS = "spec/ux/tokens";
 const REF = `${TOKENS}/ref.tokens.json`;
@@ -22,6 +23,53 @@ const WIREFRAME = `${TOKENS}/theme/wireframe2025.tokens.json`;
 const TMP = ".tokens-tmp";
 
 /**
+ * Couleurs : les primitives sont authorées en OKLCH (colorSpace "oklch",
+ * components [L, C, H]). On en dérive deux formes :
+ *   - oklchCss → chaîne CSS `oklch(L C H)` (valeur moderne des --ref-color-*)
+ *   - oklchHex → fallback sRGB en hex 6 chiffres (dérivé via culori), consommé
+ *     à la fois par la double-déclaration CSS (compat navigateurs sans oklch())
+ *     et par le TS des couleurs de rang (les flèches/pastilles exigent un hex).
+ * Le hex n'est JAMAIS stocké dans les .tokens.json : il est toujours recalculé.
+ */
+type DtcgColor = { colorSpace: string; components: number[] };
+
+const isColorObject = (v: unknown): v is DtcgColor =>
+  typeof v === "object" && v !== null && "components" in v;
+
+const oklchCss = (v: DtcgColor | string): string => {
+  if (typeof v === "string") return v;
+  const [l, c, h] = v.components;
+  return `oklch(${l} ${c} ${h})`;
+};
+
+const oklchHex = (v: DtcgColor | string): string => {
+  if (typeof v === "string") return v;
+  const [l, c, h] = v.components;
+  return formatHex({ mode: "oklch", l, c, h }) ?? "#000000";
+};
+
+/** Map { "--ref-color-…": hex } dérivée des primitives OKLCH (fallback CSS). */
+const refColorHexMap = (): Record<string, string> => {
+  const doc = JSON.parse(readFileSync(REF, "utf8"));
+  const map: Record<string, string> = {};
+  const walk = (node: Record<string, unknown>, path: string[]): void => {
+    for (const key of Object.keys(node)) {
+      if (key.startsWith("$")) continue;
+      const child = node[key];
+      if (child === null || typeof child !== "object") continue;
+      const value = (child as Record<string, unknown>).$value;
+      if (isColorObject(value)) {
+        map[`--${[...path, key].join("-")}`] = oklchHex(value);
+      } else {
+        walk(child as Record<string, unknown>, [...path, key]);
+      }
+    }
+  };
+  walk(doc.ref.color, ["ref", "color"]);
+  return map;
+};
+
+/**
  * Nom de variable CSS : on joint le chemin du token au tiret en retirant les
  * segments purement structurels. Ex :
  *   sys.color.on-primary.default → sys-color-on-primary  (feuille `default` = valeur par défaut d'un rôle)
@@ -29,6 +77,25 @@ const TMP = ".tokens-tmp";
  *   ref.font.family.sans         → ref-font-sans         (`family` = regroupement DTCG pur)
  * `base` n'est retiré que sous `surface` : ailleurs c'est un nom d'échelle légitime (ref.font.size.base).
  */
+/**
+ * Transform couleur → CSS : rend une primitive OKLCH en `oklch(L C H)`.
+ * (Le fallback sRGB est ajouté après coup par post-traitement, cf. bas de fichier.)
+ */
+StyleDictionary.registerTransform({
+  name: "color/oklch-css",
+  type: "value",
+  filter: (token) => (token.$type ?? token.type) === "color",
+  transform: (token) => oklchCss((token.$value ?? token.value) as DtcgColor | string),
+});
+
+/** Transform couleur → hex (JS) : convertit l'OKLCH en hex sRGB via culori. */
+StyleDictionary.registerTransform({
+  name: "color/hex-oklch",
+  type: "value",
+  filter: (token) => (token.$type ?? token.type) === "color",
+  transform: (token) => oklchHex((token.$value ?? token.value) as DtcgColor | string),
+});
+
 StyleDictionary.registerTransform({
   name: "name/tokens-css",
   type: "name",
@@ -87,7 +154,7 @@ StyleDictionary.registerTransform({
 const CSS_TRANSFORMS = [
   "attribute/cti",
   "name/tokens-css",
-  "color/hex",
+  "color/oklch-css",
   "size/rem",
   "duration/css",
   "fontFamily/css",
@@ -125,7 +192,7 @@ const base = new StyleDictionary({
       ],
     },
     ts: {
-      transforms: ["attribute/cti", "name/tokens-css", "color/hex"],
+      transforms: ["attribute/cti", "name/tokens-css", "color/hex-oklch"],
       buildPath: "src/theme/",
       files: [{ destination: "rankColors.gen.ts", format: "ts/rank-colors" }],
     },
@@ -227,7 +294,22 @@ const header = `/* ============================================================
    ============================================================ */
 `;
 
-const baseCss = readFileSync(`${TMP}/base.css`, "utf8").trim();
+// Double déclaration des primitives couleur : fallback sRGB (hex) puis oklch().
+// Un navigateur sans support d'oklch() ignore la 2ᵉ déclaration (valeur invalide)
+// et conserve le hex ; les --sys-*/--comp-* (chaînes var(--ref-color-*)) héritent
+// alors du fallback par cascade. Seul le bloc :root définit des --ref-color-*.
+const hexMap = refColorHexMap();
+const baseCss = readFileSync(`${TMP}/base.css`, "utf8")
+  .trim()
+  .replace(
+    /^(\s*)(--ref-color-[\w-]+):\s*(oklch\([^;]+\));/gm,
+    (match, indent: string, name: string, value: string) => {
+      const hex = hexMap[name];
+      return hex
+        ? `${indent}${name}: ${hex}; /* fallback sRGB */\n${indent}${name}: ${value};`
+        : match;
+    },
+  );
 const lightCss = readFileSync(`${TMP}/light.css`, "utf8").trim();
 const warm80sCss = readFileSync(`${TMP}/warm80s.css`, "utf8").trim();
 const wireframeCss = readFileSync(`${TMP}/wireframe2025.css`, "utf8").trim();

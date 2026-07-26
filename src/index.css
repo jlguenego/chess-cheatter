@@ -54,6 +54,21 @@
   --board-dark-notation: var(--comp-board-dark);
 }
 
+/* Wireframe : palette strictement monochrome → le survol ne peut pas jouer sur
+   la teinte (le hover par défaut réutilise la même encre noire). On marque donc
+   le survol par une INVERSION encre/fond (allure blueprint), en surchargeant
+   les hovers de boutons pour ce seul thème. */
+[data-theme="wireframe2025"] button.primary:hover:not(:disabled) {
+  background: var(--sys-color-surface);
+  color: var(--sys-color-on-surface);
+  box-shadow: inset 0 0 0 var(--sys-border-width) var(--sys-color-outline);
+}
+
+[data-theme="wireframe2025"] .board-actions button:hover {
+  background: var(--sys-color-on-surface);
+  color: var(--sys-color-surface);
+}
+
 * {
   box-sizing: border-box;
 }
