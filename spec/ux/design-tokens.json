@@ -43,6 +43,14 @@
         "2": { "$value": "#c9a227", "$description": "Deuxième coup (rang 2) — or." },
         "3": { "$value": "#c96a27", "$description": "Troisième coup (rang 3) — orange." },
         "fallback": { "$value": "#888888", "$description": "Coups au-delà du rang 3 — gris (fallback \"#888\")." }
+      },
+
+      "boardSlate": {
+        "$description": "Cases de l'échiquier — bleu-gris désaturé, aligné sur l'accent (remplace le brun/crème par défaut de react-chessboard qui jurait avec la palette froide).",
+        "light": { "$value": "#c7cfda", "$description": "Case claire (thème clair)." },
+        "dark": { "$value": "#6c7a93", "$description": "Case sombre (thème clair)." },
+        "light-dim": { "$value": "#aeb8c7", "$description": "Case claire assombrie d'un cran pour le thème sombre." },
+        "dark-dim": { "$value": "#586580", "$description": "Case sombre assombrie d'un cran pour le thème sombre." }
       }
     },
 
@@ -76,6 +84,12 @@
           "2": { "$value": "{color.palette.rank.2}", "$description": "Rang 2." },
           "3": { "$value": "{color.palette.rank.3}", "$description": "Rang 3." },
           "fallback": { "$value": "{color.palette.rank.fallback}", "$description": "Au-delà du rang 3." }
+        },
+        "board": {
+          "$description": "Cases de l'échiquier — variante assombrie pour éviter que la case claire soit le point le plus lumineux de l'écran en thème sombre.",
+          "light": { "$value": "{color.palette.boardSlate.light-dim}", "$description": "Case claire." },
+          "dark": { "$value": "{color.palette.boardSlate.dark-dim}", "$description": "Case sombre." },
+          "highlight": { "$value": "{color.palette.blue.400}", "$description": "Case sélectionnée / dernier coup." }
         }
       },
 
@@ -106,6 +120,12 @@
           "2": { "$value": "{color.palette.rank.2}", "$description": "Rang 2." },
           "3": { "$value": "{color.palette.rank.3}", "$description": "Rang 3." },
           "fallback": { "$value": "{color.palette.rank.fallback}", "$description": "Au-delà du rang 3." }
+        },
+        "board": {
+          "$description": "Cases de l'échiquier — bleu-gris désaturé aligné sur la palette froide de l'interface.",
+          "light": { "$value": "{color.palette.boardSlate.light}", "$description": "Case claire." },
+          "dark": { "$value": "{color.palette.boardSlate.dark}", "$description": "Case sombre." },
+          "highlight": { "$value": "{color.palette.blue.500}", "$description": "Case sélectionnée / dernier coup." }
         }
       }
     }

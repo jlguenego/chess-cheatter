@@ -25,6 +25,12 @@
   --palette-red-500: #d9534f;
   --palette-red-600: #c9302c;
 
+  /* --- Primitives : cases de l'échiquier (bleu-gris désaturé) --- */
+  --palette-board-slate-light: #c7cfda;
+  --palette-board-slate-dark: #6c7a93;
+  --palette-board-slate-light-dim: #aeb8c7;
+  --palette-board-slate-dark-dim: #586580;
+
   /* --- Typographie (partagée entre thèmes) --- */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-weight-regular: 400;
@@ -80,6 +86,9 @@
   --color-accent: var(--palette-blue-400);
   --color-accent-strong: var(--palette-blue-500);
   --color-danger: var(--palette-red-500);
+  --color-board-light: var(--palette-board-slate-light-dim);
+  --color-board-dark: var(--palette-board-slate-dark-dim);
+  --color-board-highlight: var(--palette-blue-400);
 
   color-scheme: dark;
 }
@@ -98,6 +107,9 @@
   --color-accent: var(--palette-blue-500);
   --color-accent-strong: var(--palette-blue-600);
   --color-danger: var(--palette-red-600);
+  --color-board-light: var(--palette-board-slate-light);
+  --color-board-dark: var(--palette-board-slate-dark);
+  --color-board-highlight: var(--palette-blue-500);
 
   color-scheme: light;
 }
