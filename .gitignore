@@ -6,3 +6,7 @@ dist-ssr
 bun.lock
 *.log
 .tokens-tmp
+
+# Lighthouse reports
+lighthouse-report.report.*
+lh*.json

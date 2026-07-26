@@ -66,6 +66,7 @@ export function EngineControls({
           </span>
           <input
             type="range"
+            aria-label="Temps par coup en millisecondes"
             min={200}
             max={5000}
             step={100}
@@ -78,6 +79,7 @@ export function EngineControls({
           <span className="field-label">Profondeur : {depth}</span>
           <input
             type="range"
+            aria-label="Profondeur de recherche"
             min={6}
             max={26}
             step={1}
