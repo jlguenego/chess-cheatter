@@ -275,6 +275,10 @@ button.primary,
   font-size: var(--ref-font-size-md);
 }
 
+.checkbox input[type="checkbox"] {
+  accent-color: var(--sys-color-primary);
+}
+
 input[type="range"] {
   width: 100%;
   accent-color: var(--sys-color-primary);
