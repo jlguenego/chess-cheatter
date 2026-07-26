@@ -61,9 +61,10 @@
     },
 
     "font": {
-      "$description": "Police d'affichage Orbitron pour les titres et contrôles (allure synthwave). Le corps de texte reste la pile système pour la lisibilité.",
+      "$description": "Police d'affichage Orbitron PARTOUT (allure synthwave) : titres, contrôles ET corps de texte.",
       "family": {
         "$type": "fontFamily",
+        "default": { "$value": "{ref.font.family.retro}", "$description": "Corps de texte en Orbitron." },
         "display": { "$value": "{ref.font.family.retro}", "$description": "Titres et contrôles en Orbitron." }
       }
     }

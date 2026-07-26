@@ -73,6 +73,8 @@ export function BoardEditor({
           clearArrowsOnClick: false,
           lightSquareStyle: { backgroundColor: "var(--comp-board-light)" },
           darkSquareStyle: { backgroundColor: "var(--comp-board-dark)" },
+          lightSquareNotationStyle: { color: "var(--comp-board-dark)" },
+          darkSquareNotationStyle: { color: "var(--comp-board-light)" },
           onPieceDrop: handlePieceDrop,
           onSquareRightClick: handleRightClick,
           id: "editor",

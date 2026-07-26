@@ -186,5 +186,6 @@
   --sys-space-panel-padding: var(--ref-space-3xl); /** Padding panneau renforcé. */
   --sys-space-control-padding: var(--ref-space-lg); /** Padding contrôle renforcé. */
   --sys-border-width: var(--ref-border-width-thick); /** Bordure épaisse. */
+  --sys-font: var(--ref-font-retro); /** Corps de texte en Orbitron. */
   --sys-font-display: var(--ref-font-retro); /** Titres et contrôles en Orbitron. */
 }
