@@ -35,7 +35,7 @@ React 19 + TypeScript strict + Vite 6. Règles d'échecs : `chess.js`. Échiquie
 
 ## Couleurs / thème
 
-Consomme toujours les tokens **de composant** (`--comp-*`) ou, à défaut, les rôles **système** (`--sys-*` de [src/index.css](src/index.css)) ; jamais les primitives (`--ref-*`) directement. Source de vérité : les token sets de [spec/ux/tokens/](spec/ux/tokens/) (`ref.tokens.json`, `sys.tokens.json`, `comp.tokens.json` — format DTCG, 3 tiers, thèmes `dark`/`light`).
+Consomme toujours les tokens **de composant** (`--comp-*`) ou, à défaut, les rôles **système** (`--sys-*` de [src/index.css](src/index.css)) ; jamais les primitives (`--ref-*`) directement. Source de vérité : les token sets de [spec/ux/tokens/](spec/ux/tokens/) (`ref.tokens.json`, `sys.tokens.json`, `comp.tokens.json` — format DTCG, 3 tiers). Les **thèmes** sont dans [spec/ux/tokens/theme/](spec/ux/tokens/theme/) : `dark.tokens.json` et `light.tokens.json` surchargent partiellement `sys.color.*` (mêmes chemins, valeurs différentes ; entrées mutuellement exclusives, un thème à la fois). Les alias `comp` sont donc theme-agnostic (`{sys.color.surface…}`, sans segment de thème).
 
 - **Lis les token sets de [spec/ux/tokens/](spec/ux/tokens/) avant** toute proposition ou modification de couleur/thème — ils documentent l'intention (palette froide, variante `-dim` du dark, etc.).
 - Tout changement de token doit être répercuté dans **les deux** endroits : les token sets de [spec/ux/tokens/](spec/ux/tokens/) (source de vérité DTCG) **et** [src/index.css](src/index.css) (primitives + tokens sémantiques).

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
+  "$description": "THÈME CLAIR (color-scheme: light) — surcharge partielle du tier système. Redéfinit UNIQUEMENT les rôles de couleur `sys.color.*` qui varient par thème (surface, on-surface, outline, primary, error, board) ; les rôles agnostiques (sys.color.rank, sys.opacity, sys.duration, sys.breakpoint) restent dans sys.tokens.json. Chemins de token IDENTIQUES à dark.tokens.json (mêmes clés, valeurs différentes) : les deux fichiers de thème sont des entrées MUTUELLEMENT EXCLUSIVES (on compile un thème à la fois), pas fusionnées ensemble. Reflété en CSS par le bloc [data-theme=\"light\"] de src/index.css. Dérivé de la même palette ; primary et error assombris d'un cran pour garder le contraste sur fond clair.",
+
+  "sys": {
+    "color": {
+      "$type": "color",
+
+      "surface": {
+        "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3).",
+        "base": { "$value": "{ref.color.neutral.50}", "$description": "Fond global." },
+        "container": { "$value": "{ref.color.neutral.0}", "$description": "Surface des panneaux." },
+        "container-high": { "$value": "{ref.color.neutral.100}", "$description": "Surface secondaire / contrôles au repos." }
+      },
+      "on-surface": {
+        "$description": "Contenu posé sur les surfaces.",
+        "default": { "$value": "{ref.color.neutral.900}", "$description": "Texte principal." },
+        "variant": { "$value": "{ref.color.neutral.600}", "$description": "Texte secondaire." }
+      },
+      "outline": {
+        "default": { "$value": "{ref.color.neutral.200}", "$description": "Bordure standard." }
+      },
+      "primary": {
+        "$description": "Couleur de marque et son contenu.",
+        "default": { "$value": "{ref.color.blue.500}", "$description": "Primary (assombri d'un cran vs dark pour le contraste sur fond clair)." },
+        "hover": { "$value": "{ref.color.blue.600}", "$description": "Primary renforcé : survol." },
+        "on": { "$value": "{ref.color.neutral.0}", "$description": "Texte/icône sur primary (#fff)." }
+      },
+      "error": {
+        "$description": "Couleur d'alerte et son contenu.",
+        "default": { "$value": "{ref.color.red.600}", "$description": "Erreurs et bouton d'arrêt (assombri pour le contraste)." },
+        "on": { "$value": "{ref.color.neutral.0}", "$description": "Texte/icône sur error (#fff)." }
+      },
+      "board": {
+        "$description": "Cases de l'échiquier — bleu-gris désaturé aligné sur la palette froide de l'interface.",
+        "light": { "$value": "{ref.color.board-slate.light}", "$description": "Case claire." },
+        "dark": { "$value": "{ref.color.board-slate.dark}", "$description": "Case sombre." },
+        "highlight": { "$value": "{ref.color.blue.500}", "$description": "Case sélectionnée / dernier coup." }
+      }
+    }
+  }
+}

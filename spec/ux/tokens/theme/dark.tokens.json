@@ -1,0 +1,42 @@
+{
+  "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
+  "$description": "THÈME SOMBRE (color-scheme: dark) — surcharge partielle du tier système. Redéfinit UNIQUEMENT les rôles de couleur `sys.color.*` qui varient par thème (surface, on-surface, outline, primary, error, board) ; les rôles agnostiques (sys.color.rank, sys.opacity, sys.duration, sys.breakpoint) restent dans sys.tokens.json. Chemins de token IDENTIQUES à light.tokens.json (mêmes clés, valeurs différentes) : les deux fichiers de thème sont des entrées MUTUELLEMENT EXCLUSIVES (on compile un thème à la fois), pas fusionnées ensemble. Reflété en CSS par le bloc :root (thème par défaut) de src/index.css. Convention `on-` : chaque conteneur porte un enfant `on` = le contenu posé dessus.",
+
+  "sys": {
+    "color": {
+      "$type": "color",
+
+      "surface": {
+        "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3).",
+        "base": { "$value": "{ref.color.neutral.900}", "$description": "Fond global." },
+        "container": { "$value": "{ref.color.neutral.850}", "$description": "Surface des panneaux." },
+        "container-high": { "$value": "{ref.color.neutral.800}", "$description": "Surface secondaire / contrôles au repos." }
+      },
+      "on-surface": {
+        "$description": "Contenu posé sur les surfaces. Contrastes vérifiés : default ≈ 13.8:1 sur surface, variant ≈ 5.0:1 sur surface-container-high (pire cas) → AA.",
+        "default": { "$value": "{ref.color.neutral.150}", "$description": "Texte principal." },
+        "variant": { "$value": "{ref.color.neutral.500}", "$description": "Texte secondaire." }
+      },
+      "outline": {
+        "default": { "$value": "{ref.color.neutral.700}", "$description": "Bordure standard." }
+      },
+      "primary": {
+        "$description": "Couleur de marque et son contenu. on ≈ 4.76:1 sur default (AA).",
+        "default": { "$value": "{ref.color.blue.400}", "$description": "Primary : segmented actif, bouton primaire, curseurs." },
+        "hover": { "$value": "{ref.color.blue.500}", "$description": "Primary renforcé : survol." },
+        "on": { "$value": "{ref.color.neutral.0}", "$description": "Texte/icône sur primary (#fff)." }
+      },
+      "error": {
+        "$description": "Couleur d'alerte et son contenu. on ≈ 5.44:1 sur default (AA).",
+        "default": { "$value": "{ref.color.red.500}", "$description": "Erreurs et bouton d'arrêt." },
+        "on": { "$value": "{ref.color.neutral.0}", "$description": "Texte/icône sur error (#fff)." }
+      },
+      "board": {
+        "$description": "Cases de l'échiquier — variante assombrie pour éviter que la case claire soit le point le plus lumineux de l'écran en thème sombre.",
+        "light": { "$value": "{ref.color.board-slate.light-dim}", "$description": "Case claire." },
+        "dark": { "$value": "{ref.color.board-slate.dark-dim}", "$description": "Case sombre." },
+        "highlight": { "$value": "{ref.color.blue.400}", "$description": "Case sélectionnée / dernier coup." }
+      }
+    }
+  }
+}
