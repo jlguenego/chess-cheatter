@@ -74,6 +74,10 @@
         "sans": {
           "$value": ["system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
           "$description": "Police système par défaut appliquée au body."
+        },
+        "retro": {
+          "$value": ["Orbitron", "system-ui", "sans-serif"],
+          "$description": "Police d'affichage géométrique sci-fi (Orbitron, auto-hébergée via @font-face dans index.css) pour l'allure synthwave du thème warm80s."
         }
       },
       "weight": {

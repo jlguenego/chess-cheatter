@@ -58,6 +58,14 @@
         "$type": "dimension",
         "default": { "$value": "{ref.border.width.thick}", "$description": "Bordure épaisse." }
       }
+    },
+
+    "font": {
+      "$description": "Police d'affichage Orbitron pour les titres et contrôles (allure synthwave). Le corps de texte reste la pile système pour la lisibilité.",
+      "family": {
+        "$type": "fontFamily",
+        "display": { "$value": "{ref.font.family.retro}", "$description": "Titres et contrôles en Orbitron." }
+      }
     }
   }
 }

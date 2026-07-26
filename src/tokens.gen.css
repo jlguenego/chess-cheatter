@@ -44,6 +44,7 @@
   --ref-color-retro-board-light: #b58a6a; /** Case claire (sable chaud), assombrie pour ne pas éblouir sur fond sombre. */
   --ref-color-retro-board-dark: #6e4335; /** Case sombre (terracotta), fort écart de luminance pour ancrer l'échiquier. */
   --ref-font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; /** Police système par défaut appliquée au body. */
+  --ref-font-retro: Orbitron, system-ui, sans-serif; /** Police d'affichage géométrique sci-fi (Orbitron, auto-hébergée via @font-face dans index.css) pour l'allure synthwave du thème warm80s. */
   --ref-font-weight-regular: 400; /** Poids par défaut du corps de texte. */
   --ref-font-weight-semibold: 600; /** Poids accentué (notation SAN des coups). */
   --ref-font-size-xs: 0.8rem; /** Petit texte (profondeur de coup, muted small). */
@@ -97,6 +98,8 @@
   --sys-space-panel-padding: var(--ref-space-xl); /** Padding interne des panneaux. */
   --sys-space-control-padding: var(--ref-space-md); /** Padding interne des contrôles (bouton primaire). */
   --sys-border-width: var(--ref-border-width); /** Épaisseur des bordures. */
+  --sys-font: var(--ref-font-sans); /** Police du corps de texte. */
+  --sys-font-display: var(--ref-font-sans); /** Police des titres et contrôles. */
   --comp-app-padding: var(--ref-space-3xl); /** Padding interne. */
   --comp-layout-gap: var(--ref-space-3xl); /** Espacement entre colonnes. */
   --comp-layout-side-column-gap: var(--ref-space-xl); /** Espacement vertical entre panneaux de la colonne latérale. */
@@ -183,4 +186,5 @@
   --sys-space-panel-padding: var(--ref-space-3xl); /** Padding panneau renforcé. */
   --sys-space-control-padding: var(--ref-space-lg); /** Padding contrôle renforcé. */
   --sys-border-width: var(--ref-border-width-thick); /** Bordure épaisse. */
+  --sys-font-display: var(--ref-font-retro); /** Titres et contrôles en Orbitron. */
 }

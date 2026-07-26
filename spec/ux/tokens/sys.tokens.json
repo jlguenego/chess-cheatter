@@ -82,6 +82,15 @@
       }
     },
 
+    "font": {
+      "$description": "Rôles de police surchargeables par thème. `default` = corps de texte ; `display` = titres et contrôles (un thème peut lui donner une police d'affichage, ex : warm80s → Orbitron). Défauts = pile système (look actuel inchangé).",
+      "family": {
+        "$type": "fontFamily",
+        "default": { "$value": "{ref.font.family.sans}", "$description": "Police du corps de texte." },
+        "display": { "$value": "{ref.font.family.sans}", "$description": "Police des titres et contrôles." }
+      }
+    },
+
     "duration": {
       "$type": "duration",
       "$description": "Durées d'animation / transition.",
