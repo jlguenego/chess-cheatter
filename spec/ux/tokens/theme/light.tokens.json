@@ -1,6 +1,6 @@
 {
   "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
-  "$description": "THÈME CLAIR (color-scheme: light) — surcharge partielle du tier système. Redéfinit UNIQUEMENT les rôles de couleur `sys.color.*` qui varient par thème (surface, on-surface, outline, primary, error, board) ; les rôles agnostiques (sys.color.rank, sys.opacity, sys.duration, sys.breakpoint) restent dans sys.tokens.json. Chemins de token IDENTIQUES à dark.tokens.json (mêmes clés, valeurs différentes) : les deux fichiers de thème sont des entrées MUTUELLEMENT EXCLUSIVES (on compile un thème à la fois), pas fusionnées ensemble. Reflété en CSS par le bloc [data-theme=\"light\"] de src/index.css. Dérivé de la même palette ; primary et error assombris d'un cran pour garder le contraste sur fond clair.",
+  "$description": "THÈME CLAIR (color-scheme: light) — OVERRIDE PARTIEL du thème par défaut. Ne redéfinit QUE les rôles `sys.color.*` qui diffèrent du défaut (dark, défini dans sys.tokens.json) : les rôles non listés (primary.on, error.on = blanc dans les deux, + rank/opacity/duration/breakpoint agnostiques) héritent de sys.tokens.json. Fichier OPTIONNEL : le retirer laisse le système fonctionnel en dark. Reflété en CSS par le bloc [data-theme=\"light\"] de src/index.css (ne contient que ces overrides). Dérivé de la même palette froide ; primary et error assombris d'un cran pour garder le contraste sur fond clair.",
 
   "sys": {
     "color": {
@@ -21,15 +21,13 @@
         "default": { "$value": "{ref.color.neutral.200}", "$description": "Bordure standard." }
       },
       "primary": {
-        "$description": "Couleur de marque et son contenu.",
-        "default": { "$value": "{ref.color.blue.500}", "$description": "Primary (assombri d'un cran vs dark pour le contraste sur fond clair)." },
-        "hover": { "$value": "{ref.color.blue.600}", "$description": "Primary renforcé : survol." },
-        "on": { "$value": "{ref.color.neutral.0}", "$description": "Texte/icône sur primary (#fff)." }
+        "$description": "Couleur de marque. Assombrie d'un cran vs dark pour le contraste sur fond clair. (`on-primary` hérite de sys : #fff.)",
+        "default": { "$value": "{ref.color.blue.500}", "$description": "Primary." },
+        "hover": { "$value": "{ref.color.blue.600}", "$description": "Primary renforcé : survol." }
       },
       "error": {
-        "$description": "Couleur d'alerte et son contenu.",
-        "default": { "$value": "{ref.color.red.600}", "$description": "Erreurs et bouton d'arrêt (assombri pour le contraste)." },
-        "on": { "$value": "{ref.color.neutral.0}", "$description": "Texte/icône sur error (#fff)." }
+        "$description": "Couleur d'alerte. Assombrie pour le contraste sur fond clair. (`on-error` hérite de sys : #fff.)",
+        "default": { "$value": "{ref.color.red.600}", "$description": "Erreurs et bouton d'arrêt." }
       },
       "board": {
         "$description": "Cases de l'échiquier — bleu-gris désaturé aligné sur la palette froide de l'interface.",

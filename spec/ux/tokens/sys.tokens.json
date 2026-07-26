@@ -1,18 +1,56 @@
 {
   "$schema": "https://tr.designtokens.org/format/tokens.schema.json",
-  "$description": "TIER 2 — Système / sémantique. Token set du design system chess-cheater (format DTCG). Fait partie d'un ensemble fusionné en un seul arbre par l'outil de build : ce set aliase `{ref.…}` (défini dans ref.tokens.json) et est référencé par `{sys.…}` depuis comp.tokens.json. Rôles (Material Design 3). Ne contient QUE les rôles AGNOSTIQUES au thème (rank, opacity, duration, breakpoint) ; les rôles de couleur qui varient par thème (surface, on-surface, outline, primary, error, board) sont définis dans theme/dark.tokens.json et theme/light.tokens.json, qui surchargent partiellement `sys.color.*`. C'est le niveau que consomme l'UI pour les besoins génériques. Reflété en CSS par le préfixe --sys-*.",
+  "$description": "TIER 2 — Système / sémantique. Token set du design system chess-cheater (format DTCG). Fait partie d'un ensemble fusionné en un seul arbre par l'outil de build : ce set aliase `{ref.…}` (défini dans ref.tokens.json) et est référencé par `{sys.…}` depuis comp.tokens.json. Rôles (Material Design 3). AUTO-SUFFISANT : contient le THÈME PAR DÉFAUT complet (= dark) — valeurs de couleur + rôles agnostiques (rank, opacity, duration, breakpoint). Retirer le répertoire theme/ laisse un design system fonctionnel (dark). Les fichiers theme/*.tokens.json sont des OVERRIDES partiels OPTIONNELS de `sys.color.*` (ne listent que ce qui diffère du défaut). C'est le niveau que consomme l'UI pour les besoins génériques. Reflété en CSS par le préfixe --sys-* (bloc :root).",
 
   "sys": {
     "color": {
       "$type": "color",
-      "$description": "Rôles de couleur AGNOSTIQUES au thème uniquement. Les rôles qui varient par thème (surface, on-surface, outline, primary, error, board) sont définis dans theme/dark.tokens.json et theme/light.tokens.json (surcharge partielle de `sys.color.*`).",
+      "$description": "Rôles de couleur du THÈME PAR DÉFAUT (dark) + `rank` (agnostique). Ces valeurs sont la base : les fichiers theme/*.tokens.json ne surchargent QUE les rôles qui diffèrent. Convention `on-` (MD3) : chaque conteneur (surface, primary, error) a un rôle FRÈRE de premier niveau `on-<conteneur>` = le contenu (texte/icône) posé dessus ; le contraste se lit dans la paire (surface/on-surface, primary/on-primary, error/on-error).",
 
       "rank": {
-        "$description": "Classement des suggestions moteur (dots du panneau + flèches). Agnostique au thème → défini une seule fois (fin de la duplication dark/light). Consommé côté JS via src/theme/rankColors.ts (les flèches et pastilles exigent une chaîne littérale, pas une var() CSS).",
+        "$description": "Classement des suggestions moteur (dots du panneau + flèches). Agnostique au thème → jamais surchargé par un thème. Consommé côté JS via src/theme/rankColors.ts (les flèches et pastilles exigent une chaîne littérale, pas une var() CSS).",
         "1": { "$value": "{ref.color.rank.1}", "$description": "Rang 1 (meilleur coup)." },
         "2": { "$value": "{ref.color.rank.2}", "$description": "Rang 2." },
         "3": { "$value": "{ref.color.rank.3}", "$description": "Rang 3." },
         "fallback": { "$value": "{ref.color.rank.fallback}", "$description": "Au-delà du rang 3." }
+      },
+
+      "surface": {
+        "$description": "Surfaces (fonds) — tonalité croissante des conteneurs (MD3). Valeurs par défaut = dark.",
+        "base": { "$value": "{ref.color.neutral.900}", "$description": "Fond global." },
+        "container": { "$value": "{ref.color.neutral.850}", "$description": "Surface des panneaux." },
+        "container-high": { "$value": "{ref.color.neutral.800}", "$description": "Surface secondaire / contrôles au repos." }
+      },
+      "on-surface": {
+        "$description": "Contenu posé sur les surfaces. Contrastes vérifiés (dark) : default ≈ 13.8:1 sur surface, variant ≈ 5.0:1 sur surface-container-high (pire cas) → AA.",
+        "default": { "$value": "{ref.color.neutral.150}", "$description": "Texte principal." },
+        "variant": { "$value": "{ref.color.neutral.500}", "$description": "Texte secondaire." }
+      },
+      "outline": {
+        "default": { "$value": "{ref.color.neutral.700}", "$description": "Bordure standard." }
+      },
+      "primary": {
+        "$description": "Couleur de marque. on-primary ≈ 4.76:1 sur default (AA, dark).",
+        "default": { "$value": "{ref.color.blue.400}", "$description": "Primary : segmented actif, bouton primaire, curseurs." },
+        "hover": { "$value": "{ref.color.blue.500}", "$description": "Primary renforcé : survol." }
+      },
+      "on-primary": {
+        "$description": "Contenu (texte/icône) posé sur primary. Identique dark/light → jamais surchargé.",
+        "default": { "$value": "{ref.color.neutral.0}", "$description": "#fff sur primary." }
+      },
+      "error": {
+        "$description": "Couleur d'alerte. on-error ≈ 5.44:1 sur default (AA, dark).",
+        "default": { "$value": "{ref.color.red.500}", "$description": "Erreurs et bouton d'arrêt." }
+      },
+      "on-error": {
+        "$description": "Contenu (texte/icône) posé sur error. Identique dark/light → jamais surchargé.",
+        "default": { "$value": "{ref.color.neutral.0}", "$description": "#fff sur error." }
+      },
+      "board": {
+        "$description": "Cases de l'échiquier — par défaut (dark) : variante assombrie pour éviter que la case claire soit le point le plus lumineux de l'écran.",
+        "light": { "$value": "{ref.color.board-slate.light-dim}", "$description": "Case claire." },
+        "dark": { "$value": "{ref.color.board-slate.dark-dim}", "$description": "Case sombre." },
+        "highlight": { "$value": "{ref.color.blue.400}", "$description": "Case sélectionnée / dernier coup." }
       }
     },
 

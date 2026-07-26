@@ -4,6 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chess Cheater</title>
+    <script>
+      // Applique le thème AVANT le premier rendu pour éviter le FOUC
+      // (flash du thème dark par défaut avant la bascule côté React).
+      // La clé et la logique doivent rester alignées avec src/hooks/useTheme.ts.
+      (function () {
+        try {
+          var stored = localStorage.getItem("chess-cheater-theme");
+          var theme =
+            stored === "dark" || stored === "light"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

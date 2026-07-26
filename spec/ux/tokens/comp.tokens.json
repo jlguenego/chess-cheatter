@@ -48,7 +48,7 @@
       "bg": { "$value": "{sys.color.surface.container-high}", "$description": "Fond des segments au repos." },
       "fg": { "$value": "{sys.color.on-surface.default}", "$description": "Texte des segments." },
       "active-bg": { "$value": "{sys.color.primary.default}", "$description": "Fond du segment actif." },
-      "active-fg": { "$value": "{sys.color.primary.on}", "$description": "Texte du segment actif." },
+      "active-fg": { "$value": "{sys.color.on-primary.default}", "$description": "Texte du segment actif." },
       "border-color": { "$value": "{sys.color.outline.default}", "$description": "Couleur de bordure." },
       "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." }
     },
@@ -57,7 +57,7 @@
       "$description": "Bouton principal button.primary (lancer l'analyse).",
       "bg": { "$value": "{sys.color.primary.default}", "$description": "Fond au repos." },
       "bg-hover": { "$value": "{sys.color.primary.hover}", "$description": "Fond au survol." },
-      "fg": { "$value": "{sys.color.primary.on}", "$description": "Couleur du texte." },
+      "fg": { "$value": "{sys.color.on-primary.default}", "$description": "Couleur du texte." },
       "radius": { "$value": "{ref.radius.md}", "$description": "Rayon de bordure." },
       "padding": { "$value": "{ref.space.md}", "$description": "Padding interne." },
       "font-size": { "$value": "{ref.font.size.base}", "$description": "Taille du texte." },
@@ -67,7 +67,7 @@
     "button-stop": {
       "$description": "Variante d'arrêt button.primary.stop (interrompre l'analyse).",
       "bg": { "$value": "{sys.color.error.default}", "$description": "Fond." },
-      "fg": { "$value": "{sys.color.error.on}", "$description": "Couleur du texte." }
+      "fg": { "$value": "{sys.color.on-error.default}", "$description": "Couleur du texte." }
     },
 
     "board-action": {

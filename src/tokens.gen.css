@@ -1,0 +1,145 @@
+/* ============================================================
+   Design tokens — GÉNÉRÉ par scripts/build-tokens.ts (bun run tokens).
+   Source de vérité : spec/ux/tokens/ (DTCG : ref / sys / comp + theme/).
+   NE PAS ÉDITER CE FICHIER À LA MAIN.
+     :root              → thème par défaut (dark)
+     [data-theme=light] → overrides du thème clair
+   ============================================================ */
+
+:root {
+  --ref-color-neutral-0: #ffffff; /** Blanc pur. */
+  --ref-color-neutral-50: #f5f6f8; /** Fond clair. */
+  --ref-color-neutral-100: #eef0f3; /** Surface élevée claire. */
+  --ref-color-neutral-150: #e6e8ec; /** Texte principal en thème sombre. */
+  --ref-color-neutral-200: #d5d9e0; /** Bordure claire. */
+  --ref-color-neutral-500: #9aa1ac; /** Texte atténué en thème sombre. */
+  --ref-color-neutral-600: #5c6570; /** Texte atténué en thème clair. */
+  --ref-color-neutral-700: #363b45; /** Bordure (outline) en thème sombre. */
+  --ref-color-neutral-800: #2c313b; /** Surface élevée sombre. */
+  --ref-color-neutral-850: #242830; /** Surface de panneau sombre. */
+  --ref-color-neutral-900: #1a1d23; /** Fond sombre. */
+  --ref-color-blue-400: #3576b5; /** Accent standard (thème sombre). Texte blanc dessus ≈ 4.76:1 (AA). */
+  --ref-color-blue-500: #2f6fa8; /** Accent renforcé survol (dark) et accent standard (light). Texte blanc ≈ 5.30:1 (AA). */
+  --ref-color-blue-600: #2a5f92; /** Accent renforcé pour survol en thème clair. Texte blanc ≈ 6.67:1 (AAA). */
+  --ref-color-red-500: #c0392b; /** Danger en thème sombre. Assombri pour texte blanc ≈ 5.44:1 (AA). */
+  --ref-color-red-600: #c9302c; /** Danger en thème clair. Texte blanc ≈ 5.33:1 (AA). */
+  --ref-color-rank-1: #2e9e5b; /** Meilleur coup (rang 1) — vert. */
+  --ref-color-rank-2: #a8851a; /** Deuxième coup (rang 2) — or assombri pour ≥ 3:1 sur panneau clair (3.48:1) comme sombre (4.25:1). */
+  --ref-color-rank-3: #c96a27; /** Troisième coup (rang 3) — orange. */
+  --ref-color-rank-fallback: #888888; /** Coups au-delà du rang 3 — gris. */
+  --ref-color-board-slate-light: #dce1e9; /** Case claire (thème clair) — clair et doux. */
+  --ref-color-board-slate-dark: #7c8ba6; /** Case sombre (thème clair) — doux, faible écart de luminance. */
+  --ref-color-board-slate-light-dim: #8f9bb0; /** Case claire (thème sombre) — assombrie pour ne pas éblouir sur fond sombre. */
+  --ref-color-board-slate-dark-dim: #454f63; /** Case sombre (thème sombre) — fort écart de luminance pour ancrer l'échiquier. */
+  --ref-font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; /** Police système par défaut appliquée au body. */
+  --ref-font-weight-regular: 400; /** Poids par défaut du corps de texte. */
+  --ref-font-weight-semibold: 600; /** Poids accentué (notation SAN des coups). */
+  --ref-font-size-xs: 0.8rem; /** Petit texte (profondeur de coup, muted small). */
+  --ref-font-size-sm: 0.85rem; /** Labels de champ, indices. */
+  --ref-font-size-md: 0.9rem; /** Cases à cocher, bouton bascule thème. */
+  --ref-font-size-base: 1rem; /** Texte de base / bouton primaire. */
+  --ref-font-size-lg: 1.05rem; /** Titres de panneaux. */
+  --ref-font-size-xl: 1.8rem; /** Titre principal. */
+  --ref-space-3xs: 4px; /** 4px. */
+  --ref-space-2xs: 6px; /** 6px. */
+  --ref-space-xs: 8px; /** 8px. */
+  --ref-space-sm: 10px; /** 10px. */
+  --ref-space-md: 12px; /** 12px. */
+  --ref-space-lg: 14px; /** 14px. */
+  --ref-space-xl: 16px; /** 16px. */
+  --ref-space-2xl: 20px; /** 20px. */
+  --ref-space-3xl: 24px; /** 24px. */
+  --ref-radius-sm: 6px; /** Petit rayon. */
+  --ref-radius-md: 8px; /** Rayon moyen (contrôles). */
+  --ref-radius-lg: 10px; /** Grand rayon (panneaux). */
+  --ref-radius-full: 50%; /** Rayon circulaire (pastilles). */
+  --ref-border-width: 1px; /** Épaisseur unique utilisée pour toutes les bordures. */
+  --ref-border-style: solid; /** Style unique des bordures. */
+  --sys-opacity-disabled: 0.5; /** Élément désactivé. */
+  --sys-duration-theme-transition: 200ms; /** Transition des couleurs (background, color, border) lors du passage entre thèmes dark et light. */
+  --comp-app-max-width: 1100px; /** Largeur maximale du conteneur. */
+  --comp-layout-side-column-width: 340px; /** Largeur fixe de la colonne latérale. */
+  --comp-layout-board-column-min: 320px; /** Largeur minimale de la colonne échiquier (minmax). */
+  --comp-board-max-width: 560px; /** Largeur maximale de l'échiquier, de la rangée de réserve et des indices. */
+  --comp-spare-piece-size: 44px; /** Côté carré. */
+  --comp-rank-dot-size: 12px; /** Diamètre. */
+  --sys-color-surface: var(--ref-color-neutral-900); /** Fond global. */
+  --sys-color-surface-container: var(--ref-color-neutral-850); /** Surface des panneaux. */
+  --sys-color-surface-container-high: var(--ref-color-neutral-800); /** Surface secondaire / contrôles au repos. */
+  --sys-color-on-surface: var(--ref-color-neutral-150); /** Texte principal. */
+  --sys-color-on-surface-variant: var(--ref-color-neutral-500); /** Texte secondaire. */
+  --sys-color-outline: var(--ref-color-neutral-700); /** Bordure standard. */
+  --sys-color-primary: var(--ref-color-blue-400); /** Primary : segmented actif, bouton primaire, curseurs. */
+  --sys-color-primary-hover: var(--ref-color-blue-500); /** Primary renforcé : survol. */
+  --sys-color-on-primary: var(--ref-color-neutral-0); /** #fff sur primary. */
+  --sys-color-error: var(--ref-color-red-500); /** Erreurs et bouton d'arrêt. */
+  --sys-color-on-error: var(--ref-color-neutral-0); /** #fff sur error. */
+  --sys-color-board-light: var(--ref-color-board-slate-light-dim); /** Case claire. */
+  --sys-color-board-dark: var(--ref-color-board-slate-dark-dim); /** Case sombre. */
+  --sys-color-board-highlight: var(--ref-color-blue-400); /** Case sélectionnée / dernier coup. */
+  --comp-app-padding: var(--ref-space-3xl); /** Padding interne. */
+  --comp-layout-gap: var(--ref-space-3xl); /** Espacement entre colonnes. */
+  --comp-layout-side-column-gap: var(--ref-space-xl); /** Espacement vertical entre panneaux de la colonne latérale. */
+  --comp-header-gap: var(--ref-space-md); /** Espacement titre / bascule. */
+  --comp-header-title-size: var(--ref-font-size-xl); /** Taille du titre h1. */
+  --comp-panel-radius: var(--ref-radius-lg); /** Rayon de bordure. */
+  --comp-panel-padding: var(--ref-space-xl); /** Padding interne. */
+  --comp-panel-title-size: var(--ref-font-size-lg); /** Taille du titre h2. */
+  --comp-theme-toggle-radius: var(--ref-radius-md); /** Rayon de bordure. */
+  --comp-theme-toggle-font-size: var(--ref-font-size-md); /** Taille du texte. */
+  --comp-segmented-radius: var(--ref-radius-md); /** Rayon de bordure. */
+  --comp-button-primary-radius: var(--ref-radius-md); /** Rayon de bordure. */
+  --comp-button-primary-padding: var(--ref-space-md); /** Padding interne. */
+  --comp-button-primary-font-size: var(--ref-font-size-base); /** Taille du texte. */
+  --comp-button-primary-disabled-opacity: var(--sys-opacity-disabled); /** Opacité à l'état désactivé. */
+  --comp-board-action-radius: var(--ref-radius-md); /** Rayon de bordure. */
+  --comp-spare-piece-radius: var(--ref-radius-sm); /** Rayon de bordure. */
+  --comp-spare-piece-gap: var(--ref-space-2xs); /** Espacement entre pièces de réserve. */
+  --comp-move-row-radius: var(--ref-radius-md); /** Rayon de bordure. */
+  --comp-move-row-gap: var(--ref-space-sm); /** Espacement interne entre colonnes. */
+  --comp-move-row-san-weight: var(--ref-font-weight-semibold); /** Graisse de la notation SAN. */
+  --comp-rank-dot-radius: var(--ref-radius-full); /** Rayon (cercle). */
+  --comp-header-subtitle-color: var(--sys-color-on-surface-variant); /** Couleur du sous-titre (rôle on-surface-variant, résolu par thème). */
+  --comp-panel-bg: var(--sys-color-surface-container); /** Fond du panneau. */
+  --comp-panel-border-color: var(--sys-color-outline); /** Couleur de bordure. */
+  --comp-theme-toggle-bg: var(--sys-color-surface-container-high); /** Fond au repos. */
+  --comp-theme-toggle-bg-hover: var(--sys-color-surface-container); /** Fond au survol. */
+  --comp-theme-toggle-fg: var(--sys-color-on-surface); /** Couleur du texte. */
+  --comp-theme-toggle-border-color: var(--sys-color-outline); /** Couleur de bordure. */
+  --comp-segmented-bg: var(--sys-color-surface-container-high); /** Fond des segments au repos. */
+  --comp-segmented-fg: var(--sys-color-on-surface); /** Texte des segments. */
+  --comp-segmented-active-bg: var(--sys-color-primary); /** Fond du segment actif. */
+  --comp-segmented-active-fg: var(--sys-color-on-primary); /** Texte du segment actif. */
+  --comp-segmented-border-color: var(--sys-color-outline); /** Couleur de bordure. */
+  --comp-button-primary-bg: var(--sys-color-primary); /** Fond au repos. */
+  --comp-button-primary-bg-hover: var(--sys-color-primary-hover); /** Fond au survol. */
+  --comp-button-primary-fg: var(--sys-color-on-primary); /** Couleur du texte. */
+  --comp-button-stop-bg: var(--sys-color-error); /** Fond. */
+  --comp-button-stop-fg: var(--sys-color-on-error); /** Couleur du texte. */
+  --comp-board-action-bg: var(--sys-color-surface-container-high); /** Fond au repos. */
+  --comp-board-action-bg-hover: var(--sys-color-surface-container); /** Fond au survol. */
+  --comp-board-action-fg: var(--sys-color-on-surface); /** Couleur du texte. */
+  --comp-board-action-border-color: var(--sys-color-outline); /** Couleur de bordure. */
+  --comp-board-light: var(--sys-color-board-light); /** Case claire. */
+  --comp-board-dark: var(--sys-color-board-dark); /** Case sombre. */
+  --comp-board-highlight: var(--sys-color-board-highlight); /** Case sélectionnée / dernier coup. */
+  --comp-spare-piece-bg: var(--sys-color-surface-container-high); /** Fond. */
+  --comp-spare-piece-border-color: var(--sys-color-outline); /** Couleur de bordure. */
+  --comp-move-row-bg: var(--sys-color-surface-container-high); /** Fond. */
+  --comp-move-row-border-color: var(--sys-color-outline); /** Couleur de bordure. */
+}
+
+[data-theme="light"] {
+  --sys-color-surface: var(--ref-color-neutral-50); /** Fond global. */
+  --sys-color-surface-container: var(--ref-color-neutral-0); /** Surface des panneaux. */
+  --sys-color-surface-container-high: var(--ref-color-neutral-100); /** Surface secondaire / contrôles au repos. */
+  --sys-color-on-surface: var(--ref-color-neutral-900); /** Texte principal. */
+  --sys-color-on-surface-variant: var(--ref-color-neutral-600); /** Texte secondaire. */
+  --sys-color-outline: var(--ref-color-neutral-200); /** Bordure standard. */
+  --sys-color-primary: var(--ref-color-blue-500); /** Primary. */
+  --sys-color-primary-hover: var(--ref-color-blue-600); /** Primary renforcé : survol. */
+  --sys-color-error: var(--ref-color-red-600); /** Erreurs et bouton d'arrêt. */
+  --sys-color-board-light: var(--ref-color-board-slate-light); /** Case claire. */
+  --sys-color-board-dark: var(--ref-color-board-slate-dark); /** Case sombre. */
+  --sys-color-board-highlight: var(--ref-color-blue-500); /** Case sélectionnée / dernier coup. */
+}

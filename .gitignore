@@ -5,3 +5,4 @@ dist-ssr
 .DS_Store
 bun.lock
 *.log
+.tokens-tmp

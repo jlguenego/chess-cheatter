@@ -1,206 +1,25 @@
 /* ============================================================
-   Design tokens — voir spec/ux/tokens/ (format DTCG, sets ref/sys/comp).
-   3 tiers explicites, un préfixe de variable CSS par tier :
+   Design tokens — GÉNÉRÉS. Les variables (:root = dark,
+   [data-theme=light] = overrides) vivent dans tokens.gen.css,
+   produit par scripts/build-tokens.ts (bun run tokens) depuis
+   spec/ux/tokens/ (DTCG, sets ref/sys/comp + theme/). Ne pas éditer
+   le .gen à la main. Rappel des 3 tiers et de leur préfixe CSS :
      TIER 1  ref  → --ref-*   primitives brutes (agnostiques thème/composant)
      TIER 2  sys  → --sys-*   rôles sémantiques (MD3), redéfinis par thème
      TIER 3  comp → --comp-*  tokens scopés à un composant
    Règle : les composants consomment --comp-* en priorité, --sys-* pour les
    rôles génériques ; ne jamais consommer --ref-* directement dans l'UI.
    ============================================================ */
+@import "./tokens.gen.css";
+
+/* color-scheme : propriété CSS native (pas un design token) — aligne les
+   couleurs par défaut du navigateur (barres de défilement, contrôles de
+   formulaire) sur le thème actif. Pilotée par [data-theme] comme les tokens. */
 :root {
-  /* ============================================================
-     TIER 1 — Référence (primitives). Préfixe --ref-*.
-     ============================================================ */
-
-  /* --- ref : couleurs neutres --- */
-  --ref-color-neutral-0: #ffffff;
-  --ref-color-neutral-50: #f5f6f8;
-  --ref-color-neutral-100: #eef0f3;
-  --ref-color-neutral-150: #e6e8ec;
-  --ref-color-neutral-200: #d5d9e0;
-  --ref-color-neutral-500: #9aa1ac;
-  --ref-color-neutral-600: #5c6570;
-  --ref-color-neutral-700: #363b45;
-  --ref-color-neutral-800: #2c313b;
-  --ref-color-neutral-850: #242830;
-  --ref-color-neutral-900: #1a1d23;
-
-  /* --- ref : couleurs marque / alerte --- */
-  --ref-color-blue-400: #3576b5;
-  --ref-color-blue-500: #2f6fa8;
-  --ref-color-blue-600: #2a5f92;
-  --ref-color-red-500: #c0392b;
-  --ref-color-red-600: #c9302c;
-
-  /* --- ref : cases de l'échiquier (bleu-gris désaturé) --- */
-  --ref-color-board-slate-light: #dce1e9;
-  --ref-color-board-slate-dark: #7c8ba6;
-  --ref-color-board-slate-light-dim: #8f9bb0;
-  --ref-color-board-slate-dark-dim: #454f63;
-
-  /* --- ref : typographie --- */
-  --ref-font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --ref-font-weight-regular: 400;
-  --ref-font-weight-semibold: 600;
-  --ref-font-size-xs: 0.8rem;
-  --ref-font-size-sm: 0.85rem;
-  --ref-font-size-md: 0.9rem;
-  --ref-font-size-base: 1rem;
-  --ref-font-size-lg: 1.05rem;
-  --ref-font-size-xl: 1.8rem;
-
-  /* --- ref : espacements --- */
-  --ref-space-3xs: 4px;
-  --ref-space-2xs: 6px;
-  --ref-space-xs: 8px;
-  --ref-space-sm: 10px;
-  --ref-space-md: 12px;
-  --ref-space-lg: 14px;
-  --ref-space-xl: 16px;
-  --ref-space-2xl: 20px;
-  --ref-space-3xl: 24px;
-
-  /* --- ref : rayons / bordures --- */
-  --ref-radius-sm: 6px;
-  --ref-radius-md: 8px;
-  --ref-radius-lg: 10px;
-  --ref-radius-full: 50%;
-  --ref-border-width: 1px;
-  --ref-border-style: solid;
-
-  /* ============================================================
-     TIER 2 — Système (sémantique). Préfixe --sys-*.
-     Rôles Material Design 3 aliasant --ref-*. Le bloc couleur =
-     thème sombre (défaut) ; il est redéfini pour le thème clair
-     plus bas. opacity/duration sont partagés entre thèmes.
-     ============================================================ */
-  --sys-color-surface: var(--ref-color-neutral-900);
-  --sys-color-surface-container: var(--ref-color-neutral-850);
-  --sys-color-surface-container-high: var(--ref-color-neutral-800);
-  --sys-color-outline: var(--ref-color-neutral-700);
-  --sys-color-on-surface: var(--ref-color-neutral-150);
-  --sys-color-on-surface-variant: var(--ref-color-neutral-500);
-  --sys-color-primary: var(--ref-color-blue-400);
-  --sys-color-primary-hover: var(--ref-color-blue-500);
-  --sys-color-on-primary: var(--ref-color-neutral-0);
-  --sys-color-error: var(--ref-color-red-500);
-  --sys-color-on-error: var(--ref-color-neutral-0);
-  --sys-color-board-light: var(--ref-color-board-slate-light-dim);
-  --sys-color-board-dark: var(--ref-color-board-slate-dark-dim);
-  --sys-color-board-highlight: var(--ref-color-blue-400);
-
-  /* --- sys : partagés entre thèmes --- */
-  --sys-opacity-disabled: 0.5;
-  --sys-duration-theme-transition: 200ms;
-
-  /* ============================================================
-     TIER 3 — Composant. Préfixe --comp-*.
-     Alias vers --sys-* (couleurs/états → suivent le thème) ou
-     --ref-* (dimensions pures). Consommé en priorité par les
-     règles des composants.
-     ============================================================ */
-
-  /* --- comp : app / layout --- */
-  --comp-app-max-width: 1100px;
-  --comp-app-padding: var(--ref-space-3xl);
-  --comp-layout-gap: var(--ref-space-3xl);
-  --comp-layout-side-column-width: 340px;
-  --comp-layout-board-column-min: 320px;
-  --comp-layout-side-column-gap: var(--ref-space-xl);
-
-  /* --- comp : header --- */
-  --comp-header-gap: var(--ref-space-md);
-  --comp-header-title-size: var(--ref-font-size-xl);
-
-  /* --- comp : panel --- */
-  --comp-panel-bg: var(--sys-color-surface-container);
-  --comp-panel-border-color: var(--sys-color-outline);
-  --comp-panel-radius: var(--ref-radius-lg);
-  --comp-panel-padding: var(--ref-space-xl);
-  --comp-panel-title-size: var(--ref-font-size-lg);
-
-  /* --- comp : theme-toggle --- */
-  --comp-theme-toggle-bg: var(--sys-color-surface-container-high);
-  --comp-theme-toggle-bg-hover: var(--sys-color-surface-container);
-  --comp-theme-toggle-fg: var(--sys-color-on-surface);
-  --comp-theme-toggle-border-color: var(--sys-color-outline);
-  --comp-theme-toggle-radius: var(--ref-radius-md);
-  --comp-theme-toggle-font-size: var(--ref-font-size-md);
-
-  /* --- comp : segmented --- */
-  --comp-segmented-bg: var(--sys-color-surface-container-high);
-  --comp-segmented-fg: var(--sys-color-on-surface);
-  --comp-segmented-active-bg: var(--sys-color-primary);
-  --comp-segmented-active-fg: var(--sys-color-on-primary);
-  --comp-segmented-border-color: var(--sys-color-outline);
-  --comp-segmented-radius: var(--ref-radius-md);
-
-  /* --- comp : button-primary / button-stop --- */
-  --comp-button-primary-bg: var(--sys-color-primary);
-  --comp-button-primary-bg-hover: var(--sys-color-primary-hover);
-  --comp-button-primary-fg: var(--sys-color-on-primary);
-  --comp-button-primary-radius: var(--ref-radius-md);
-  --comp-button-primary-padding: var(--ref-space-md);
-  --comp-button-primary-font-size: var(--ref-font-size-base);
-  --comp-button-primary-disabled-opacity: var(--sys-opacity-disabled);
-  --comp-button-stop-bg: var(--sys-color-error);
-  --comp-button-stop-fg: var(--sys-color-on-error);
-
-  /* --- comp : board-action --- */
-  --comp-board-action-bg: var(--sys-color-surface-container-high);
-  --comp-board-action-bg-hover: var(--sys-color-surface-container);
-  --comp-board-action-fg: var(--sys-color-on-surface);
-  --comp-board-action-border-color: var(--sys-color-outline);
-  --comp-board-action-radius: var(--ref-radius-md);
-
-  /* --- comp : board (échiquier) --- */
-  --comp-board-light: var(--sys-color-board-light);
-  --comp-board-dark: var(--sys-color-board-dark);
-  --comp-board-highlight: var(--sys-color-board-highlight);
-  --comp-board-max-width: 560px;
-
-  /* --- comp : spare-piece --- */
-  --comp-spare-piece-size: 44px;
-  --comp-spare-piece-bg: var(--sys-color-surface-container-high);
-  --comp-spare-piece-border-color: var(--sys-color-outline);
-  --comp-spare-piece-radius: var(--ref-radius-sm);
-  --comp-spare-piece-gap: var(--ref-space-2xs);
-
-  /* --- comp : move-row --- */
-  --comp-move-row-bg: var(--sys-color-surface-container-high);
-  --comp-move-row-border-color: var(--sys-color-outline);
-  --comp-move-row-radius: var(--ref-radius-md);
-  --comp-move-row-gap: var(--ref-space-sm);
-  --comp-move-row-san-weight: var(--ref-font-weight-semibold);
-
-  /* --- comp : rank-dot --- */
-  --comp-rank-dot-size: 12px;
-  --comp-rank-dot-radius: var(--ref-radius-full);
-
   color-scheme: dark;
 }
 
-/* ============================================================
-   TIER 2 — Système : override thème clair.
-   Seuls les rôles de couleur dépendant du thème sont redéfinis ;
-   les tokens --comp-* pointant sur --sys-* suivent automatiquement.
-   ============================================================ */
 [data-theme="light"] {
-  --sys-color-surface: var(--ref-color-neutral-50);
-  --sys-color-surface-container: var(--ref-color-neutral-0);
-  --sys-color-surface-container-high: var(--ref-color-neutral-100);
-  --sys-color-outline: var(--ref-color-neutral-200);
-  --sys-color-on-surface: var(--ref-color-neutral-900);
-  --sys-color-on-surface-variant: var(--ref-color-neutral-600);
-  --sys-color-primary: var(--ref-color-blue-500);
-  --sys-color-primary-hover: var(--ref-color-blue-600);
-  --sys-color-on-primary: var(--ref-color-neutral-0);
-  --sys-color-error: var(--ref-color-red-600);
-  --sys-color-on-error: var(--ref-color-neutral-0);
-  --sys-color-board-light: var(--ref-color-board-slate-light);
-  --sys-color-board-dark: var(--ref-color-board-slate-dark);
-  --sys-color-board-highlight: var(--ref-color-blue-500);
-
   color-scheme: light;
 }
 
