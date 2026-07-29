@@ -363,13 +363,27 @@ button.primary.stop {
 }
 
 .move-score {
+  min-width: 3.5em;
+  text-align: right;
   font-variant-numeric: tabular-nums;
   color: var(--sys-color-on-surface);
 }
 
 .move-depth {
+  min-width: 4em;
+  text-align: right;
   font-size: var(--ref-font-size-xs);
   color: var(--sys-color-on-surface-variant);
+}
+
+/* Empty slots hold the panel's height steady while results stream in. */
+.move-row.placeholder {
+  opacity: 0.4;
+}
+
+.suggestions .status {
+  min-height: 1.25em;
+  margin-bottom: 0;
 }
 
 .muted {
