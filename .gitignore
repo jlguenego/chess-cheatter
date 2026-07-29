@@ -5,6 +5,7 @@ dist-ssr
 .DS_Store
 bun.lock
 *.log
+*.tsbuildinfo
 .tokens-tmp
 
 # Lighthouse reports
