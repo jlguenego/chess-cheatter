@@ -68,6 +68,34 @@ export const DEFAULT_META: PositionMeta = {
   fullmove: 1,
 };
 
+/** Parse a full FEN back into the board model and metadata (inverse of buildFen). */
+export function fenToPosition(fen: string): { board: BoardPosition; meta: PositionMeta } {
+  const [placement, turn, castling, enPassant, halfmove, fullmove] = fen.split(/\s+/);
+  const board: BoardPosition = {};
+  const rows = placement.split("/");
+  for (let r = 0; r < rows.length; r++) {
+    const rank = RANKS[r];
+    let file = 0;
+    for (const ch of rows[r]) {
+      if (/\d/.test(ch)) {
+        file += Number(ch);
+        continue;
+      }
+      const color = ch === ch.toUpperCase() ? "w" : "b";
+      board[`${FILES[file]}${rank}`] = `${color}${ch.toUpperCase()}`;
+      file++;
+    }
+  }
+  const meta: PositionMeta = {
+    turn: (turn as SideToMove) ?? "w",
+    castling: castling || "-",
+    enPassant: enPassant || "-",
+    halfmove: Number(halfmove ?? 0),
+    fullmove: Number(fullmove ?? 1),
+  };
+  return { board, meta };
+}
+
 /** Convert the board model into the react-chessboard object position. */
 export function toPositionData(board: BoardPosition): PositionData {
   const data: PositionData = {};
@@ -167,6 +195,35 @@ export function uciToMove(fen: string, uci: string): DecodedMove {
   } catch {
     // Illegal in this position (e.g. user-crafted). Fall back to raw squares.
     return { san: uci, from, to };
+  }
+}
+
+/** Whether moving from -> to is a pawn promotion (pawn reaching the last rank). */
+export function isPromotion(fen: string, from: string, to: string): boolean {
+  try {
+    const chess = new Chess(fen);
+    const piece = chess.get(from as Parameters<Chess["get"]>[0]);
+    if (!piece || piece.type !== "p") return false;
+    const toRank = to[1];
+    return (piece.color === "w" && toRank === "8") || (piece.color === "b" && toRank === "1");
+  } catch {
+    return false;
+  }
+}
+
+/** Apply a legal move to a FEN, returning the resulting FEN and SAN, or null if illegal. */
+export function applyMove(
+  fen: string,
+  from: string,
+  to: string,
+  promotion?: string,
+): { fen: string; san: string } | null {
+  try {
+    const chess = new Chess(fen);
+    const move = chess.move({ from, to, promotion });
+    return { fen: chess.fen(), san: move.san };
+  } catch {
+    return null;
   }
 }
 
