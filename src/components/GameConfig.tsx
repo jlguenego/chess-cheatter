@@ -3,6 +3,7 @@ import type { PositionMeta, SideToMove } from "../chess/fen";
 interface GameConfigProps {
   orientation: "white" | "black";
   meta: PositionMeta;
+  disabled?: boolean;
   onOrientationChange: (o: "white" | "black") => void;
   onMetaChange: (meta: PositionMeta) => void;
 }
@@ -10,6 +11,7 @@ interface GameConfigProps {
 export function GameConfig({
   orientation,
   meta,
+  disabled = false,
   onOrientationChange,
   onMetaChange,
 }: GameConfigProps) {
@@ -50,12 +52,14 @@ export function GameConfig({
         <div className="segmented">
           <button
             className={meta.turn === "w" ? "active" : ""}
+            disabled={disabled}
             onClick={() => onMetaChange({ ...meta, turn: "w" as SideToMove })}
           >
             Blancs
           </button>
           <button
             className={meta.turn === "b" ? "active" : ""}
+            disabled={disabled}
             onClick={() => onMetaChange({ ...meta, turn: "b" as SideToMove })}
           >
             Noirs
@@ -71,6 +75,7 @@ export function GameConfig({
               <input
                 type="checkbox"
                 checked={meta.castling.includes(flag)}
+                disabled={disabled}
                 onChange={() => toggleCastle(flag)}
               />
               {CASTLE_LABELS[flag]}

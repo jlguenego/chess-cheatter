@@ -182,6 +182,7 @@ button.primary,
 }
 
 .board-wrapper {
+  position: relative;
   max-width: var(--comp-board-max-width);
 }
 
@@ -381,4 +382,100 @@ button.primary.stop {
 
 .error {
   color: var(--sys-color-error);
+}
+
+/* Board mode toggle (Éditer / Jouer) sits above the board. */
+.board-mode {
+  margin-bottom: var(--ref-space-md);
+}
+
+.board-mode button:disabled {
+  opacity: var(--comp-button-primary-disabled-opacity);
+  cursor: not-allowed;
+}
+
+/* Promotion picker overlaid on the board while a pawn promotion is pending. */
+.promotion-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--sys-color-surface) 70%, transparent);
+  z-index: 10;
+}
+
+.promotion-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ref-space-sm);
+  align-items: center;
+  background: var(--comp-panel-bg);
+  border: var(--sys-border-width) var(--ref-border-style) var(--comp-panel-border-color);
+  border-radius: var(--comp-panel-radius);
+  padding: var(--comp-panel-padding);
+}
+
+.promotion-title {
+  font-size: var(--ref-font-size-sm);
+  color: var(--sys-color-on-surface-variant);
+}
+
+.promotion-choices {
+  display: flex;
+  gap: var(--ref-space-xs);
+}
+
+.promotion-choice {
+  width: var(--comp-spare-piece-size);
+  height: var(--comp-spare-piece-size);
+  font-size: var(--comp-spare-piece-size);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--comp-spare-piece-bg);
+  color: var(--sys-color-on-surface);
+  border: var(--sys-border-width) var(--ref-border-style) var(--comp-spare-piece-border-color);
+  border-radius: var(--comp-spare-piece-radius);
+  cursor: pointer;
+}
+
+.promotion-choice:hover {
+  background: var(--comp-segmented-active-bg);
+  color: var(--comp-segmented-active-fg);
+}
+
+/* Move history: each ply is a clickable link that navigates to that position. */
+.move-history {
+  margin-top: var(--ref-space-md);
+  max-width: var(--comp-board-max-width);
+}
+
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ref-space-2xs);
+}
+
+.history-move {
+  background: none;
+  border: none;
+  color: var(--sys-color-on-surface);
+  font-variant-numeric: tabular-nums;
+  padding: var(--ref-space-3xs) var(--ref-space-2xs);
+  border-radius: var(--comp-move-row-radius);
+  cursor: pointer;
+}
+
+.history-move:hover {
+  text-decoration: underline;
+}
+
+.history-move.active {
+  background: var(--comp-segmented-active-bg);
+  color: var(--comp-segmented-active-fg);
 }
